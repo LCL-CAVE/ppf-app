@@ -2,8 +2,8 @@ import time
 import importlib
 
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 import numpy as np
 from dash.dependencies import Input, Output, State
 from sklearn.model_selection import train_test_split
@@ -82,9 +82,9 @@ app.layout = html.Div(
                         html.A(
                             id="banner-logo",
                             children=[
-                                html.Img(src=app.get_asset_url("dash-logo-new.png"))
+                                html.Img(src=app.get_asset_url("cave-lux-logo.png"))
                             ],
-                            href="https://plot.ly/products/dash/",
+                            href="https://cave.daloos.uni.lu",
                         ),
                     ],
                 )
