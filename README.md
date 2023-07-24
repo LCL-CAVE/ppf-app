@@ -52,23 +52,10 @@ In addition to creating models, scikit-learn is used to generate the datasets yo
 ### What is an SVM?
 An SVM is a popular Machine Learning model used in many different fields. You can find an [excellent guide to how to use SVMs here](https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf).
 
-## Built With
+## Packages and Frameworks
 * [Dash](https://dash.plot.ly/) - Main server and interactive components
 * [Plotly Python](https://plot.ly/python/) - Used to create the interactive plots
 * [Scikit-Learn](http://scikit-learn.org/stable/documentation.html) - Run the classification algorithms and generate datasets
 
-
-## Authors
-
-* **Xing Han Lu** - *Initial Work* - [@xhlulu](https://github.com/xhlulu)
-* **Matthew Chan** - *Code Review* - [@matthewchan15](https://github.com/matthewchan15)
-* **Yunke Xiao** - *Redesign* - [@YunkeXiao](https://github.com/YunkeXiao)
-* **celinehuang** - *Code Review* - [@celinehuang](https://github.com/celinehuang)
-
-
-## Acknowledgments
-The heatmap configuration is heavily inspired from the [scikit-learn Classification Comparison Tutorial](http://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html). Please go take a look!
-
-The idea of the [ROC Curve, the Matrix Pie Chart and Thresholding](https://github.com/nicolaskruchten/dash-roc) came from @nickruchten. The app would not have been as complete without his insightful advice.
 
 
