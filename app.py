@@ -313,10 +313,12 @@ controls = dbc.Card(
     body=True,
 )
 
-tab1 = dbc.Tab([html.Div(id="div-graphs")], label="Performance Charts", className="p-4")
+# tab1 = dbc.Tab([html.Div(id="div-graphs")], label="Performance Charts", className="p-4")
 tab2 = dbc.Tab([dcc.Graph(id="graph-sklearn-svm")], label="Clustering Chart", className="p-4")
+tab3 = dbc.Tab([dcc.Graph(id="graph-line-roc-curve")], label="ROC Curve", className="p-4")
+tab4 = dbc.Tab([dcc.Graph(id="graph-pie-confusion-matrix")], label="Confusion Matrix", className="p-4")
 # tab3 = dbc.Tab([table], label="Table", className="p-4")
-tabs = dbc.Card(dbc.Tabs([tab1, tab2]))
+tabs = dbc.Card(dbc.Tabs([tab2, tab3, tab4]))
 
 app.layout = dbc.Container(
     [
@@ -396,7 +398,9 @@ def disable_slider_param_gamma_power(kernel):
 
 
 @app.callback(
-    Output("div-graphs", "children"),
+    Output("graph-sklearn-svm", "figure"),
+    Output("graph-line-roc-curve", "figure"),
+    Output("graph-pie-confusion-matrix", "figure"),
     [
         Input("dropdown-svm-parameter-kernel", "value"),
         Input("slider-svm-parameter-degree", "value"),
@@ -478,31 +482,7 @@ def update_svm_graph(
         model=clf, X_test=X_test, y_test=y_test, Z=Z, threshold=threshold
     )
 
-    return [
-        html.Div(
-            id="svm-graph-container",
-            children=dcc.Loading(
-                className="graph-wrapper",
-                children=dcc.Graph(id="graph-sklearn-svm", figure=prediction_figure),
-                style={"display": "none"},
-            ),
-        ),
-        html.Div(
-            id="graphs-container",
-            children=[
-                dcc.Loading(
-                    className="graph-wrapper",
-                    children=dcc.Graph(id="graph-line-roc-curve", figure=roc_figure),
-                ),
-                dcc.Loading(
-                    className="graph-wrapper",
-                    children=dcc.Graph(
-                        id="graph-pie-confusion-matrix", figure=confusion_figure
-                    ),
-                ),
-            ],
-        ),
-    ]
+    return prediction_figure, roc_figure, confusion_figure
 
 
 # Running the server
