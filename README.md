@@ -1,4 +1,4 @@
-# Cave Aapp: Support Vector Machine Visualization
+# Cave App: Support Vector Machine Visualization
 
 This is a learning tool and exploration app made using the Dash interactive Python framework developed by [Plotly](https://plot.ly/).
 
