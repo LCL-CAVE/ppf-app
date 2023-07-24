@@ -1,4 +1,4 @@
-# Support Vector Machine (SVM) Explorer [![Mentioned in Awesome Machine Learning](https://awesome.re/mentioned-badge.svg)](https://github.com/josephmisiti/awesome-machine-learning)
+# Cave Aapp: Support Vector Machine Visualization
 
 This is a learning tool and exploration app made using the Dash interactive Python framework developed by [Plotly](https://plot.ly/).
 
