@@ -55,9 +55,39 @@ def generate_data(n_samples, dataset, noise):
         )
 
 
-header = html.H4(
-    "Support Vector Machine App", className="bg-primary text-white p-2 mb-2"
+header = html.Div(
+    dbc.Container(
+        [
+            html.Img(src=app.get_asset_url("cave-lux-logo.png"), className="mx-auto"),
+            html.H4(
+                "Support Vector Clustering App",
+                # className="lead",
+            ),
+        ],
+        fluid=True,
+        # className="py-3",
+    ),
+    className="text-white p-2 mb-2",
 )
+
+# header = html.Div(
+#     children=[
+#         # Change App Name here
+#         html.H4(
+#             children=[
+#                 html.A(
+#                     "Support Vector Machine App",
+#                 )
+#             ],
+#         ),
+#         html.A(
+#             children=[
+#                 html.Img(src=app.get_asset_url("cave-lux-logo.png"))
+#             ],
+#             href="https://cave.daloos.uni.lu/",
+#         ),
+#     ],
+#     className="bg-primary text-white p-2 mb-2")
 
 dropdown_dataset = html.Div(
     [
