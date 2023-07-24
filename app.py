@@ -2,6 +2,7 @@ import time
 import importlib
 
 import dash
+import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
 import numpy as np
@@ -14,11 +15,14 @@ from sklearn.svm import SVC
 import utils.dash_reusable_components as drc
 import utils.figures as figs
 
+
+dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 app = dash.Dash(
     __name__,
     meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}
     ],
+    external_stylesheets=[dbc.themes.ZEPHYR, dbc_css]
 )
 app.title = "Support Vector Machine"
 server = app.server
@@ -268,11 +272,11 @@ app.layout = html.Div(
                             id="div-graphs",
                             children=dcc.Graph(
                                 id="graph-sklearn-svm",
-                                figure=dict(
-                                    layout=dict(
-                                        plot_bgcolor="#282b38", paper_bgcolor="#282b38"
-                                    )
-                                ),
+                                # figure=dict(
+                                #     layout=dict(
+                                #         plot_bgcolor="#282b38", paper_bgcolor="#282b38"
+                                #     )
+                                # ),
                             ),
                         ),
                     ],

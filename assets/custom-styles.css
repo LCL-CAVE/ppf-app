@@ -21,16 +21,16 @@
 /* Banner
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .banner {
-    background-color: #2f3445; /* Machine Learning Color is orange */
+    /* background-color: #2f3445; */
     padding: 3rem 0;
     width: 100%;
     margin-bottom: 5rem;
 }
 
 .banner h2 {
-    color: #a5b1cd;
+    color: #fff;
     display: inline-block;
-    font-family: 'Playfair Display', sans-serif;
+   /* font-family: 'Playfair Display', sans-serif; */
     font-size: 4rem;
     line-height: 1;
     text-align: center;
@@ -111,6 +111,8 @@
 
 /* Dropdowns
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/*
 .Select-control {
     color: #a5b1cd;
 }
@@ -135,7 +137,7 @@
 .Select-value-label {
     color: #a5b1cd !important;
 }
-
+*/
 .Select--single > .Select-control .Select-value, .Select-placeholder {
     border: 1px solid gray;
     border-radius: 4px;
@@ -319,7 +321,7 @@
     }
 
     #svm-graph-container {
-        flex: 2 66%;
+        flex: 2 100% 50%;
     }
 
     #graphs-container {
