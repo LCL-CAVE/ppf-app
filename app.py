@@ -1,5 +1,4 @@
 import time
-import importlib
 
 import dash
 import dash_bootstrap_components as dbc
@@ -12,17 +11,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import datasets
 from sklearn.svm import SVC
 
-import utils.dash_reusable_components as drc
 import utils.figures as figs
 
-
-dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 app = dash.Dash(
     __name__,
     meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}
     ],
-    external_stylesheets=[dbc.themes.ZEPHYR, dbc_css]
+    external_stylesheets=[dbc.themes.ZEPHYR]
 )
 app.title = "Support Vector Machine"
 server = app.server
@@ -59,231 +55,256 @@ def generate_data(n_samples, dataset, noise):
         )
 
 
-app.layout = html.Div(
-    children=[
-        # .container class is fixed, .container.scalable is scalable
-        html.Div(
-            className="banner",
-            children=[
-                # Change App Name here
-                html.Div(
-                    className="container scalable",
-                    children=[
-                        # Change App Name here
-                        html.H2(
-                            id="banner-title",
-                            children=[
-                                html.A(
-                                    "Support Vector Machine (SVM) Explorer",
-                                    href="https://github.com/plotly/dash-svm",
-                                    style={
-                                        "text-decoration": "none",
-                                        "color": "inherit",
-                                    },
-                                )
-                            ],
-                        ),
-                        html.A(
-                            id="banner-logo",
-                            children=[
-                                html.Img(src=app.get_asset_url("cave-lux-logo.png"))
-                            ],
-                            href="https://cave.daloos.uni.lu",
-                        ),
-                    ],
-                )
-            ],
+header = html.H4(
+    "Support Vector Machine App", className="bg-primary text-white p-2 mb-2"
+)
+
+dropdown_dataset = html.Div(
+    [
+        dbc.Label("Select Dataset"),
+        dcc.Dropdown(options=[
+            {"label": "Moons", "value": "moons"},
+            {
+                "label": "Linearly Separable",
+                "value": "linear",
+            },
+            {
+                "label": "Circles",
+                "value": "circles",
+            },
+        ],
+            clearable=False,
+            value="moons",
+            id="dropdown-select-dataset", )
+    ],
+    className="mb-4",
+)
+
+slider_sample_size = html.Div(
+    [
+        dbc.Label("Sample Size"),
+        dcc.Slider(
+            id="slider-dataset-sample-size",
+            min=100,
+            max=500,
+            step=100,
+            # marks={
+            #     str(i): str(i)
+            #     for i in [100, 200, 300, 400, 500]
+            # },
+            value=300,
+            marks=None,
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
         ),
-        html.Div(
-            id="body",
-            className="container scalable",
-            children=[
-                html.Div(
-                    id="app-container",
-                    # className="row",
-                    children=[
-                        html.Div(
-                            # className="three columns",
-                            id="left-column",
-                            children=[
-                                drc.Card(
-                                    id="first-card",
-                                    children=[
-                                        drc.NamedDropdown(
-                                            name="Select Dataset",
-                                            id="dropdown-select-dataset",
-                                            options=[
-                                                {"label": "Moons", "value": "moons"},
-                                                {
-                                                    "label": "Linearly Separable",
-                                                    "value": "linear",
-                                                },
-                                                {
-                                                    "label": "Circles",
-                                                    "value": "circles",
-                                                },
-                                            ],
-                                            clearable=False,
-                                            searchable=False,
-                                            value="moons",
-                                        ),
-                                        drc.NamedSlider(
-                                            name="Sample Size",
-                                            id="slider-dataset-sample-size",
-                                            min=100,
-                                            max=500,
-                                            step=100,
-                                            marks={
-                                                str(i): str(i)
-                                                for i in [100, 200, 300, 400, 500]
-                                            },
-                                            value=300,
-                                        ),
-                                        drc.NamedSlider(
-                                            name="Noise Level",
-                                            id="slider-dataset-noise-level",
-                                            min=0,
-                                            max=1,
-                                            marks={
-                                                i / 10: str(i / 10)
-                                                for i in range(0, 11, 2)
-                                            },
-                                            step=0.1,
-                                            value=0.2,
-                                        ),
-                                    ],
-                                ),
-                                drc.Card(
-                                    id="button-card",
-                                    children=[
-                                        drc.NamedSlider(
-                                            name="Threshold",
-                                            id="slider-threshold",
-                                            min=0,
-                                            max=1,
-                                            value=0.5,
-                                            step=0.01,
-                                        ),
-                                        html.Button(
-                                            "Reset Threshold",
-                                            id="button-zero-threshold",
-                                        ),
-                                    ],
-                                ),
-                                drc.Card(
-                                    id="last-card",
-                                    children=[
-                                        drc.NamedDropdown(
-                                            name="Kernel",
-                                            id="dropdown-svm-parameter-kernel",
-                                            options=[
-                                                {
-                                                    "label": "Radial basis function (RBF)",
-                                                    "value": "rbf",
-                                                },
-                                                {"label": "Linear", "value": "linear"},
-                                                {
-                                                    "label": "Polynomial",
-                                                    "value": "poly",
-                                                },
-                                                {
-                                                    "label": "Sigmoid",
-                                                    "value": "sigmoid",
-                                                },
-                                            ],
-                                            value="rbf",
-                                            clearable=False,
-                                            searchable=False,
-                                        ),
-                                        drc.NamedSlider(
-                                            name="Cost (C)",
-                                            id="slider-svm-parameter-C-power",
-                                            min=-2,
-                                            max=4,
-                                            value=0,
-                                            marks={
-                                                i: "{}".format(10 ** i)
-                                                for i in range(-2, 5)
-                                            },
-                                        ),
-                                        drc.FormattedSlider(
-                                            id="slider-svm-parameter-C-coef",
-                                            min=1,
-                                            max=9,
-                                            value=1,
-                                        ),
-                                        drc.NamedSlider(
-                                            name="Degree",
-                                            id="slider-svm-parameter-degree",
-                                            min=2,
-                                            max=10,
-                                            value=3,
-                                            step=1,
-                                            marks={
-                                                str(i): str(i) for i in range(2, 11, 2)
-                                            },
-                                        ),
-                                        drc.NamedSlider(
-                                            name="Gamma",
-                                            id="slider-svm-parameter-gamma-power",
-                                            min=-5,
-                                            max=0,
-                                            value=-1,
-                                            marks={
-                                                i: "{}".format(10 ** i)
-                                                for i in range(-5, 1)
-                                            },
-                                        ),
-                                        drc.FormattedSlider(
-                                            id="slider-svm-parameter-gamma-coef",
-                                            min=1,
-                                            max=9,
-                                            value=5,
-                                        ),
-                                        html.Div(
-                                            id="shrinking-container",
-                                            children=[
-                                                html.P(children="Shrinking"),
-                                                dcc.RadioItems(
-                                                    id="radio-svm-parameter-shrinking",
-                                                    labelStyle={
-                                                        "margin-right": "7px",
-                                                        "display": "inline-block",
-                                                    },
-                                                    options=[
-                                                        {
-                                                            "label": " Enabled",
-                                                            "value": "True",
-                                                        },
-                                                        {
-                                                            "label": " Disabled",
-                                                            "value": "False",
-                                                        },
-                                                    ],
-                                                    value="True",
-                                                ),
-                                            ],
-                                        ),
-                                    ],
-                                ),
-                            ],
-                        ),
-                        html.Div(
-                            id="div-graphs",
-                            children=dcc.Graph(
-                                id="graph-sklearn-svm",
-                                # figure=dict(
-                                #     layout=dict(
-                                #         plot_bgcolor="#282b38", paper_bgcolor="#282b38"
-                                #     )
-                                # ),
-                            ),
-                        ),
-                    ],
-                )
-            ],
+    ],
+    className="mb-4",
+)
+
+slider_noise_level = html.Div(
+    [
+        dbc.Label("Noise Level"),
+        dcc.Slider(
+            id="slider-dataset-noise-level",
+            min=0,
+            max=1,
+            # marks={
+            #     i / 10: str(i / 10)
+            #     for i in range(0, 11, 2)
+            # },
+            step=0.1,
+            marks=None,
+            value=0.2,
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
         ),
-    ]
+    ],
+    className="mb-4",
+)
+
+slider_threshold = html.Div(
+    [
+        dbc.Label("Threshold"),
+        dcc.Slider(
+            id="slider-threshold",
+            min=0,
+            max=1,
+            value=0.5,
+            step=0.01,
+            marks=None,
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
+        ),
+    ],
+    className="mb-4",
+)
+
+dropdown_kernel = html.Div(
+    [
+        dbc.Label("Select Kernel"),
+        dcc.Dropdown(id="dropdown-svm-parameter-kernel",
+                     options=[
+                         {
+                             "label": "Radial basis function (RBF)",
+                             "value": "rbf",
+                         },
+                         {"label": "Linear", "value": "linear"},
+                         {
+                             "label": "Polynomial",
+                             "value": "poly",
+                         },
+                         {
+                             "label": "Sigmoid",
+                             "value": "sigmoid",
+                         },
+                     ],
+                     value="rbf",
+                     clearable=False,
+                     )
+    ],
+    className="mb-4",
+)
+
+slider_cost = html.Div(
+    [
+        dbc.Label("Cost"),
+        dcc.Slider(
+            id="slider-svm-parameter-C-power",
+            min=-2,
+            max=4,
+            value=0,
+            marks=None,
+            # marks={
+            #     i: "{}".format(10 ** i)
+            #     for i in range(-2, 5)
+            # },
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
+        ),
+    ],
+    className="mb-4",
+)
+
+slider_cost_coef = html.Div(
+    [
+        dcc.Slider(
+            id="slider-svm-parameter-C-coef",
+            min=1,
+            max=9,
+            value=1,
+            marks=None,
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
+        ),
+    ],
+    className="mb-4",
+)
+
+slider_degree = html.Div(
+    [
+        dbc.Label("Degree"),
+        dcc.Slider(
+            id="slider-svm-parameter-degree",
+            min=2,
+            max=10,
+            value=3,
+            step=1,
+            marks=None,
+            # marks={
+            #     str(i): str(i) for i in range(2, 11, 2)
+            # },
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
+        ),
+    ],
+    className="mb-4",
+)
+
+slider_gamma = html.Div(
+    [
+        dbc.Label("Gamma"),
+        dcc.Slider(
+            id="slider-svm-parameter-gamma-power",
+            min=-5,
+            max=0,
+            value=-1,
+            marks=None,
+            # marks={
+            #     i: "{}".format(10 ** i)
+            #     for i in range(-5, 1)
+            # },
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
+        ),
+    ],
+    className="mb-4",
+)
+
+slider_gamma_coef = html.Div(
+    [
+        dcc.Slider(
+            id="slider-svm-parameter-gamma-coef",
+            min=1,
+            max=9,
+            value=5,
+            marks=None,
+            tooltip={"placement": "bottom", "always_visible": True},
+            className="p-0",
+        ),
+    ],
+    className="mb-4",
+)
+
+radio_shrinking = html.Div(
+    [
+        dbc.Label("Shrinking"),
+        dbc.RadioItems(
+            id="radio-svm-parameter-shrinking",
+            options=[
+                {
+                    "label": " Enabled",
+                    "value": "True",
+                },
+                {
+                    "label": " Disabled",
+                    "value": "False",
+                },
+            ],
+            value="True",
+            inline=True,
+        )
+    ],
+    className="mb-4",
+)
+
+controls = dbc.Card(
+    [dropdown_dataset, slider_sample_size, slider_noise_level, slider_threshold, dropdown_kernel, slider_cost,
+     slider_cost_coef, slider_degree, slider_gamma, slider_gamma_coef, radio_shrinking],
+    body=True,
+)
+
+tab1 = dbc.Tab([html.Div(id="div-graphs")], label="Performance Charts", className="p-4")
+tab2 = dbc.Tab([dcc.Graph(id="graph-sklearn-svm")], label="Clustering Chart", className="p-4")
+# tab3 = dbc.Tab([table], label="Table", className="p-4")
+tabs = dbc.Card(dbc.Tabs([tab1, tab2]))
+
+app.layout = dbc.Container(
+    [
+        header,
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        controls,
+                    ],
+                    width=4,
+                ),
+                dbc.Col([tabs], width=8),
+            ]
+        ),
+    ],
+    fluid=True,
+    className="dbc",
 )
 
 
@@ -305,18 +326,18 @@ def update_slider_svm_parameter_C_coef(power):
     return {i: str(round(i * scale, 8)) for i in range(1, 10, 2)}
 
 
-@app.callback(
-    Output("slider-threshold", "value"),
-    [Input("button-zero-threshold", "n_clicks")],
-    [State("graph-sklearn-svm", "figure")],
-)
-def reset_threshold_center(n_clicks, figure):
-    if n_clicks:
-        Z = np.array(figure["data"][0]["z"])
-        value = -Z.min() / (Z.max() - Z.min())
-    else:
-        value = 0.4959986285375595
-    return value
+# @app.callback(
+#     Output("slider-threshold", "value"),
+#     [Input("button-zero-threshold", "n_clicks")],
+#     [State("graph-sklearn-svm", "figure")],
+# )
+# def reset_threshold_center(n_clicks, figure):
+#     if n_clicks:
+#         Z = np.array(figure["data"][0]["z"])
+#         value = -Z.min() / (Z.max() - Z.min())
+#     else:
+#         value = 0.4959986285375595
+#     return value
 
 
 # Disable Sliders if kernel not in the given list
@@ -361,17 +382,17 @@ def disable_slider_param_gamma_power(kernel):
     ],
 )
 def update_svm_graph(
-    kernel,
-    degree,
-    C_coef,
-    C_power,
-    gamma_coef,
-    gamma_power,
-    dataset,
-    noise,
-    shrinking,
-    threshold,
-    sample_size,
+        kernel,
+        degree,
+        C_coef,
+        C_power,
+        gamma_coef,
+        gamma_power,
+        dataset,
+        noise,
+        shrinking,
+        threshold,
+        sample_size,
 ):
     t_start = time.time()
     h = 0.3  # step size in the mesh
