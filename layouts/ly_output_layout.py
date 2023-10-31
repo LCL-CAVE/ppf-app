@@ -15,13 +15,12 @@ def create_output_layout():
                         create_kpi_group()
                         +
                         create_btn_output_group(),
-                        style={'height': 90}
+                        className="tr-row-kpi",
                     )
                 ]
                 +
                 create_display_chart_group(),
-
             )
         ],
-        style={'cellspacing': 0, 'border-left': "1px solid #F5F5F5", 'border-collapse': 'collapse'}
+        className="table-output",
     )
