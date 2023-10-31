@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Avg. capture price",
+      "value": 11.56,
+    "unit": "euro",
+        "color": "indigo"
+  },
+  {
+    "label": "Production",
+      "value": 524,
+    "unit": "MW/h",
+        "color": "grape"
+
+  },
+  {
+    "label": "Avg. price",
+      "value": 1.14,
+    "unit": "euro",
+        "color": "lime"
+
+  }
+]

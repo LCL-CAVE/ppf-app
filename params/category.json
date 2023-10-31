@@ -1,0 +1,37 @@
+[
+  {
+    "label": "Country",
+    "icon": "emojione-monotone:globe-showing-europe-africa",
+    "icon_color": "blue",
+    "text": "Select a country",
+    "value": "country"
+  },
+  {
+    "label": "Time attributes",
+    "icon": "tabler:clock",
+    "icon_color": "blue",
+    "text": "Select training and forecasting periods",
+    "value": "time"
+  },
+  {
+    "label": "Capacity projection",
+    "icon": "gg:battery",
+    "icon_color": "blue",
+    "text": "Choose capacity provided by different sources",
+    "value": "capacity"
+  },
+  {
+    "label": "Demand projection",
+    "icon": "mdi:chart-line",
+    "icon_color": "blue",
+    "text": "Choose demand targets on different sources",
+    "value": "demand"
+  },
+  {
+    "label": "Price projection",
+    "icon": "material-symbols:price-check",
+    "icon_color": "blue",
+    "text": "Choose price by different sources",
+    "value": "price"
+  }
+]

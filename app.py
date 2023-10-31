@@ -2,6 +2,7 @@ import time
 
 import dash
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 from dash import dcc
 from dash import html
 import numpy as np
@@ -89,6 +90,7 @@ header = html.Div(
 #     ],
 #     className="bg-primary text-white p-2 mb-2")
 
+
 dropdown_dataset = html.Div(
     [
         dbc.Label("Select Dataset"),
@@ -107,13 +109,13 @@ dropdown_dataset = html.Div(
             value="moons",
             id="dropdown-select-dataset", )
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 slider_sample_size = html.Div(
     [
         dbc.Label("Sample Size"),
-        dcc.Slider(
+        dmc.Slider(
             id="slider-dataset-sample-size",
             min=100,
             max=500,
@@ -123,12 +125,13 @@ slider_sample_size = html.Div(
             #     for i in [100, 200, 300, 400, 500]
             # },
             value=300,
-            marks=None,
-            tooltip={"placement": "bottom", "always_visible": True},
-            className="p-0",
+            # marks=None,
+            # mb=35,
+            # tooltip={"placement": "bottom", "always_visible": True},
+            # className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3",
 )
 
 slider_noise_level = html.Div(
@@ -149,7 +152,31 @@ slider_noise_level = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
+)
+
+accordion_control = dmc.Accordion(
+    children=[
+        dmc.AccordionItem(
+            [
+                dmc.AccordionControl("Customization"),
+                dmc.AccordionPanel(
+                    slider_sample_size,
+                ),
+            ],
+            value="customization",
+        ),
+        dmc.AccordionItem(
+            [
+                dmc.AccordionControl("Flexibility"),
+                dmc.AccordionPanel(
+                    "Configure temp appearance and behavior with vast amount of settings or overwrite any part of "
+                    "component styles "
+                ),
+            ],
+            value="flexibility",
+        ),
+    ],
 )
 
 slider_threshold = html.Div(
@@ -166,7 +193,7 @@ slider_threshold = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 dropdown_kernel = html.Div(
@@ -192,7 +219,7 @@ dropdown_kernel = html.Div(
                      clearable=False,
                      )
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 slider_cost = html.Div(
@@ -212,7 +239,7 @@ slider_cost = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 slider_cost_coef = html.Div(
@@ -227,7 +254,7 @@ slider_cost_coef = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 slider_degree = html.Div(
@@ -247,7 +274,7 @@ slider_degree = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 slider_gamma = html.Div(
@@ -267,7 +294,7 @@ slider_gamma = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 slider_gamma_coef = html.Div(
@@ -282,7 +309,7 @@ slider_gamma_coef = html.Div(
             className="p-0",
         ),
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 radio_shrinking = html.Div(
@@ -304,11 +331,12 @@ radio_shrinking = html.Div(
             inline=True,
         )
     ],
-    className="mb-4",
+    className="pb-3 m-4",
 )
 
 controls = dbc.Card(
-    [dropdown_dataset, slider_sample_size, slider_noise_level, slider_threshold, dropdown_kernel, slider_cost,
+    [accordion_control, dropdown_dataset, slider_sample_size, slider_noise_level, slider_threshold, dropdown_kernel,
+     slider_cost,
      slider_cost_coef, slider_degree, slider_gamma, slider_gamma_coef, radio_shrinking],
     body=True,
 )
@@ -336,7 +364,7 @@ app.layout = dbc.Container(
         ),
     ],
     fluid=True,
-    className="dbc",
+    className="dbc p-4 m-4",
 )
 
 

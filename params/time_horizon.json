@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Training",
+        "min_day": 1,
+        "min_month": 1,
+        "min_year": 2020,
+        "max_day": 1,
+        "max_month": 10,
+        "max_year": 2023,
+        "initial_day": 1,
+        "initial_month": 1,
+        "initial_year": 2022
+  },
+  {
+      "label": "Forecasting",
+        "min_day": 1,
+        "min_month": 1,
+        "min_year": 2024,
+        "max_day": 1,
+        "max_month": 1,
+        "max_year": 2030,
+        "initial_day": 1,
+        "initial_month": 1,
+        "initial_year": 2024
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "label": "Gas",
+      "min": 1000,
+      "max": 5000,
+      "step": 500,
+      "value": 2000,
+        "label_on": 1,
+    "margin_bottom": 0,
+    "mark": []
+  },
+  {
+    "label": "Gas (growth)",
+      "min": 0,
+        "max": 100,
+        "step": 5,
+        "value": 0,
+        "label_on": 0,
+    "margin_bottom": 20,
+    "mark": [
+                {"value": 20, "label": "20%"},
+                {"value": 50, "label": "50%"},
+                {"value": 80, "label": "80%"}
+            ]
+  },
+  {
+      "label": "Nuclear",
+        "min": 1000,
+        "max": 5000,
+        "step": 500,
+        "value": 3000,
+     "label_on": 1,
+    "margin_bottom": 0,
+    "mark": []
+  },
+  {
+    "label": "Nuclear (growth)",
+      "min": 0,
+        "max": 100,
+        "step": 5,
+        "value": 0,
+        "label_on": 0,
+    "margin_bottom": 20,
+    "mark": [
+                {"value": 20, "label": "20%"},
+                {"value": 50, "label": "50%"},
+                {"value": 80, "label": "80%"}
+            ]
+  },
+  {
+      "label": "Coal",
+        "min": 1000,
+        "max": 5000,
+        "step": 500,
+        "value": 2500,
+     "label_on": 1,
+    "margin_bottom": 0,
+    "mark": []
+  },
+  {
+    "label": "Coal (growth)",
+      "min": 0,
+        "max": 100,
+        "step": 5,
+        "value": 0,
+        "label_on": 0,
+    "margin_bottom": 20,
+    "mark": [
+                {"value": 20, "label": "20%"},
+                {"value": 50, "label": "50%"},
+                {"value": 80, "label": "80%"}
+            ]
+  },
+  {
+    "label": "Solar",
+      "min": 1000,
+      "max": 5000,
+      "step": 500,
+      "value": 2000,
+     "label_on": 1,
+    "margin_bottom": 0,
+    "mark": []
+  },
+    {
+    "label": "Solar (growth)",
+      "min": 0,
+        "max": 100,
+        "step": 5,
+        "value": 0,
+        "label_on": 0,
+    "margin_bottom": 20,
+    "mark": [
+                {"value": 20, "label": "20%"},
+                {"value": 50, "label": "50%"},
+                {"value": 80, "label": "80%"}
+            ]
+  },
+  {
+      "label": "Wind",
+        "min": 1000,
+        "max": 5000,
+        "step": 500,
+        "value": 3000,
+     "label_on": 1,
+    "margin_bottom": 0,
+    "mark": []
+  },
+    {
+    "label": "Wind (growth)",
+      "min": 0,
+        "max": 100,
+        "step": 5,
+        "value": 0,
+        "label_on": 0,
+    "margin_bottom": 20,
+    "mark": [
+                {"value": 20, "label": "20%"},
+                {"value": 50, "label": "50%"},
+                {"value": 80, "label": "80%"}
+            ]
+  },
+  {
+      "label": "Hydro",
+        "min": 1000,
+        "max": 5000,
+        "step": 500,
+        "value": 2500,
+     "label_on": 1,
+    "margin_bottom": 0,
+    "mark": []
+  },
+    {
+    "label": "Hydro (growth)",
+      "min": 0,
+        "max": 100,
+        "step": 5,
+        "value": 0,
+        "label_on": 0,
+    "margin_bottom": 20,
+    "mark": [
+                {"value": 20, "label": "20%"},
+                {"value": 50, "label": "50%"},
+                {"value": 80, "label": "80%"}
+            ]
+  }
+]
