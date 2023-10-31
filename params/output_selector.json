@@ -1,22 +1,20 @@
 [
   {
     "label": "Demand load",
-      "id": "demand_load",
+    "id": "demand_load",
     "type": "filled",
-        "margin_top": 20
+    "margin_top": 20
   },
   {
     "label": "Production",
-      "id": "production",
+    "id": "production",
     "type": "outline",
-        "margin_top": 10
-
+    "margin_top": 10
   },
   {
     "label": "Price dynamics",
-      "id": "price_dynamics",
+    "id": "price_dynamics",
     "type": "outline",
-        "margin_top": 10
-
+    "margin_top": 10
   }
 ]

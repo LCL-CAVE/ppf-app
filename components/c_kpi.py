@@ -12,6 +12,8 @@ def create_kpi(item):
                 size="lg"),
             dmc.Text(
                 str(item["value"]) + " " + item["unit"],
-                size="xl")
+                size="xl",
+                id="text_" + "kpi_" + item['id'],
+            )
         ]
     )

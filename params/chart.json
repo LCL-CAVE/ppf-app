@@ -1,15 +1,14 @@
 [
   {
     "label": "Demand load",
-      "id": "demand_load"
+    "id": "demand_load"
   },
   {
     "label": "Production",
-      "id": "production"
+    "id": "production"
   },
   {
     "label": "Electricity price",
-      "id": "electricity_price"
-
+    "id": "electricity_price"
   }
 ]

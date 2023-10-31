@@ -1,10 +1,10 @@
 [
   {
     "label": "Renewable",
-      "value": "renew"
+    "value": "renew"
   },
   {
     "label": "Non-renewable",
-      "value": "non-renew"
+    "value": "non-renew"
   }
 ]
