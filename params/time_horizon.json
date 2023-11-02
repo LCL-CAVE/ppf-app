@@ -1,6 +1,7 @@
 [
   {
     "label": "Training",
+    "id": "training",
     "min_day": 1,
     "min_month": 1,
     "min_year": 2020,
@@ -13,6 +14,7 @@
   },
   {
     "label": "Forecasting",
+    "id": "forecasting",
     "min_day": 1,
     "min_month": 1,
     "min_year": 2024,
