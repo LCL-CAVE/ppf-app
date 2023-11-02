@@ -1,13 +1,9 @@
 from layouts.ly_control_layout import create_control_layout
 from layouts.ly_output_layout import create_output_layout
 import dash_mantine_components as dmc
-import os
-
-
 
 
 def create_body_layout():
-
     return dmc.Grid(
         children=
         [
