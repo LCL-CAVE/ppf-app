@@ -20,8 +20,8 @@ def create_slider(item, context):
                 marks=item["mark"],
                 labelAlwaysOn=item["label_on"],
                 size="xs",
-                style={'width': "100%"},
+                # style={'width': "100%"},
             ),
         ],
-        mb=15
+        mb=15,
     )

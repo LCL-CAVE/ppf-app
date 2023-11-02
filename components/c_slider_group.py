@@ -9,9 +9,6 @@ def create_slider_group(item_list, context):
     return html.Div(
         [
             create_slider(item, context)
-
-            # style={'width': "100%"},
             for item in item_list
         ],
-        # mb=15
     )
