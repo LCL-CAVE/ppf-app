@@ -11,7 +11,7 @@ def create_slider_group(item_list, context):
                 [
                     dmc.Text(item["label"]),
                     dmc.Slider(
-                        id="slider_" + context + "_" + item["label"].lower(),
+                        id="slider_" + context + "_" + item["id"],
                         min=item["min"],
                         max=item["max"],
                         step=item["step"],

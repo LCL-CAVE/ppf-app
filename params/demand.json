@@ -1,6 +1,7 @@
 [
   {
     "label": "Demand level",
+    "id": "level",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -11,6 +12,7 @@
   },
   {
     "label": "00:00 to 04:00 growth rate",
+    "id": "0_4_rate",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -34,6 +36,7 @@
   },
   {
     "label": "04:00 to 08:00 growth rate",
+    "id": "4_8_rate",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -57,6 +60,7 @@
   },
   {
     "label": "08:00 to 12:00 growth rate",
+    "id": "8_12_rate",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -80,6 +84,7 @@
   },
   {
     "label": "12:00 to 16:00 growth rate",
+    "id": "12_16_rate",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -103,6 +108,7 @@
   },
   {
     "label": "16:00 to 20:00 growth rate",
+    "id": "16_20_rate",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -126,6 +132,7 @@
   },
   {
     "label": "20:00 to 00:00 growth rate",
+    "id": "20_0_rate",
     "min": 0,
     "max": 100,
     "step": 5,

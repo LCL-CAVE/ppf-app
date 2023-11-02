@@ -1,6 +1,7 @@
 [
   {
     "label": "Gas",
+    "id": "gas_total",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -11,6 +12,7 @@
   },
   {
     "label": "Gas (growth)",
+    "id": "gas_growth",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -34,6 +36,7 @@
   },
   {
     "label": "Nuclear",
+    "id": "nuclear_total",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -44,6 +47,7 @@
   },
   {
     "label": "Nuclear (growth)",
+    "id": "nuclear_growth",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -67,6 +71,7 @@
   },
   {
     "label": "Coal",
+    "id": "coal_total",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -77,6 +82,7 @@
   },
   {
     "label": "Coal (growth)",
+    "id": "coal_growth",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -100,6 +106,7 @@
   },
   {
     "label": "Solar",
+    "id": "solar_total",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -110,6 +117,7 @@
   },
   {
     "label": "Solar (growth)",
+    "id": "solar_growth",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -133,6 +141,7 @@
   },
   {
     "label": "Wind",
+    "id": "wind_total",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -143,6 +152,7 @@
   },
   {
     "label": "Wind (growth)",
+    "id": "wind_growth",
     "min": 0,
     "max": 100,
     "step": 5,
@@ -166,6 +176,7 @@
   },
   {
     "label": "Hydro",
+    "id": "hydro_total",
     "min": 1000,
     "max": 5000,
     "step": 500,
@@ -176,6 +187,7 @@
   },
   {
     "label": "Hydro (growth)",
+    "id": "hydro_total",
     "min": 0,
     "max": 100,
     "step": 5,
