@@ -59,9 +59,3 @@ def create_control_accordion():
     return html.Div(
         create_accordion(category_with_content)
     )
-# for item in category_with_content:
-#     print(item['content'])
-# for iii in item['content']:
-#     print(iii)
-# print(content)
-# print(category_with_content)

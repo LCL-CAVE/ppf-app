@@ -11,7 +11,7 @@
     "icon": "tabler:clock",
     "icon_color": "blue",
     "text": "Select training and forecasting periods",
-    "value": "time"
+    "value": "time_horizon"
   },
   {
     "label": "Capacity projection",

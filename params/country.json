@@ -1,22 +1,22 @@
 [
   {
     "label": "Spain",
-    "value": "spain"
+    "id": "spain"
   },
   {
     "label": "France",
-    "value": "france"
+    "id": "france"
   },
   {
     "label": "Luxembourg",
-    "value": "luxembourg"
+    "id": "luxembourg"
   },
   {
     "label": "Germany",
-    "value": "germany"
+    "id": "germany"
   },
   {
     "label": "Austria",
-    "value": "austria"
+    "id": "austria"
   }
 ]

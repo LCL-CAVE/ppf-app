@@ -8,7 +8,16 @@ def create_body_layout():
         children=
         [
             dmc.Col(
-                create_control_layout(),
+                [
+                    create_control_layout(),
+                    dmc.Text(
+                        "This work is licensed under [creative commons license].",
+                        underline=True,
+                        size="xs",
+                        mt=20,
+                        mb=20
+                    ),
+                ],
                 span="auto",
                 className="control-col",
             ),
@@ -18,6 +27,4 @@ def create_body_layout():
                 # style={"padding": 0, 'margin': 0}
             ),
         ],
-
-
     )

@@ -11,13 +11,13 @@ def create_dropdown_group(item_list, context):
                 label="Select " + context,
                 id="dropdown_" + context,
                 # placeholder="Select a country",
-                value=item_list[0]["value"],
+                value=item_list[0]["id"],
                 radius='sm',
                 mb=15,
                 data=
                 [
                     {
-                        "value": item["value"],
+                        "value": item["id"],
                         "label": item["label"]
                     }
                     for item in item_list
