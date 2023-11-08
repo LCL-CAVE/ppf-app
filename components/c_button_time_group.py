@@ -11,8 +11,8 @@ def create_btn_time_group():
             'time_group.json')
     )
     return dmc.SegmentedControl(
-            id="btn_" + "time_group",
-            value=btn_list[3]["id"],
+            id="btn_time_group_display",
+            value=btn_list[-1]["id"],
             data=[
                 {"value": item["id"], "label": item["label"]}
                 for item in btn_list

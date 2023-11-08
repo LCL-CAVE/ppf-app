@@ -3,8 +3,9 @@ import pandas as pd
 from dash import html, dcc
 
 
-def serve_fig_price_curve():
+def serve_fig_price_curve(freq):
     df = pd.read_csv("./data/es_demand_price.csv", delimiter=';')
+    df['DayAheadPrices_ES'] = df['DayAheadPrices_ES'].str.replace(',', '.').astype(float)
 
     df['date'] = pd.to_datetime(df['date'])
 
@@ -14,10 +15,21 @@ def serve_fig_price_curve():
 
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
+    if freq == "M":
+        df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
+    elif freq == "D":
+        df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
+    elif freq == "W":
+        df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
+    else:
+        df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    # df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    df = df.reset_index()
+
     fig = px.line(df, x='date', y="DayAheadPrices_ES")
     fig.update_layout(
         title=dict(
-            text="Demand curve",
+            text="Price forward curve",
             font=dict(size=20),
             automargin=True,
             yref='container',
@@ -64,7 +76,4 @@ def serve_fig_price_curve():
     #     )
     # )
 
-    return dcc.Graph(
-        figure=fig,
-        config={'displayModeBar': False}
-    )
+    return fig

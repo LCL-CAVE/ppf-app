@@ -1,9 +1,8 @@
 import plotly.express as px
 import pandas as pd
-from dash import html, dcc
 
 
-def serve_fig_demand_curve():
+def serve_fig_demand_curve(freq):
     df = pd.read_csv("./data/es_demand_price.csv", delimiter=';')
     df['DayAheadPrices_ES'] = df['DayAheadPrices_ES'].str.replace(',', '.').astype(float)
 
@@ -16,15 +15,15 @@ def serve_fig_demand_curve():
 
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
-    # if freq == "M":
-    #     df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
-    # elif freq == "D":
-    #     df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
-    # elif freq == "W":
-    #     df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
-    # else:
-    #     df = df
-    df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    if freq == "M":
+        df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
+    elif freq == "D":
+        df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
+    elif freq == "W":
+        df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
+    else:
+        df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    # df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
     df = df.reset_index()
 
 
@@ -78,8 +77,4 @@ def serve_fig_demand_curve():
     #     )
     # )
 
-    return dcc.Graph(
-        figure=fig,
-        config={'displayModeBar': False},
-        # id="graph",
-    )
+    return fig
