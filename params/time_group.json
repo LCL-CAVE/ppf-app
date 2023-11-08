@@ -1,0 +1,18 @@
+[
+  {
+    "label": "Monthly",
+    "id": "monthly"
+  },
+  {
+    "label": "Weekly",
+    "id": "weekly"
+  },
+  {
+    "label": "Daily",
+    "id": "daily"
+  },
+  {
+    "label": "Hourly",
+    "id": "hourly"
+  }
+]

@@ -1,17 +1,13 @@
 import dash_mantine_components as dmc
 from dash import html
-from components.c_display_chart import create_display_chart
+from utils.fig_demand_curve import serve_fig_demand_curve
 from controls.cl_json_parser import parse_json
+from components.c_button_time_group import create_btn_time_group
 import os
 
 
 # category_list : .json
 def create_display_chart_group():
-    item_list = parse_json(
-        os.path.join(
-            os.path.dirname('./params/'),
-            'chart.json')
-    )
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
@@ -20,10 +16,12 @@ def create_display_chart_group():
     return [
         html.Tr(
             html.Td(
-                create_display_chart(item),
+                children=[
+                    create_btn_time_group(),
+                    serve_fig_demand_curve(),
+                ],
                 className="td-col-chart",
                 colSpan=len(kpi_item_list),
             ),
         )
-        for item in item_list
     ]
