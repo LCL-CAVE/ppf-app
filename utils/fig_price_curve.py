@@ -12,7 +12,6 @@ def serve_fig_price_curve(freq):
     start_date_train = "2018-01-01"
     finish_date_train = "2019-01-01"
 
-
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
     if freq == "M":
@@ -37,16 +36,20 @@ def serve_fig_price_curve(freq):
             y=0.95,
         ),
         margin=dict(
-            l=20,
-            r=20,
-            b=20,
+            l=40,
+            r=40,
+            b=40,
             t=0
         ),
         yaxis={
+            'title': None,
+            'linecolor': "#D3D3D3",
             # 'ticklabelposition': 'inside',
             'showgrid': False
         },
         xaxis={
+            'title': None,
+            'linecolor': "#D3D3D3",
             # 'ticklabelposition': 'inside',
             'showgrid': False
         },
@@ -63,17 +66,18 @@ def serve_fig_price_curve(freq):
         ),
     )
 
+
     # fig.update_xaxes(
-    #     rangeslider_visible=False,
-    #     rangeselector=dict(
-    #         buttons=list([
-    #             dict(count=1, label="1m", step="day", stepmode="backward"),
-    #             dict(count=6, label="6m", step="month", stepmode="backward"),
-    #             dict(count=1, label="YTD", step="year", stepmode="todate"),
-    #             dict(count=1, label="1y", step="year", stepmode="backward"),
-    #             dict(step="all")
-    #         ])
-    #     )
+    #     rangeslider_visible=True,
+    #     # rangeselector=dict(
+    #     #     buttons=list([
+    #     #         dict(count=1, label="1m", step="day", stepmode="backward"),
+    #     #         dict(count=6, label="6m", step="month", stepmode="backward"),
+    #     #         dict(count=1, label="YTD", step="year", stepmode="todate"),
+    #     #         dict(count=1, label="1y", step="year", stepmode="backward"),
+    #     #         dict(step="all")
+    #     #     ])
+    #     # )
     # )
 
     return fig

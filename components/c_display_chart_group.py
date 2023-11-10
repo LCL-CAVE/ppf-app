@@ -19,7 +19,8 @@ def create_display_chart_group():
         html.Tr(
             html.Td(
                 children=[
-                    create_btn_time_group(),
+                    html.Div(create_btn_time_group(), style={'display': 'flex',
+                                                             'justify-content': 'center'}),
                     dcc.Graph(
                         figure=serve_fig_demand_curve("H"),
                         config={'displayModeBar': False},

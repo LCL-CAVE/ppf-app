@@ -38,16 +38,20 @@ def serve_fig_demand_curve(freq):
             y=0.95,
         ),
         margin=dict(
-            l=20,
-            r=20,
-            b=20,
+            l=40,
+            r=40,
+            b=40,
             t=0
         ),
         yaxis={
+            'title': None,
+            'linecolor': "#D3D3D3",
             # 'ticklabelposition': 'inside',
             'showgrid': False
         },
         xaxis={
+            'title': None,
+            'linecolor': "#D3D3D3",
             # 'ticklabelposition': 'inside',
             'showgrid': False
         },
@@ -59,7 +63,7 @@ def serve_fig_demand_curve(freq):
         },
         hoverlabel=dict(
             bgcolor='rgba(0,0,0,.9)',
-            # font_size=16,
+            font_size=15,
             font_family="Roboto"
         ),
     )
