@@ -19,7 +19,16 @@ def create_output_layout():
                     )
                 ]
                 +
-                create_display_chart_group(),
+                [
+                    html.Tr(
+                        html.Td(
+                            create_display_chart_group(),
+                            colSpan=3,
+                            id="output-layout",
+                        )
+
+                    )
+                ]
             )
         ],
         className="table-output",
