@@ -4,10 +4,7 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 
 
 def serve_fig_natural_gas(freq):
-    df = pd.read_csv("./data/other_prices.csv", delimiter=';')
-    df['NatGas'] = df['NatGas'].str.replace(',', '.').astype(float)
-    df['ThermalCoal'] = df['ThermalCoal'].str.replace(',', '.').astype(float)
-    df['Carbon'] = df['Carbon'].str.replace(',', '.').astype(float)
+    df = pd.read_csv("./data/other_prices.csv", delimiter=';', decimal=",")
 
     df['date'] = pd.to_datetime(df['date'])
 

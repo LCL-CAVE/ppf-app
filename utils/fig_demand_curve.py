@@ -4,8 +4,7 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 
 
 def serve_fig_demand_curve(freq):
-    df = pd.read_csv("./data/es_demand_price.csv", delimiter=';')
-    df['DayAheadPrices_ES'] = df['DayAheadPrices_ES'].str.replace(',', '.').astype(float)
+    df = pd.read_csv("./data/es_demand_price.csv", delimiter=';', decimal=",")
 
     df['date'] = pd.to_datetime(df['date'])
 
