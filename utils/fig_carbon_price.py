@@ -16,23 +16,23 @@ def serve_fig_carbon_price(freq):
     # df = df[::30]
 
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
+    #
+    # if freq == "M":
+    #     df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
+    # elif freq == "D":
+    #     df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
+    # elif freq == "W":
+    #     df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
+    # else:
+    #     df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    # # df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    # df = df.reset_index()
 
-    if freq == "M":
-        df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
-    elif freq == "D":
-        df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
-    elif freq == "W":
-        df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
-    else:
-        df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
-    # df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
-    df = df.reset_index()
 
-
-    fig = px.line(df, x='date', y="Carbon", render_mode='svg')
+    fig = px.area(df, x='date', y="Carbon",)
     fig.update_layout(
         title=dict(
-            text="Demand curve",
+            text="Carbon Price",
             font=dict(size=20),
             automargin=True,
             yref='container',

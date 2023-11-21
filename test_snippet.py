@@ -8,6 +8,8 @@ df['Carbon'] = df['Carbon'].str.replace(',', '.').astype(float)
 
 df['date'] = pd.to_datetime(df['date'])
 
+# df['ThermalCoal'] = df['ThermalCoal'].interpolate(method='polynomial', order=2)
+
 start_date_train = "2018-01-01"
 finish_date_train = "2019-01-01"
 
@@ -15,9 +17,9 @@ finish_date_train = "2019-01-01"
 
 df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
-df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
+# df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
 # df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
-df = df.reset_index()
+# df = df.reset_index()
 
 fig = px.line(df, x='date', y="Carbon", render_mode='svg')
 fig.update_layout(

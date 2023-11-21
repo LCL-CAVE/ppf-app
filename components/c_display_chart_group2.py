@@ -46,18 +46,18 @@ def create_display_chart_group2():
                 colSpan=len(kpi_item_list),
             ),
         ),
-        html.Tr(
-            html.Td(
-                children=[
-                    dcc.Graph(
-                        figure=serve_fig_carbon_price("D"),
-                        config={'displayModeBar': False},
-                        id="graph_input_carbon_price",
-                    ),
-
-                ],
-                className="td-col-chart",
-                colSpan=len(kpi_item_list),
-            ),
-        ),
+        # html.Tr(
+        #     html.Td(
+        #         children=[
+        #             dcc.Graph(
+        #                 figure=serve_fig_carbon_price("D"),
+        #                 config={'displayModeBar': False},
+        #                 id="graph_input_carbon_price",
+        #             ),
+        #
+        #         ],
+        #         className="td-col-chart",
+        #         colSpan=len(kpi_item_list),
+        #     ),
+        # ),
     ]

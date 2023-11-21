@@ -1,6 +1,7 @@
 import plotly.express as px
 import pandas as pd
 from dash import html, dcc
+from controls.cl_fig_update_layout import create_update_layout_fig
 
 
 def serve_fig_price_curve(freq):
@@ -22,51 +23,15 @@ def serve_fig_price_curve(freq):
         df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
     else:
         df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
-    # df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.line(df, x='date', y="DayAheadPrices_ES")
-    fig.update_layout(
-        title=dict(
-            text="Price forward curve",
-            font=dict(size=20),
-            automargin=True,
-            yref='container',
-            x=0.5,
-            y=0.95,
-        ),
-        margin=dict(
-            l=40,
-            r=40,
-            b=40,
-            t=0
-        ),
-        yaxis={
-            'title': None,
-            'linecolor': "#D3D3D3",
-            # 'ticklabelposition': 'inside',
-            'showgrid': False
-        },
-        xaxis={
-            'title': None,
-            'linecolor': "#D3D3D3",
-            # 'ticklabelposition': 'inside',
-            'showgrid': False
-        },
-        plot_bgcolor='rgba(0,0,0,0)',
-        paper_bgcolor='rgba(0,0,0,0)',
-        # autosize=True,
-        legend={
-            'visible': False
-        },
-        hoverlabel=dict(
-            bgcolor='rgba(0,0,0,.9)',
-            # font_size=16,
-            font_family="Roboto"
-        ),
+    fig = px.area(df, x='date', y="DayAheadPrices_ES")
+
+    create_update_layout_fig(fig, "Day ahead electricity price")
+
+    fig.update_yaxes(
+        range=[min(df["DayAheadPrices_ES"]) - 2, max(df["DayAheadPrices_ES"]) + 2],
     )
-
-
     # fig.update_xaxes(
     #     rangeslider_visible=True,
     #     # rangeselector=dict(

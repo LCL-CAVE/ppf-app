@@ -23,7 +23,7 @@ def create_display_chart_group():
                         create_btn_time_group(),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_demand_curve("H"),
+                        figure=serve_fig_demand_curve("D"),
                         config={'displayModeBar': False},
                         id="graph_input_demand_curve",
                     ),
@@ -36,7 +36,7 @@ def create_display_chart_group():
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_price_curve("H"),
+                        figure=serve_fig_price_curve("D"),
                         config={'displayModeBar': False},
                         id="graph_input_price_curve",
                     ),

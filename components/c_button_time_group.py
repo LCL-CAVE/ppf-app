@@ -12,7 +12,7 @@ def create_btn_time_group():
     )
     return dmc.SegmentedControl(
             id="btn_time_group_display",
-            value=btn_list[-1]["id"],
+            value=btn_list[-2]["id"],
             data=[
                 {"value": item["id"], "label": item["label"]}
                 for item in btn_list
