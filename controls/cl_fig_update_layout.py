@@ -1,4 +1,8 @@
+from plotly.validators.layout import activeshape
+
+
 def create_update_layout_fig(fig, title):
+    fig.update_traces(fillcolor="rgba(0,0,255,.1)")
     fig.update_layout(
         title=dict(
             text=title,
@@ -34,7 +38,7 @@ def create_update_layout_fig(fig, title):
         },
         hoverlabel=dict(
             bgcolor='rgba(0,0,0,.9)',
-            # font_size=16,
-            font_family="Roboto"
+            font_size=16,
+            font_family="Rockwell"
         ),
     )

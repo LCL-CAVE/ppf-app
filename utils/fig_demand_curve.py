@@ -24,7 +24,7 @@ def serve_fig_demand_curve(freq):
         df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='date', y="ActualTotalLoad_ES",)
+    fig = px.area(df, x='date', y="ActualTotalLoad_ES")
 
     create_update_layout_fig(fig, "Demand load curve")
 

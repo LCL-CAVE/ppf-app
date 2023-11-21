@@ -25,7 +25,7 @@ def serve_fig_price_curve(freq):
         df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='date', y="DayAheadPrices_ES")
+    fig = px.area(df, x='date', y="DayAheadPrices_ES",)
 
     create_update_layout_fig(fig, "Day ahead electricity price")
 
