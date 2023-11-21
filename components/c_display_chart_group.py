@@ -40,7 +40,7 @@ def create_display_chart_group():
                         config={'displayModeBar': False},
                         id="graph_input_price_curve",
                     ),
-                    dmc.Text(id="xyz"),
+
                 ],
                 className="td-col-chart",
                 colSpan=len(kpi_item_list),

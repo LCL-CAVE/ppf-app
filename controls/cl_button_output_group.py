@@ -9,14 +9,14 @@ def create_btn_output_group():
     item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
-            'output_selector.json')
+            'display_selector.json')
     )
     return [
         html.Th(
             dmc.Container(
                 [
                     dmc.Badge(
-                        "Select Outputs",
+                        "Select Display",
                         variant="outline",
                         size="lg",
                         color='gray',

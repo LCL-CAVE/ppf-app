@@ -26,7 +26,7 @@ def create_display_chart_group2():
                     dcc.Graph(
                         figure=serve_fig_thermal_coal("D"),
                         config={'displayModeBar': False},
-                        id="graph_input_demand_curve",
+                        id="graph_input_thermal_coal",
                     ),
                 ],
                 className="td-col-chart",
@@ -39,7 +39,7 @@ def create_display_chart_group2():
                     dcc.Graph(
                         figure=serve_fig_natural_gas("D"),
                         config={'displayModeBar': False},
-                        id="graph_input_price_curve",
+                        id="graph_input_natural_gas",
                     ),
                 ],
                 className="td-col-chart",
@@ -52,12 +52,12 @@ def create_display_chart_group2():
                     dcc.Graph(
                         figure=serve_fig_carbon_price("D"),
                         config={'displayModeBar': False},
-                        id="graph_input_price_curve",
+                        id="graph_input_carbon_price",
                     ),
+
                 ],
                 className="td-col-chart",
                 colSpan=len(kpi_item_list),
             ),
         ),
-        # dmc.Text(id="zyx"),
     ]

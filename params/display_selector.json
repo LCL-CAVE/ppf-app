@@ -1,0 +1,14 @@
+[
+  {
+    "label": "Demand and Price",
+    "id": "demand_load",
+    "type": "light",
+    "margin_top": 20
+  },
+  {
+    "label": "Price by Source",
+    "id": "price_dynamics",
+    "type": "light",
+    "margin_top": 10
+  }
+]

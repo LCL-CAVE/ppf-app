@@ -10,6 +10,8 @@ def serve_fig_thermal_coal(freq):
 
     df['date'] = pd.to_datetime(df['date'])
 
+    df['ThermalCoal'] = df['ThermalCoal'].interpolate(method='polynomial', order=2)
+
     start_date_train = "2018-01-01"
     finish_date_train = "2019-01-01"
 

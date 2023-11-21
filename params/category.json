@@ -17,21 +17,21 @@
     "label": "Capacity projection",
     "icon": "gg:battery",
     "icon_color": "blue",
-    "text": "Choose capacity provided by different sources",
+    "text": "GigaWatt",
     "value": "capacity"
   },
   {
     "label": "Demand projection",
     "icon": "mdi:chart-line",
     "icon_color": "blue",
-    "text": "Choose demand targets on different sources",
+    "text": "TeraWatt per hour",
     "value": "demand"
   },
   {
     "label": "Price projection",
     "icon": "material-symbols:price-check",
     "icon_color": "blue",
-    "text": "Choose price by different sources",
+    "text": "Euro per MegaWatt per hour",
     "value": "price"
   }
 ]

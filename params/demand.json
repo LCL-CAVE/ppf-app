@@ -2,10 +2,10 @@
   {
     "label": "Demand level",
     "id": "level",
-    "min": 1000,
-    "max": 5000,
-    "step": 500,
-    "value": 2000,
+    "min": 0,
+    "max": 1000,
+    "step": 10,
+    "value": 250,
     "label_on": 1,
     "margin_bottom": 40,
     "mark": []
