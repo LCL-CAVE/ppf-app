@@ -22,45 +22,6 @@ def create_btn_output_group():
                         color='gray',
                         fullWidth=True),
                 ]
-                # +
-                # [
-                #     dmc.SegmentedControl(
-                #         id="segmented",
-                #         value="ng",
-                #         data=[
-                #             {"value": "react", "label": "React"},
-                #             {"value": "ng", "label": "Angular"},
-                #             {"value": "svelte", "label": "Svelte"},
-                #             {"value": "vue", "label": "Vue"},
-                #         ],
-                #         orientation="vertical",
-                #         fullWidth=True,
-                #         color="blue",
-                #         mt=20,
-                #     )
-                # ]
-                # +
-                # [
-                #     dmc.ChipGroup(
-                #         [
-                #             dmc.Chip(
-                #                 x,
-                #                 value=x,
-                #                 variant="outline",
-                #                 style={"width": "100%",},
-                #
-                #
-                #             )
-                #             for x in ["React", "Django", "Dash", "Vue"]
-                #         ],
-                #         id="chips-values",
-                #         value=["React", "Dash"],
-                #         multiple=True,
-                #         align="flex-start"
-                #         # style={"width": "100%", "orientation": "vertical"},
-                #         # grow=1,
-                #     )
-                # ]
                 +
                 [
                     create_btn_output(item)

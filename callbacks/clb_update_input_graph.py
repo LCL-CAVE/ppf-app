@@ -8,7 +8,8 @@ def serve_clb_update_input_graphs(app):
         Output("xyz", "children"),
         Output("graph_input_demand_curve", "figure"),
         Output("graph_input_price_curve", "figure"),
-        Input("btn_time_group_display", "value")
+        Input("btn_time_group_display", "value"),
+        prevent_initial_call=True,
     )
     def update_input_graphs(value):
         if value == "monthly":

@@ -4,14 +4,14 @@ from dash import html
 import os
 
 
-def create_btn_time_group():
+def create_btn_time_group(id_apx):
     btn_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
             'time_group.json')
     )
     return dmc.SegmentedControl(
-            id="btn_time_group_display",
+            id="btn_time_group_display_"+id_apx,
             value=btn_list[-2]["id"],
             data=[
                 {"value": item["id"], "label": item["label"]}

@@ -10,7 +10,7 @@
     "label": "Time attributes",
     "icon": "tabler:clock",
     "icon_color": "blue",
-    "text": "Select training and forecasting periods",
+    "text": "Train and forecast periods",
     "value": "time_horizon"
   },
   {

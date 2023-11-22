@@ -10,5 +10,11 @@
     "id": "price_dynamics",
     "type": "light",
     "margin_top": 10
+  },
+  {
+    "label": "Production by Source",
+    "id": "produce_source",
+    "type": "light",
+    "margin_top": 10
   }
 ]
