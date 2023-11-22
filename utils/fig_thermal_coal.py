@@ -2,10 +2,14 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 from controls.cl_fig_update_layout import create_update_layout_fig
-
+import os
 
 def serve_fig_thermal_coal(freq):
-    df = pd.read_csv("./data/other_prices.csv", delimiter=';', decimal=",")
+    df = pd.read_csv(
+        os.path.join(os.path.dirname('./data/'), 'other_prices.csv'),
+        delimiter=';',
+        decimal=","
+    )
 
     df['date'] = pd.to_datetime(df['date'])
 

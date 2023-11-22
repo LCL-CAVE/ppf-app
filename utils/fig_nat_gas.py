@@ -1,10 +1,15 @@
 import plotly.express as px
 import pandas as pd
 from controls.cl_fig_update_layout import create_update_layout_fig
+import os
 
 
 def serve_fig_natural_gas(freq):
-    df = pd.read_csv("./data/other_prices.csv", delimiter=';', decimal=",")
+    df = pd.read_csv(
+        os.path.join(os.path.dirname('./data/'), 'other_prices.csv'),
+        delimiter=';',
+        decimal=","
+    )
 
     df['date'] = pd.to_datetime(df['date'])
 
@@ -13,12 +18,12 @@ def serve_fig_natural_gas(freq):
 
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
-    fig = px.area(df, x='date', y="NatGas",)
+    fig = px.area(df, x='date', y="NatGas", )
 
     create_update_layout_fig(fig, "Natural gas price")
 
     fig.update_yaxes(
-        range=[min(df["NatGas"])-2, max(df["NatGas"])+2],
+        range=[min(df["NatGas"]) - 2, max(df["NatGas"]) + 2],
     )
 
     # fig.update_xaxes(

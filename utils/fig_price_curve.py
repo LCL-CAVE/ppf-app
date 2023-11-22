@@ -1,11 +1,15 @@
 import plotly.express as px
 import pandas as pd
-from dash import html, dcc
 from controls.cl_fig_update_layout import create_update_layout_fig
+import os
 
 
 def serve_fig_price_curve(freq):
-    df = pd.read_csv("./data/es_demand_price.csv", delimiter=';', decimal=",")
+    df = pd.read_csv(
+        os.path.join(os.path.dirname('./data/'), 'es_demand_price.csv'),
+        delimiter=';',
+        decimal=","
+    )
 
     df['date'] = pd.to_datetime(df['date'])
 

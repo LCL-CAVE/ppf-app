@@ -2,7 +2,6 @@ import dash_mantine_components as dmc
 from dash import html
 from utils.fig_thermal_coal import serve_fig_thermal_coal
 from utils.fig_nat_gas import serve_fig_natural_gas
-from utils.fig_carbon_price import serve_fig_carbon_price
 from controls.cl_json_parser import parse_json
 from components.c_button_time_group import create_btn_time_group
 from dash import html, dcc
