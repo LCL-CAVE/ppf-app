@@ -1,6 +1,6 @@
 [
   {
-    "label": "Avg. capture price",
+    "label": "Avg. solar capture price",
     "value": 57.94,
     "id": "avg_capture_price",
     "unit": "euro",
@@ -14,7 +14,7 @@
     "color": "grape"
   },
   {
-    "label": "Avg. price",
+    "label": "Avg. electricity price",
     "value": 56.29,
     "id": "avg_price",
     "unit": "euro",
