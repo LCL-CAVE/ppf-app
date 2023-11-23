@@ -18,7 +18,17 @@ def serve_fig_thermal_coal(freq):
 
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
-    fig = px.area(df, x='date', y="ThermalCoal", )
+    if freq == "M":
+        df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
+    elif freq == "D":
+        df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
+    elif freq == "W":
+        df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
+    else:
+        df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    df = df.reset_index()
+
+    fig = px.area(df, x='date', y="ThermalCoal", pattern_shape_sequence=["x"])
 
     create_update_layout_fig(fig, "Thermal Coal Price")
 

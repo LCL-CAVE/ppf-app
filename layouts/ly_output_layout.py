@@ -31,4 +31,5 @@ def create_output_layout():
             )
         ],
         className="table-output",
+        # style={"border": "1px solid #DCDCDC"}
     )

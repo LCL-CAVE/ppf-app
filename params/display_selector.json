@@ -1,13 +1,13 @@
 [
   {
     "label": "Market Dynamics",
-    "id": "demand_load",
+    "id": "market_dynamics",
     "type": "light",
     "margin_top": 20
   },
   {
     "label": "Price by Source",
-    "id": "price_dynamics",
+    "id": "price_source",
     "type": "light",
     "margin_top": 10
   },
