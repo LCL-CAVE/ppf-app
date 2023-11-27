@@ -26,19 +26,16 @@ app.config.suppress_callback_exceptions = True
 app.layout = dmc.MantineProvider(
     id="theme-app",
     children=[
-        dcc.Interval(
-            id='interval-component',
-            interval=8 * 1000,  # in milliseconds
-            n_intervals=0
-        ),
+        # dcc.Interval(
+        #     id='interval-component',
+        #     interval=8 * 1000,  # in milliseconds
+        #     n_intervals=0
+        # ),
         dmc.LoadingOverlay(
             dmc.Paper(
                 [
                     create_header_layout(),
                     create_body_layout(),
-                    dmc.Text(id="xyz"),
-                    dmc.Text(id="zyx"),
-                    dmc.Text(id="zxc"),
                 ],
             ),
             id="loading-layout"
@@ -68,36 +65,29 @@ from components.c_display_chart_group_out2 import create_display_chart_group_out
 
 
 @app.callback(
-    # Output("zyx", "children"),
     Output("output-layout", "children", allow_duplicate=True),
     Input("btn_output_selector_market_dynamics", "n_clicks"),
     prevent_initial_call=True,
 )
 def update_display_graphs1(n_clicks):
-    # time.sleep(1)
     return create_display_chart_group()
-    # return " ", create_display_chart_group()
 
 
 @app.callback(
-    # Output("zyx", "children"),
     Output("output-layout", "children", allow_duplicate=True),
     Input("btn_output_selector_price_source", "n_clicks"),
     prevent_initial_call=True,
 )
 def update_display_graphs2(n_clicks):
-    # time.sleep(1)
     return create_display_chart_group_out2()
 
 
 @app.callback(
-    # Output("zyx", "children"),
     Output("output-layout", "children", ),
     Input("btn_output_selector_produce_source", "n_clicks"),
     prevent_initial_call=True,
 )
 def update_display_graphs3(n_clicks):
-    # time.sleep(1)
     return create_display_chart_group_out1()
 
 
@@ -109,7 +99,6 @@ from utils.fig_hist_temp import serve_fig_hist_temp
 
 
 @app.callback(
-    Output("xyz", "children"),
     Output("graph_input_demand_curve", "figure"),
     Output("graph_input_price_curve", "figure"),
     Output("graph_input_thermal_coal", "figure"),
@@ -120,16 +109,16 @@ from utils.fig_hist_temp import serve_fig_hist_temp
 )
 def update_time_interval_graphs1(value):
     if value == "monthly":
-        return " ", serve_fig_demand_curve("M"), serve_fig_price_curve("M"), serve_fig_thermal_coal(
+        return serve_fig_demand_curve("M"), serve_fig_price_curve("M"), serve_fig_thermal_coal(
             "M"), serve_fig_natural_gas("M"), serve_fig_hist_temp("M")
     elif value == "weekly":
-        return " ", serve_fig_demand_curve("W"), serve_fig_price_curve("W"), serve_fig_thermal_coal(
+        return serve_fig_demand_curve("W"), serve_fig_price_curve("W"), serve_fig_thermal_coal(
             "W"), serve_fig_natural_gas("W"), serve_fig_hist_temp("W")
     elif value == "daily":
-        return " ", serve_fig_demand_curve("D"), serve_fig_price_curve("D"), serve_fig_thermal_coal(
+        return serve_fig_demand_curve("D"), serve_fig_price_curve("D"), serve_fig_thermal_coal(
             "D"), serve_fig_natural_gas("D"), serve_fig_hist_temp("D")
     else:
-        return " ", serve_fig_demand_curve("H"), serve_fig_price_curve("H"), serve_fig_thermal_coal(
+        return serve_fig_demand_curve("H"), serve_fig_price_curve("H"), serve_fig_thermal_coal(
             "H"), serve_fig_natural_gas("H"), serve_fig_hist_temp("H")
 
 
@@ -139,7 +128,7 @@ from utils.fig_out_solar_capture_price import serve_fig_out_solar_capture_price
 
 
 @app.callback(
-    Output("zxc", "children"),
+    # Output("zxc", "children"),
     Output("graph_out_elec_price_forecast", "figure"),
     Output("graph_out_solar_capture_price", "figure"),
     Output("graph_out_wind_capture_price", "figure"),
@@ -148,16 +137,16 @@ from utils.fig_out_solar_capture_price import serve_fig_out_solar_capture_price
 )
 def update_time_interval_graphs2(value):
     if value == "monthly":
-        return " ", serve_fig_out_elec_price_forecast("M"), serve_fig_out_solar_capture_price(
+        return serve_fig_out_elec_price_forecast("M"), serve_fig_out_solar_capture_price(
             "M"), serve_fig_out_wind_capture_price("M")
     elif value == "weekly":
-        return " ", serve_fig_out_elec_price_forecast("W"), serve_fig_out_solar_capture_price(
+        return serve_fig_out_elec_price_forecast("W"), serve_fig_out_solar_capture_price(
             "W"), serve_fig_out_wind_capture_price("W")
     elif value == "daily":
-        return " ", serve_fig_out_elec_price_forecast("D"), serve_fig_out_solar_capture_price(
+        return serve_fig_out_elec_price_forecast("D"), serve_fig_out_solar_capture_price(
             "D"), serve_fig_out_wind_capture_price("D")
     else:
-        return " ", serve_fig_out_elec_price_forecast("H"), serve_fig_out_solar_capture_price(
+        return serve_fig_out_elec_price_forecast("H"), serve_fig_out_solar_capture_price(
             "H"), serve_fig_out_wind_capture_price("H")
 
 
@@ -166,7 +155,7 @@ from utils.fig_out_wind_production import serve_fig_out_wind_production
 
 
 @app.callback(
-    Output("zyx", "children"),
+    # Output("zyx", "children"),
     Output("graph_out_solar_production", "figure"),
     Output("graph_out_wind_production", "figure"),
     Input("btn_time_group_display_produce", "value"),
@@ -174,13 +163,13 @@ from utils.fig_out_wind_production import serve_fig_out_wind_production
 )
 def update_time_interval_graphs3(value):
     if value == "monthly":
-        return " ", serve_fig_out_solar_production("M"), serve_fig_out_wind_production("M")
+        return serve_fig_out_solar_production("M"), serve_fig_out_wind_production("M")
     elif value == "weekly":
-        return " ", serve_fig_out_solar_production("W"), serve_fig_out_wind_production("W")
+        return serve_fig_out_solar_production("W"), serve_fig_out_wind_production("W")
     elif value == "daily":
-        return " ", serve_fig_out_solar_production("D"), serve_fig_out_wind_production("D")
+        return serve_fig_out_solar_production("D"), serve_fig_out_wind_production("D")
     else:
-        return " ", serve_fig_out_solar_production("H"), serve_fig_out_wind_production("H")
+        return serve_fig_out_solar_production("H"), serve_fig_out_wind_production("H")
 
 
 @app.callback(
@@ -216,13 +205,13 @@ def display_notification2(n_clicks):
 import numpy as np
 
 
-@app.callback(Output('text_kpi_avg_capture_price', 'children'),
-              Output('text_kpi_avg_production', 'children'),
-              Output('text_kpi_avg_price', 'children'),
-              Input('interval-component', 'n_intervals'))
-def update_kpi(n):
-    return str(np.round(50 + 10 * np.random.rand(), 2)) + " euro", str(
-        np.round(7400 + 300 * np.random.rand(), 2)) + " GW/h", str(np.round(50 + 10 * np.random.rand(), 2)) + " euro"
+# @app.callback(Output('text_kpi_avg_capture_price', 'children'),
+#               Output('text_kpi_avg_production', 'children'),
+#               Output('text_kpi_avg_price', 'children'),
+#               Input('interval-component', 'n_intervals'))
+# def update_kpi(n):
+#     return str(np.round(50 + 10 * np.random.rand(), 2)) + " euro", str(
+#         np.round(7400 + 300 * np.random.rand(), 2)) + " GW/h", str(np.round(50 + 10 * np.random.rand(), 2)) + " euro"
 
 
 @app.callback(
