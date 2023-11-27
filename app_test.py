@@ -73,7 +73,7 @@ from components.c_display_chart_group_out2 import create_display_chart_group_out
     Input("btn_output_selector_market_dynamics", "n_clicks"),
     prevent_initial_call=True,
 )
-def update_input_graphs1(n_clicks):
+def update_display_graphs1(n_clicks):
     # time.sleep(1)
     return create_display_chart_group()
     # return " ", create_display_chart_group()
@@ -85,7 +85,7 @@ def update_input_graphs1(n_clicks):
     Input("btn_output_selector_price_source", "n_clicks"),
     prevent_initial_call=True,
 )
-def update_out_graphs2(n_clicks):
+def update_display_graphs2(n_clicks):
     # time.sleep(1)
     return create_display_chart_group_out2()
 
@@ -96,7 +96,7 @@ def update_out_graphs2(n_clicks):
     Input("btn_output_selector_produce_source", "n_clicks"),
     prevent_initial_call=True,
 )
-def update_out_graphs1(n_clicks):
+def update_display_graphs3(n_clicks):
     # time.sleep(1)
     return create_display_chart_group_out1()
 
@@ -118,7 +118,7 @@ from utils.fig_hist_temp import serve_fig_hist_temp
     Input("btn_time_group_display_market", "value"),
     prevent_initial_call=True,
 )
-def update_input_graphs(value):
+def update_time_interval_graphs1(value):
     if value == "monthly":
         return " ", serve_fig_demand_curve("M"), serve_fig_price_curve("M"), serve_fig_thermal_coal(
             "M"), serve_fig_natural_gas("M"), serve_fig_hist_temp("M")
@@ -146,7 +146,7 @@ from utils.fig_out_solar_capture_price import serve_fig_out_solar_capture_price
     Input("btn_time_group_display_price", "value"),
     prevent_initial_call=True,
 )
-def update_input_graphs(value):
+def update_time_interval_graphs2(value):
     if value == "monthly":
         return " ", serve_fig_out_elec_price_forecast("M"), serve_fig_out_solar_capture_price(
             "M"), serve_fig_out_wind_capture_price("M")
@@ -172,7 +172,7 @@ from utils.fig_out_wind_production import serve_fig_out_wind_production
     Input("btn_time_group_display_produce", "value"),
     prevent_initial_call=True,
 )
-def update_output_graphs(value):
+def update_time_interval_graphs3(value):
     if value == "monthly":
         return " ", serve_fig_out_solar_production("M"), serve_fig_out_wind_production("M")
     elif value == "weekly":
@@ -188,7 +188,7 @@ def update_output_graphs(value):
     Input("btn_run", "n_clicks"),
     prevent_initial_call=True,
 )
-def show2(n_clicks):
+def display_notification1(n_clicks):
     time.sleep(2)
     return dmc.Notification(
         title="First pass!",
@@ -203,7 +203,7 @@ def show2(n_clicks):
     Input("btn_run", "n_clicks"),
     prevent_initial_call=True,
 )
-def show4(n_clicks):
+def display_notification2(n_clicks):
     time.sleep(5)
     return dmc.Notification(
         title="Second pass!",

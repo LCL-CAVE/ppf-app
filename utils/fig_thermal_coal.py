@@ -6,9 +6,8 @@ import os
 
 def serve_fig_thermal_coal(freq):
     df = pd.read_csv(
-        os.path.join(os.path.dirname('./data/'), 'other_prices.csv'),
+        os.path.join(os.path.dirname('./data/'), 'other_prices2.csv'),
         delimiter=';',
-        decimal=","
     )
 
     df['date'] = pd.to_datetime(df['date'])
