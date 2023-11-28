@@ -3,6 +3,7 @@ from dash import html
 from utils.fig_out_wind_production import serve_fig_out_wind_production
 from utils.fig_out_solar_production import serve_fig_out_solar_production
 from utils.fig_out_hydro_production import serve_fig_out_hydro_production
+from utils.fig_out_tech_stack import serve_fig_out_tech_stack
 from controls.cl_json_parser import parse_json
 from components.c_button_time_group import create_btn_time_group
 from dash import html, dcc
@@ -23,6 +24,19 @@ def create_display_chart_group_out1():
                     html.Div(
                         create_btn_time_group("produce"),
                         className="div-btn-time-grouper"),
+                    dcc.Graph(
+                        figure=serve_fig_out_tech_stack("D"),
+                        config={'displayModeBar': False},
+                        id="graph_out_tech_stack",
+                    ),
+                ],
+                className="td-col-chart",
+                colSpan=len(kpi_item_list),
+            ),
+        ),
+        html.Tr(
+            html.Td(
+                children=[
                     dcc.Graph(
                         figure=serve_fig_out_solar_production("D"),
                         config={'displayModeBar': False},

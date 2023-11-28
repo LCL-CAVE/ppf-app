@@ -4,12 +4,42 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 import os
 import numpy as np
 
+# df1 = pd.read_csv(
+#     os.path.join(os.path.dirname('./data/'), 'wind_production.csv'),
+#     delimiter=';',
+# )
+#
+# df2 = pd.read_csv(
+#     os.path.join(os.path.dirname('./data/'), 'solar_production.csv'),
+#     delimiter=';',
+# )
+#
+# df3 = pd.read_csv(
+#     os.path.join(os.path.dirname('./data/'), 'hydro_run_of_river_production.csv'),
+#     delimiter=';',
+# )
+# # print(df.shape[0])
+#
+# df1['tech'] = "wind"
+# df2['tech'] = "solar"
+# df3['tech'] = "hydro"
+# df = pd.concat([df1, df2, df3], ignore_index=True)
+# df.to_csv("teck_stack.csv",index=False)
+# print(df)
+
 df = pd.read_csv(
-    os.path.join(os.path.dirname('./data/'), 'es_demand_price.csv'),
+    os.path.join(os.path.dirname('./data/'), 'tech_stack.csv'),
     delimiter=';',
-    decimal=","
 )
-print(df.shape[0])
+# df = px.data.medals_long()
+#
+# print(df)
+df['date'] = pd.to_datetime(df['date'])
+#
+df = df.groupby([pd.Grouper(key="date", freq="W"), pd.Grouper('tech')]).mean()
+df = df.reset_index()
+fig = px.area(df, x="date", y="value")
+fig.show()
 #
 # df['date'] = pd.to_datetime(df['date'])
 # df = df.sort_values(by='date')

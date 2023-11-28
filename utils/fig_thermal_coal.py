@@ -30,6 +30,7 @@ def serve_fig_thermal_coal(freq, start_date_train, finish_date_train):
     fig = px.area(df, x='date', y="ThermalCoal", pattern_shape_sequence=["x"])
 
     create_update_layout_fig(fig, "Thermal Coal Price")
+    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df["ThermalCoal"]) - 2, max(df["ThermalCoal"]) + 2],

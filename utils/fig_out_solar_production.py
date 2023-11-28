@@ -30,6 +30,7 @@ def serve_fig_out_solar_production(freq):
     fig = px.area(df, x='date', y="value", )
 
     create_update_layout_fig(fig, "Electricity Production by Solar")
+    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df["value"]) - 2, max(df["value"]) + 2],

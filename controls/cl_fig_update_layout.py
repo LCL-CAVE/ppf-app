@@ -2,7 +2,6 @@ from plotly.validators.layout import activeshape
 
 
 def create_update_layout_fig(fig, title):
-    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
     fig.update_layout(
         title=dict(
             text=title,
@@ -16,7 +15,7 @@ def create_update_layout_fig(fig, title):
             l=40,
             r=40,
             b=40,
-            t=0
+            t=40
         ),
         yaxis={
             'title': None,

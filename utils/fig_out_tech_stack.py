@@ -1,39 +1,36 @@
 import plotly.express as px
 import pandas as pd
+import numpy as np
 from controls.cl_fig_update_layout import create_update_layout_fig
 import os
 
 
-def serve_fig_hist_temp(freq, start_date_train, finish_date_train):
+def serve_fig_out_tech_stack(freq):
     df = pd.read_csv(
-        os.path.join(os.path.dirname('./data/'), 'hist_temp2.csv'),
+        os.path.join(os.path.dirname('./data/'), 'tech_stack.csv'),
         delimiter=';',
     )
 
     df['date'] = pd.to_datetime(df['date'])
 
-    # start_date_train = "2018-01-01"
-    # finish_date_train = "2019-01-01"
-
-    df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
-
     if freq == "M":
-        df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="M"), pd.Grouper('tech')]).mean()
     elif freq == "D":
-        df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="D"), pd.Grouper('tech')]).mean()
     elif freq == "W":
-        df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="W"), pd.Grouper('tech')]).mean()
     else:
-        df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="H"), pd.Grouper('tech')]).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='date', y="value", )
+    fig = px.area(df, x="date", y="value", color="tech")
 
-    create_update_layout_fig(fig, "Temperature")
-    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
+    create_update_layout_fig(fig, "Technology Stack")
+
+    # fig.update_traces(fill='tozeroy')
 
     fig.update_yaxes(
-        range=[min(df["value"]) - 2, max(df["value"]) + 2],
+        range=[min(df["value"]) - 100, max(df["value"]) + 1000],
     )
 
     # fig.update_xaxes(

@@ -172,24 +172,28 @@ def update_time_interval_graphs2(value):
 
 from utils.fig_out_solar_production import serve_fig_out_solar_production
 from utils.fig_out_wind_production import serve_fig_out_wind_production
+from utils.fig_out_hydro_production import serve_fig_out_hydro_production
+from utils.fig_out_tech_stack import serve_fig_out_tech_stack
 
 
 @app.callback(
     # Output("zyx", "children"),
+    Output("graph_out_tech_stack", "figure"),
     Output("graph_out_solar_production", "figure"),
     Output("graph_out_wind_production", "figure"),
+    Output("graph_out_hydro_production", "figure"),
     Input("btn_time_group_display_produce", "value"),
     prevent_initial_call=True,
 )
 def update_time_interval_graphs3(value):
     if value == "monthly":
-        return serve_fig_out_solar_production("M"), serve_fig_out_wind_production("M")
+        return serve_fig_out_tech_stack("M"), serve_fig_out_solar_production("M"), serve_fig_out_wind_production("M"), serve_fig_out_hydro_production("M")
     elif value == "weekly":
-        return serve_fig_out_solar_production("W"), serve_fig_out_wind_production("W")
+        return serve_fig_out_tech_stack("W"), serve_fig_out_solar_production("W"), serve_fig_out_wind_production("W"), serve_fig_out_hydro_production("W")
     elif value == "daily":
-        return serve_fig_out_solar_production("D"), serve_fig_out_wind_production("D")
+        return serve_fig_out_tech_stack("D"), serve_fig_out_solar_production("D"), serve_fig_out_wind_production("D"), serve_fig_out_hydro_production("D")
     else:
-        return serve_fig_out_solar_production("H"), serve_fig_out_wind_production("H")
+        return serve_fig_out_tech_stack("H"), serve_fig_out_solar_production("H"), serve_fig_out_wind_production("H"), serve_fig_out_hydro_production("H")
 
 
 @app.callback(

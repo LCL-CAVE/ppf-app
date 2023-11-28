@@ -31,6 +31,7 @@ def serve_fig_demand_curve(freq, start_date_train, finish_date_train):
     fig = px.area(df, x='date', y="ActualTotalLoad_ES")
 
     create_update_layout_fig(fig, "Demand load curve")
+    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df["ActualTotalLoad_ES"]) - 500, max(df["ActualTotalLoad_ES"]) + 500],

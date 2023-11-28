@@ -31,6 +31,7 @@ def serve_fig_price_curve(freq, start_date_train, finish_date_train):
     fig = px.area(df, x='date', y="DayAheadPrices_ES", )
 
     create_update_layout_fig(fig, "Day ahead electricity price")
+    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df["DayAheadPrices_ES"]) - 2, max(df["DayAheadPrices_ES"]) + 2],

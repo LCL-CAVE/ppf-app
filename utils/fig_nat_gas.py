@@ -30,6 +30,7 @@ def serve_fig_natural_gas(freq, start_date_train, finish_date_train):
     fig = px.area(df, x='date', y="NatGas", )
 
     create_update_layout_fig(fig, "Natural gas price")
+    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df["NatGas"]) - 2, max(df["NatGas"]) + 2],
