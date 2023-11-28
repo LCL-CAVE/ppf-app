@@ -4,7 +4,7 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 import os
 
 
-def serve_fig_hist_temp(freq):
+def serve_fig_hist_temp(freq, start_date_train, finish_date_train):
     df = pd.read_csv(
         os.path.join(os.path.dirname('./data/'), 'hist_temp2.csv'),
         delimiter=';',
@@ -12,8 +12,8 @@ def serve_fig_hist_temp(freq):
 
     df['date'] = pd.to_datetime(df['date'])
 
-    start_date_train = "2018-01-01"
-    finish_date_train = "2019-01-01"
+    # start_date_train = "2018-01-01"
+    # finish_date_train = "2019-01-01"
 
     df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 

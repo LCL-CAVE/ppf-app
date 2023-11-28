@@ -12,12 +12,14 @@ import os
 
 
 # category_list : .json
-def create_display_chart_group():
+def create_display_chart_group(start_date_train_initial,finish_date_train_initial):
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
             'kpi.json')
     )
+    # start_date_train_initial = "2018-01-01"
+    # finish_date_train_initial = "2019-01-01"
     return [
         html.Tr(
             html.Td(
@@ -26,7 +28,7 @@ def create_display_chart_group():
                         create_btn_time_group("market"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_demand_curve("D"),
+                        figure=serve_fig_demand_curve("D", start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_demand_curve",
                     ),
@@ -39,7 +41,7 @@ def create_display_chart_group():
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_price_curve("D"),
+                        figure=serve_fig_price_curve("D", start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_price_curve",
                     ),
@@ -53,7 +55,7 @@ def create_display_chart_group():
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_thermal_coal("D"),
+                        figure=serve_fig_thermal_coal("D", start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_thermal_coal",
                     ),
@@ -67,7 +69,7 @@ def create_display_chart_group():
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_natural_gas("D"),
+                        figure=serve_fig_natural_gas("D", start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_natural_gas",
                     ),
@@ -81,7 +83,7 @@ def create_display_chart_group():
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_hist_temp("D"),
+                        figure=serve_fig_hist_temp("D", start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_hist_temp",
                     ),

@@ -1,5 +1,5 @@
 import dash_mantine_components as dmc
-import dash
+from dash.exceptions import PreventUpdate
 from dash import Dash, Output, callback, Input, State, html, no_update, dcc
 from layouts.ly_body_layout import create_body_layout
 from layouts.ly_header_layout import create_header_layout
@@ -31,11 +31,13 @@ app.layout = dmc.MantineProvider(
         #     interval=8 * 1000,  # in milliseconds
         #     n_intervals=0
         # ),
+        dmc.Text(id="selected-date-date-range-picker"),
         dmc.LoadingOverlay(
             dmc.Paper(
                 [
                     create_header_layout(),
                     create_body_layout(),
+
                 ],
             ),
             id="loading-layout"
@@ -67,10 +69,13 @@ from components.c_display_chart_group_out2 import create_display_chart_group_out
 @app.callback(
     Output("output-layout", "children", allow_duplicate=True),
     Input("btn_output_selector_market_dynamics", "n_clicks"),
+    Input("date_picker_time_horizon_training", "value"),
     prevent_initial_call=True,
 )
-def update_display_graphs1(n_clicks):
-    return create_display_chart_group()
+def update_display_graphs1(n_clicks, dates):
+    start_date_train = dates[0]
+    finish_date_train = dates[1]
+    return create_display_chart_group(start_date_train, finish_date_train)
 
 
 @app.callback(
@@ -105,21 +110,36 @@ from utils.fig_hist_temp import serve_fig_hist_temp
     Output("graph_input_natural_gas", "figure"),
     Output("graph_input_hist_temp", "figure"),
     Input("btn_time_group_display_market", "value"),
+    Input("date_picker_time_horizon_training", "value"),
     prevent_initial_call=True,
 )
-def update_time_interval_graphs1(value):
+def update_time_interval_graphs1(value, dates):
+    start_date_train = dates[0]
+    finish_date_train = dates[1]
     if value == "monthly":
-        return serve_fig_demand_curve("M"), serve_fig_price_curve("M"), serve_fig_thermal_coal(
-            "M"), serve_fig_natural_gas("M"), serve_fig_hist_temp("M")
+        return serve_fig_demand_curve("M", start_date_train, finish_date_train), \
+            serve_fig_price_curve("M", start_date_train, finish_date_train), \
+            serve_fig_thermal_coal("M", start_date_train, finish_date_train), \
+            serve_fig_natural_gas("M", start_date_train, finish_date_train), \
+            serve_fig_hist_temp("M", start_date_train, finish_date_train)
     elif value == "weekly":
-        return serve_fig_demand_curve("W"), serve_fig_price_curve("W"), serve_fig_thermal_coal(
-            "W"), serve_fig_natural_gas("W"), serve_fig_hist_temp("W")
+        return serve_fig_demand_curve("W", start_date_train, finish_date_train), \
+            serve_fig_price_curve("W", start_date_train, finish_date_train), \
+            serve_fig_thermal_coal("W", start_date_train, finish_date_train), \
+            serve_fig_natural_gas("W", start_date_train, finish_date_train), \
+            serve_fig_hist_temp("W", start_date_train, finish_date_train)
     elif value == "daily":
-        return serve_fig_demand_curve("D"), serve_fig_price_curve("D"), serve_fig_thermal_coal(
-            "D"), serve_fig_natural_gas("D"), serve_fig_hist_temp("D")
+        return serve_fig_demand_curve("D", start_date_train, finish_date_train), \
+            serve_fig_price_curve("D", start_date_train, finish_date_train), \
+            serve_fig_thermal_coal("D", start_date_train, finish_date_train), \
+            serve_fig_natural_gas("D", start_date_train, finish_date_train), \
+            serve_fig_hist_temp("D", start_date_train, finish_date_train)
     else:
-        return serve_fig_demand_curve("H"), serve_fig_price_curve("H"), serve_fig_thermal_coal(
-            "H"), serve_fig_natural_gas("H"), serve_fig_hist_temp("H")
+        return serve_fig_demand_curve("H", start_date_train, finish_date_train), \
+            serve_fig_price_curve("H", start_date_train, finish_date_train), \
+            serve_fig_thermal_coal("H", start_date_train, finish_date_train), \
+            serve_fig_natural_gas("H", start_date_train, finish_date_train), \
+            serve_fig_hist_temp("H", start_date_train, finish_date_train)
 
 
 from utils.fig_out_wind_capture_price import serve_fig_out_wind_capture_price
@@ -222,6 +242,15 @@ import numpy as np
 def show5(n_clicks):
     time.sleep(5)
     return no_update
+
+
+# @app.callback(
+#     Output("selected-date-date-range-picker", "children"),
+#     Input("date_picker_time_horizon_training", "value"),
+# )
+# def update_output(dates):
+#     prefix = "You have selected: "
+#     return dates[0]
 
 
 # @app.callback(
