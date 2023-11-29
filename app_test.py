@@ -81,19 +81,25 @@ def update_display_graphs1(n_clicks, dates):
 @app.callback(
     Output("output-layout", "children", allow_duplicate=True),
     Input("btn_output_selector_price_source", "n_clicks"),
+    Input("date_picker_time_horizon_training", "value"),
     prevent_initial_call=True,
 )
-def update_display_graphs2(n_clicks):
-    return create_display_chart_group_out2()
+def update_display_graphs2(n_clicks, dates):
+    start_date_train = dates[0]
+    finish_date_train = dates[1]
+    return create_display_chart_group_out2(start_date_train, finish_date_train)
 
 
 @app.callback(
     Output("output-layout", "children", ),
     Input("btn_output_selector_produce_source", "n_clicks"),
+    Input("date_picker_time_horizon_training", "value"),
     prevent_initial_call=True,
 )
-def update_display_graphs3(n_clicks):
-    return create_display_chart_group_out1()
+def update_display_graphs3(n_clicks, dates):
+    start_date_train = dates[0]
+    finish_date_train = dates[1]
+    return create_display_chart_group_out1(start_date_train, finish_date_train)
 
 
 from utils.fig_demand_curve import serve_fig_demand_curve
@@ -101,13 +107,14 @@ from utils.fig_price_curve import serve_fig_price_curve
 from utils.fig_thermal_coal import serve_fig_thermal_coal
 from utils.fig_nat_gas import serve_fig_natural_gas
 from utils.fig_hist_temp import serve_fig_hist_temp
+from utils.fig_carbon_price import serve_fig_carbon_price
+from utils.fig_fuel_price import serve_fig_fuel_price
 
 
 @app.callback(
     Output("graph_input_demand_curve", "figure"),
-    Output("graph_input_price_curve", "figure"),
-    Output("graph_input_thermal_coal", "figure"),
-    Output("graph_input_natural_gas", "figure"),
+    # Output("graph_input_price_curve", "figure"),
+    Output("graph_input_fuel_price", "figure"),
     Output("graph_input_hist_temp", "figure"),
     Input("btn_time_group_display_market", "value"),
     Input("date_picker_time_horizon_training", "value"),
@@ -118,82 +125,84 @@ def update_time_interval_graphs1(value, dates):
     finish_date_train = dates[1]
     if value == "monthly":
         return serve_fig_demand_curve("M", start_date_train, finish_date_train), \
-            serve_fig_price_curve("M", start_date_train, finish_date_train), \
-            serve_fig_thermal_coal("M", start_date_train, finish_date_train), \
-            serve_fig_natural_gas("M", start_date_train, finish_date_train), \
+            serve_fig_fuel_price("M", start_date_train, finish_date_train), \
             serve_fig_hist_temp("M", start_date_train, finish_date_train)
     elif value == "weekly":
         return serve_fig_demand_curve("W", start_date_train, finish_date_train), \
-            serve_fig_price_curve("W", start_date_train, finish_date_train), \
-            serve_fig_thermal_coal("W", start_date_train, finish_date_train), \
-            serve_fig_natural_gas("W", start_date_train, finish_date_train), \
+            serve_fig_fuel_price("W", start_date_train, finish_date_train), \
             serve_fig_hist_temp("W", start_date_train, finish_date_train)
     elif value == "daily":
         return serve_fig_demand_curve("D", start_date_train, finish_date_train), \
-            serve_fig_price_curve("D", start_date_train, finish_date_train), \
-            serve_fig_thermal_coal("D", start_date_train, finish_date_train), \
-            serve_fig_natural_gas("D", start_date_train, finish_date_train), \
+            serve_fig_fuel_price("D", start_date_train, finish_date_train), \
             serve_fig_hist_temp("D", start_date_train, finish_date_train)
     else:
         return serve_fig_demand_curve("H", start_date_train, finish_date_train), \
-            serve_fig_price_curve("H", start_date_train, finish_date_train), \
-            serve_fig_thermal_coal("H", start_date_train, finish_date_train), \
-            serve_fig_natural_gas("H", start_date_train, finish_date_train), \
+            serve_fig_fuel_price("H", start_date_train, finish_date_train), \
             serve_fig_hist_temp("H", start_date_train, finish_date_train)
 
 
 from utils.fig_out_wind_capture_price import serve_fig_out_wind_capture_price
 from utils.fig_out_elec_price_forecast import serve_fig_out_elec_price_forecast
 from utils.fig_out_solar_capture_price import serve_fig_out_solar_capture_price
+from utils.fig_out_capture_price import serve_fig_out_capture_price
 
 
 @app.callback(
     # Output("zxc", "children"),
+    Output("graph_input_price_curve", "figure"),
     Output("graph_out_elec_price_forecast", "figure"),
-    Output("graph_out_solar_capture_price", "figure"),
-    Output("graph_out_wind_capture_price", "figure"),
+    Output("graph_out_capture_price", "figure"),
     Input("btn_time_group_display_price", "value"),
+    Input("date_picker_time_horizon_training", "value"),
     prevent_initial_call=True,
 )
-def update_time_interval_graphs2(value):
+def update_time_interval_graphs2(value, dates):
+    start_date_train = dates[0]
+    finish_date_train = dates[1]
     if value == "monthly":
-        return serve_fig_out_elec_price_forecast("M"), serve_fig_out_solar_capture_price(
-            "M"), serve_fig_out_wind_capture_price("M")
+        return serve_fig_price_curve("M", start_date_train, finish_date_train), \
+            serve_fig_out_elec_price_forecast("M"), \
+            serve_fig_out_capture_price("M")
     elif value == "weekly":
-        return serve_fig_out_elec_price_forecast("W"), serve_fig_out_solar_capture_price(
-            "W"), serve_fig_out_wind_capture_price("W")
+        return serve_fig_price_curve("M", start_date_train, finish_date_train), \
+            serve_fig_out_elec_price_forecast("W"), \
+            serve_fig_out_capture_price("W")
     elif value == "daily":
-        return serve_fig_out_elec_price_forecast("D"), serve_fig_out_solar_capture_price(
-            "D"), serve_fig_out_wind_capture_price("D")
+        return serve_fig_price_curve("M", start_date_train, finish_date_train), \
+            serve_fig_out_elec_price_forecast("D"), \
+            serve_fig_out_capture_price("D")
     else:
-        return serve_fig_out_elec_price_forecast("H"), serve_fig_out_solar_capture_price(
-            "H"), serve_fig_out_wind_capture_price("H")
+        return serve_fig_price_curve("H", start_date_train, finish_date_train), \
+            serve_fig_out_elec_price_forecast("H"), \
+            serve_fig_out_capture_price("H")
 
 
 from utils.fig_out_solar_production import serve_fig_out_solar_production
 from utils.fig_out_wind_production import serve_fig_out_wind_production
 from utils.fig_out_hydro_production import serve_fig_out_hydro_production
 from utils.fig_out_tech_stack import serve_fig_out_tech_stack
+from utils.fig_installed_capacity import serve_fig_installed_capacity
 
 
 @app.callback(
     # Output("zyx", "children"),
     Output("graph_out_tech_stack", "figure"),
-    Output("graph_out_solar_production", "figure"),
-    Output("graph_out_wind_production", "figure"),
-    Output("graph_out_hydro_production", "figure"),
+    Output("graph_out_installed_capacity", "figure"),
+    # Output("graph_out_solar_production", "figure"),
+    # Output("graph_out_wind_production", "figure"),
+    # Output("graph_out_hydro_production", "figure"),
     Input("btn_time_group_display_produce", "value"),
     prevent_initial_call=True,
 )
 def update_time_interval_graphs3(value):
     if value == "monthly":
-        return serve_fig_out_tech_stack("M"), serve_fig_out_solar_production("M"), serve_fig_out_wind_production("M"), serve_fig_out_hydro_production("M")
+        return serve_fig_out_tech_stack("M"), serve_fig_installed_capacity("M")
     elif value == "weekly":
-        return serve_fig_out_tech_stack("W"), serve_fig_out_solar_production("W"), serve_fig_out_wind_production("W"), serve_fig_out_hydro_production("W")
+        return serve_fig_out_tech_stack("W"), serve_fig_installed_capacity("W")
     elif value == "daily":
-        return serve_fig_out_tech_stack("D"), serve_fig_out_solar_production("D"), serve_fig_out_wind_production("D"), serve_fig_out_hydro_production("D")
+        return serve_fig_out_tech_stack("D"), serve_fig_installed_capacity("D")
     else:
-        return serve_fig_out_tech_stack("H"), serve_fig_out_solar_production("H"), serve_fig_out_wind_production("H"), serve_fig_out_hydro_production("H")
+        return serve_fig_out_tech_stack("H"), serve_fig_installed_capacity("H")
 
 
 @app.callback(

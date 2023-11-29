@@ -25,12 +25,31 @@ def serve_fig_out_tech_stack(freq):
 
     fig = px.area(df, x="date", y="value", color="tech")
 
-    create_update_layout_fig(fig, "Technology Stack")
+    create_update_layout_fig(fig, "Generation per Production Type")
 
     # fig.update_traces(fill='tozeroy')
+    fig.update_layout(
+        legend={
+            'visible': True
+        },
+    )
+
+    fig.update_layout(
+        legend_title=None,
+        legend=dict(
+            x=.95,
+            y=.99,
+            traceorder="normal",
+            font=dict(
+                family="sans-serif",
+                size=15,
+                color="black"
+            ),
+        )
+    )
 
     fig.update_yaxes(
-        range=[min(df["value"]) - 100, max(df["value"]) + 1000],
+        range=[min(df["value"]) + 100, max(df["value"]) + 2000],
     )
 
     # fig.update_xaxes(

@@ -27,7 +27,8 @@ def serve_fig_thermal_coal(freq, start_date_train, finish_date_train):
         df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='date', y="ThermalCoal", pattern_shape_sequence=["x"])
+    fig = px.area(df, x='date', y="ThermalCoal",)
+    # fig = px.area(df, x='date', y="ThermalCoal", pattern_shape_sequence=["x"])
 
     create_update_layout_fig(fig, "Thermal Coal Price")
     fig.update_traces(fillcolor="rgba(204,204,255,.15)")
