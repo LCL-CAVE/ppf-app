@@ -23,47 +23,19 @@ app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
 app.config.suppress_callback_exceptions = True
 
-app.layout = dmc.MantineProvider(
-    id="theme-app",
-    children=[
-        # dcc.Interval(
-        #     id='interval-component',
-        #     interval=8 * 1000,  # in milliseconds
-        #     n_intervals=0
-        # ),
-        dmc.Text(id="selected-date-date-range-picker"),
-        dmc.LoadingOverlay(
-            dmc.Paper(
-                [
-                    create_header_layout(),
-                    create_body_layout(),
 
-                ],
-            ),
-            id="loading-layout"
-        ),
-        dmc.NotificationsProvider(
-            [
-                html.Div(
-                    id="notifications-container"
-                ),
-            ],
-            position='top-right',
-        )
-    ],
-    withGlobalStyles=True,
-    inherit=True,
-    withNormalizeCSS=True,
-    theme={
-        "colorScheme": "light",
-    },
-
-)
 
 from components.c_display_chart_group import create_display_chart_group
-from components.c_display_chart_group2 import create_display_chart_group2
 from components.c_display_chart_group_out1 import create_display_chart_group_out1
 from components.c_display_chart_group_out2 import create_display_chart_group_out2
+from utils.fig_demand_curve import serve_fig_demand_curve
+from utils.fig_price_curve import serve_fig_price_curve
+from utils.fig_hist_temp import serve_fig_hist_temp
+from utils.fig_fuel_price import serve_fig_fuel_price
+from utils.fig_out_elec_price_forecast import serve_fig_out_elec_price_forecast
+from utils.fig_out_capture_price import serve_fig_out_capture_price
+from utils.fig_out_tech_stack import serve_fig_out_tech_stack
+from utils.fig_installed_capacity import serve_fig_installed_capacity
 
 
 @app.callback(
@@ -90,25 +62,16 @@ def update_display_graphs2(n_clicks, dates):
     return create_display_chart_group_out2(start_date_train, finish_date_train)
 
 
-@app.callback(
-    Output("output-layout", "children", ),
-    Input("btn_output_selector_produce_source", "n_clicks"),
-    Input("date_picker_time_horizon_training", "value"),
-    prevent_initial_call=True,
-)
-def update_display_graphs3(n_clicks, dates):
-    start_date_train = dates[0]
-    finish_date_train = dates[1]
-    return create_display_chart_group_out1(start_date_train, finish_date_train)
-
-
-from utils.fig_demand_curve import serve_fig_demand_curve
-from utils.fig_price_curve import serve_fig_price_curve
-from utils.fig_thermal_coal import serve_fig_thermal_coal
-from utils.fig_nat_gas import serve_fig_natural_gas
-from utils.fig_hist_temp import serve_fig_hist_temp
-from utils.fig_carbon_price import serve_fig_carbon_price
-from utils.fig_fuel_price import serve_fig_fuel_price
+# @app.callback(
+#     Output("output-layout", "children", ),
+#     Input("btn_output_selector_produce_source", "n_clicks"),
+#     Input("date_picker_time_horizon_training", "value"),
+#     prevent_initial_call=True,
+# )
+# def update_display_graphs3(n_clicks, dates):
+#     start_date_train = dates[0]
+#     finish_date_train = dates[1]
+#     return create_display_chart_group_out1(start_date_train, finish_date_train)
 
 
 @app.callback(
@@ -141,12 +104,6 @@ def update_time_interval_graphs1(value, dates):
             serve_fig_hist_temp("H", start_date_train, finish_date_train)
 
 
-from utils.fig_out_wind_capture_price import serve_fig_out_wind_capture_price
-from utils.fig_out_elec_price_forecast import serve_fig_out_elec_price_forecast
-from utils.fig_out_solar_capture_price import serve_fig_out_solar_capture_price
-from utils.fig_out_capture_price import serve_fig_out_capture_price
-
-
 @app.callback(
     # Output("zxc", "children"),
     Output("graph_input_price_curve", "figure"),
@@ -168,20 +125,13 @@ def update_time_interval_graphs2(value, dates):
             serve_fig_out_elec_price_forecast("W"), \
             serve_fig_out_capture_price("W")
     elif value == "daily":
-        return serve_fig_price_curve("M", start_date_train, finish_date_train), \
+        return serve_fig_price_curve("D", start_date_train, finish_date_train), \
             serve_fig_out_elec_price_forecast("D"), \
             serve_fig_out_capture_price("D")
     else:
         return serve_fig_price_curve("H", start_date_train, finish_date_train), \
             serve_fig_out_elec_price_forecast("H"), \
             serve_fig_out_capture_price("H")
-
-
-from utils.fig_out_solar_production import serve_fig_out_solar_production
-from utils.fig_out_wind_production import serve_fig_out_wind_production
-from utils.fig_out_hydro_production import serve_fig_out_hydro_production
-from utils.fig_out_tech_stack import serve_fig_out_tech_stack
-from utils.fig_installed_capacity import serve_fig_installed_capacity
 
 
 @app.callback(
@@ -192,17 +142,20 @@ from utils.fig_installed_capacity import serve_fig_installed_capacity
     # Output("graph_out_wind_production", "figure"),
     # Output("graph_out_hydro_production", "figure"),
     Input("btn_time_group_display_produce", "value"),
+    Input("date_picker_time_horizon_training", "value"),
     prevent_initial_call=True,
 )
-def update_time_interval_graphs3(value):
+def update_time_interval_graphs3(value, dates):
+    start_date_train = dates[0]
+    finish_date_train = dates[1]
     if value == "monthly":
-        return serve_fig_out_tech_stack("M"), serve_fig_installed_capacity("M")
+        return serve_fig_out_tech_stack("M"), serve_fig_installed_capacity("M", start_date_train, finish_date_train)
     elif value == "weekly":
-        return serve_fig_out_tech_stack("W"), serve_fig_installed_capacity("W")
+        return serve_fig_out_tech_stack("W"), serve_fig_installed_capacity("W", start_date_train, finish_date_train)
     elif value == "daily":
-        return serve_fig_out_tech_stack("D"), serve_fig_installed_capacity("D")
+        return serve_fig_out_tech_stack("D"), serve_fig_installed_capacity("D", start_date_train, finish_date_train)
     else:
-        return serve_fig_out_tech_stack("H"), serve_fig_installed_capacity("H")
+        return serve_fig_out_tech_stack("H"), serve_fig_installed_capacity("H", start_date_train, finish_date_train)
 
 
 @app.callback(
@@ -286,4 +239,42 @@ if __name__ == "__main__":
     # from callbacks.clb_update_input_graph import serve_clb_update_input_graphs
     #
     # serve_clb_update_input_graphs(app)
+    app.layout = dmc.MantineProvider(
+        id="theme-app",
+        children=[
+            # dcc.Interval(
+            #     id='interval-component',
+            #     interval=8 * 1000,  # in milliseconds
+            #     n_intervals=0
+            # ),
+            dmc.Text(id="selected-date-date-range-picker"),
+            dmc.LoadingOverlay(
+                dmc.Paper(
+                    [
+                        create_header_layout(),
+                        create_body_layout(),
+
+                    ],
+                ),
+                id="loading-layout"
+            ),
+            dmc.NotificationsProvider(
+                [
+                    html.Div(
+                        id="notifications-container"
+                    ),
+                ],
+                position='top-right',
+            )
+        ],
+        withGlobalStyles=True,
+        inherit=True,
+        withNormalizeCSS=True,
+        theme={
+            "colorScheme": "light",
+        },
+
+    )
+    from callbacks.clb_update_display_graphs3 import serve_clb_update_display_graphs3
+    serve_clb_update_display_graphs3(app)
     app.run_server(debug=True)

@@ -34,7 +34,7 @@ def serve_fig_price_curve(freq, start_date_train, finish_date_train):
     fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
-        range=[min(df["DayAheadPrices_ES"]) - 2, max(df["DayAheadPrices_ES"]) + 2],
+        range=[min(df["DayAheadPrices_ES"]) - 5, max(df["DayAheadPrices_ES"]) + 2],
     )
     # fig.update_xaxes(
     #     rangeslider_visible=True,
