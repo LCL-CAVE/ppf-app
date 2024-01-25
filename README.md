@@ -1,4 +1,4 @@
-# Power Price Web app
+# Power Price Forecasting (PPF) app
 
 ## About the app
 ### How does it work?
