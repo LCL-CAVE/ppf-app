@@ -2,6 +2,7 @@ from components.c_slider_group import create_slider_group
 from components.c_accordion import create_accordion
 from components.c_date_picker_group import create_date_picker_group
 from components.c_dropdown import create_dropdown_group
+from components.c_num_input_group import create_num_input_group
 from controls.cl_json_parser import parse_json
 import os
 from dash import html
@@ -33,7 +34,7 @@ def create_control_accordion():
         },
         {
             "item": json_category[2],
-            "content": create_slider_group(parse_json(os.path.join(
+            "content": create_num_input_group(parse_json(os.path.join(
                 os.path.dirname('./params/'),
                 'capacity.json')
             ),

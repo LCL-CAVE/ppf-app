@@ -43,7 +43,7 @@ def create_accordion(category_list):
                         [
                             dmc.Divider(
                                 variant="solid",
-                                mb=30
+                                mb=15
                             ),
                             # category['content'],
                             dmc.Text(category['content'], size="sm")

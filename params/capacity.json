@@ -1,212 +1,92 @@
-[
+                       [
   {
     "label": "Gas",
+    "label_change": "%",
     "id": "gas_total",
+    "id_change": "gas_change",
     "min": 0,
+    "min_change": -100,
     "max": 150,
+    "max_change": 100,
     "step": 1,
+    "step_change": 1,
     "value": 27,
-    "label_on": 1,
-    "margin_bottom": 0,
-    "mark": []
-  },
-  {
-    "label": "Gas (growth)",
-    "id": "gas_growth",
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "value": 0,
-    "label_on": 0,
-    "margin_bottom": 40,
-    "mark": [
-      {
-        "value": 20,
-        "label": "20%"
-      },
-      {
-        "value": 50,
-        "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
-      }
-    ]
+    "value_change": 0,
+    "margin_bottom": 10
   },
   {
     "label": "Nuclear",
+    "label_change": "%",
     "id": "nuclear_total",
+    "id_change": "nuclear_change",
     "min": 0,
+    "min_change": -100,
     "max": 150,
+    "max_change": 100,
     "step": 1,
+    "step_change": 1,
     "value": 7,
-    "label_on": 1,
-    "margin_bottom": 0,
-    "mark": []
-  },
-  {
-    "label": "Nuclear (growth)",
-    "id": "nuclear_growth",
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "value": 0,
-    "label_on": 0,
-    "margin_bottom": 40,
-    "mark": [
-      {
-        "value": 20,
-        "label": "20%"
-      },
-      {
-        "value": 50,
-        "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
-      }
-    ]
+    "value_change": 0,
+    "margin_bottom": 10
   },
   {
     "label": "Coal",
+    "label_change": "%",
     "id": "coal_total",
+    "id_change": "coal_change",
     "min": 0,
+    "min_change": -100,
     "max": 150,
+    "max_change": 100,
     "step": 1,
+    "step_change": 1,
     "value": 35,
-    "label_on": 1,
-    "margin_bottom": 0,
-    "mark": []
-  },
-  {
-    "label": "Coal (growth)",
-    "id": "coal_growth",
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "value": 0,
-    "label_on": 0,
-    "margin_bottom": 40,
-    "mark": [
-      {
-        "value": 20,
-        "label": "20%"
-      },
-      {
-        "value": 50,
-        "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
-      }
-    ]
+    "value_change": 0,
+    "margin_bottom": 10
   },
   {
     "label": "Solar",
+    "label_change": "%",
     "id": "solar_total",
+    "id_change": "solar_change",
     "min": 0,
+    "min_change": -100,
     "max": 150,
+    "max_change": 100,
     "step": 1,
+    "step_change": 1,
     "value": 24,
-    "label_on": 1,
-    "margin_bottom": 0,
-    "mark": []
-  },
-  {
-    "label": "Solar (growth)",
-    "id": "solar_growth",
-    "min": 0,
-    "max": 100,
-    "step": 5,
-    "value": 0,
-    "label_on": 0,
-    "margin_bottom": 40,
-    "mark": [
-      {
-        "value": 20,
-        "label": "20%"
-      },
-      {
-        "value": 50,
-        "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
-      }
-    ]
+    "value_change": 0,
+    "margin_bottom": 10
   },
   {
     "label": "Wind",
+    "label_change": "%",
     "id": "wind_total",
+    "id_change": "wind_change",
     "min": 0,
-    "max": 100,
+    "min_change": -100,
+    "max": 150,
+    "max_change": 100,
     "step": 1,
+    "step_change": 1,
     "value": 30,
-    "label_on": 1,
-    "margin_bottom": 0,
-    "mark": []
-  },
-  {
-    "label": "Wind (growth)",
-    "id": "wind_growth",
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "value": 0,
-    "label_on": 0,
-    "margin_bottom": 40,
-    "mark": [
-      {
-        "value": 20,
-        "label": "20%"
-      },
-      {
-        "value": 50,
-        "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
-      }
-    ]
+    "value_change": 0,
+    "margin_bottom": 10
   },
   {
     "label": "Hydro",
+    "label_change": "%",
     "id": "hydro_total",
+    "id_change": "hydro_change",
     "min": 0,
+    "min_change": -100,
     "max": 150,
+    "max_change": 100,
     "step": 1,
+    "step_change": 1,
     "value": 20,
-    "label_on": 1,
-    "margin_bottom": 0,
-    "mark": []
-  },
-  {
-    "label": "Hydro (growth)",
-    "id": "hydro_total",
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "value": 0,
-    "label_on": 0,
-    "margin_bottom": 40,
-    "mark": [
-      {
-        "value": 20,
-        "label": "20%"
-      },
-      {
-        "value": 50,
-        "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
-      }
-    ]
+    "value_change": 0,
+    "margin_bottom": 10
   }
 ]
