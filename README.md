@@ -3,7 +3,7 @@
 ## About the app
 ### How does it work?
 
-This app is fully written in Dash. 
+Technology stack
 
 ## Packages and Frameworks
 * [Dash](https://dash.plot.ly/) - Main server and interactive components
