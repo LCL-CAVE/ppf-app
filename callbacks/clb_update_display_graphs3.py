@@ -1,4 +1,4 @@
-from app_test import app
+from app import app
 from dash import Input, Output
 from components.c_display_chart_group_out1 import create_display_chart_group_out1
 
