@@ -9,5 +9,7 @@ Technology stack
 * [Dash](https://dash.plot.ly/) - Main server and interactive components
 * [Plotly Python](https://plot.ly/python/) - Used to create the interactive plots
 
+## Screenshot
 
+![plot](./statics/screenshot.png)
 
