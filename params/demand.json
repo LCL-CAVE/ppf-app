@@ -11,146 +11,146 @@
     "mark": []
   },
   {
-    "label": "00:00 to 04:00 growth rate",
+    "label": "00:00 -> 04:00 (%)",
     "id": "0_4_rate",
-    "min": 0,
+    "min": -100,
     "max": 100,
-    "step": 5,
+    "step": 1,
     "value": 0,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
       {
-        "value": 20,
-        "label": "20%"
+        "value": -50,
+        "label": "-50%"
+      },
+      {
+        "value": 0,
+        "label": "0%"
       },
       {
         "value": 50,
         "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
       }
     ]
   },
   {
-    "label": "04:00 to 08:00 growth rate",
+    "label": "04:00 -> 08:00 (%)",
     "id": "4_8_rate",
-    "min": 0,
+    "min": -100,
     "max": 100,
-    "step": 5,
+    "step": 1,
     "value": 0,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
       {
-        "value": 20,
-        "label": "20%"
+        "value": -50,
+        "label": "-50%"
+      },
+      {
+        "value": 0,
+        "label": "0%"
       },
       {
         "value": 50,
         "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
       }
     ]
   },
   {
-    "label": "08:00 to 12:00 growth rate",
+    "label": "08:00 -> 12:00 (%)",
     "id": "8_12_rate",
-    "min": 0,
+    "min": -100,
     "max": 100,
-    "step": 5,
+    "step": 1,
     "value": 0,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
       {
-        "value": 20,
-        "label": "20%"
+        "value": -50,
+        "label": "-50%"
+      },
+      {
+        "value": 0,
+        "label": "0%"
       },
       {
         "value": 50,
         "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
       }
     ]
   },
   {
-    "label": "12:00 to 16:00 growth rate",
+    "label": "12:00 -> 16:00 (%)",
     "id": "12_16_rate",
-    "min": 0,
+    "min": -100,
     "max": 100,
-    "step": 5,
+    "step": 1,
     "value": 0,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
       {
-        "value": 20,
-        "label": "20%"
+        "value": -50,
+        "label": "-50%"
+      },
+      {
+        "value": 0,
+        "label": "0%"
       },
       {
         "value": 50,
         "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
       }
     ]
   },
   {
-    "label": "16:00 to 20:00 growth rate",
+    "label": "16:00 -> 20:00 (%)",
     "id": "16_20_rate",
-    "min": 0,
+    "min": -100,
     "max": 100,
-    "step": 5,
+    "step": 1,
     "value": 0,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
       {
-        "value": 20,
-        "label": "20%"
+        "value": -50,
+        "label": "-50%"
+      },
+      {
+        "value": 0,
+        "label": "0%"
       },
       {
         "value": 50,
         "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
       }
     ]
   },
   {
-    "label": "20:00 to 00:00 growth rate",
+    "label": "20:00 -> 00:00 (%))",
     "id": "20_0_rate",
-    "min": 0,
+    "min": -100,
     "max": 100,
-    "step": 5,
+    "step": 1,
     "value": 0,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
       {
-        "value": 20,
-        "label": "20%"
+        "value": -50,
+        "label": "-50%"
+      },
+      {
+        "value": 0,
+        "label": "0%"
       },
       {
         "value": 50,
         "label": "50%"
-      },
-      {
-        "value": 80,
-        "label": "80%"
       }
     ]
   }

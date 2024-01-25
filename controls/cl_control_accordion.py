@@ -50,7 +50,7 @@ def create_control_accordion():
         },
         {
             "item": json_category[4],
-            "content": create_slider_group(parse_json(os.path.join(
+            "content": create_num_input_group(parse_json(os.path.join(
                 os.path.dirname('./params/'),
                 'price.json')
             ),

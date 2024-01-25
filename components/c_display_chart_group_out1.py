@@ -26,9 +26,9 @@ def create_display_chart_group_out1(start_date_train_initial, finish_date_train_
                         create_btn_time_group("produce"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_installed_capacity("D", start_date_train_initial, finish_date_train_initial),
+                        figure=serve_fig_out_tech_stack("D"),
                         config={'displayModeBar': False},
-                        id="graph_out_installed_capacity",
+                        id="graph_out_tech_stack",
                     ),
                 ],
                 className="td-col-chart",
@@ -39,9 +39,9 @@ def create_display_chart_group_out1(start_date_train_initial, finish_date_train_
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_out_tech_stack("D"),
+                        figure=serve_fig_installed_capacity("D", start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
-                        id="graph_out_tech_stack",
+                        id="graph_out_installed_capacity",
                     ),
                 ],
                 className="td-col-chart",
