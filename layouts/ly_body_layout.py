@@ -10,13 +10,13 @@ def create_body_layout():
             dmc.Col(
                 [
                     create_control_layout(),
-                    dmc.Text(
-                        "This work is licensed under [creative commons license].",
-                        underline=True,
-                        size="xs",
-                        mt=20,
-                        mb=20
-                    ),
+                    # dmc.Text(
+                    #     "This work is licensed under [creative commons license].",
+                    #     underline=True,
+                    #     size="xs",
+                    #     mt=20,
+                    #     mb=20
+                    # ),
                 ],
                 span="auto",
                 className="control-col",
