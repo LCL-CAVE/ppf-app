@@ -7,9 +7,10 @@
 
 
 
-## Packages and Frameworks
-* [Dash](https://dash.plot.ly/) - Main server and interactive components
-* [Plotly Python](https://plot.ly/python/) - Used to create the interactive plots
+## To-dos
+- [x] Callback seperartion
+- [ ] Engine integration
+- [ ] Data-base backend integration
 
 ## Screenshot
 
