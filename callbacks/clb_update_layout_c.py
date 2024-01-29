@@ -3,7 +3,7 @@ from dash import Input, Output
 from components.c_display_chart_group_out1 import create_display_chart_group_out1
 
 
-def serve_clb_update_display_graphs3(app):
+def serve_clb_update_layout_c(app):
     @app.callback(
         Output("output-layout", "children", ),
         Input("btn_output_selector_produce_source", "n_clicks"),
