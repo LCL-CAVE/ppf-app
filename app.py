@@ -242,12 +242,6 @@ if __name__ == "__main__":
     app.layout = dmc.MantineProvider(
         id="theme-app",
         children=[
-            # dcc.Interval(
-            #     id='interval-component',
-            #     interval=8 * 1000,  # in milliseconds
-            #     n_intervals=0
-            # ),
-            dmc.Text(id="selected-date-date-range-picker"),
             dmc.LoadingOverlay(
                 dmc.Paper(
                     [
