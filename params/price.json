@@ -1,4 +1,4 @@
-                       [
+[
   {
     "label": "Gas",
     "label_change": "%",
@@ -41,51 +41,6 @@
     "step": 1,
     "step_change": 1,
     "value": 160,
-    "value_change": 0,
-    "margin_bottom": 10
-  },
-  {
-    "label": "Solar",
-    "label_change": "%",
-    "id": "solar_total",
-    "id_change": "solar_change",
-    "min": 0,
-    "min_change": -100,
-    "max": 500,
-    "max_change": 100,
-    "step": 1,
-    "step_change": 1,
-    "value": 100,
-    "value_change": 0,
-    "margin_bottom": 10
-  },
-  {
-    "label": "Wind",
-    "label_change": "%",
-    "id": "wind_total",
-    "id_change": "wind_change",
-    "min": 0,
-    "min_change": -100,
-    "max": 500,
-    "max_change": 100,
-    "step": 1,
-    "step_change": 1,
-    "value": 100,
-    "value_change": 0,
-    "margin_bottom": 10
-  },
-  {
-    "label": "Hydro",
-    "label_change": "%",
-    "id": "hydro_total",
-    "id_change": "hydro_change",
-    "min": 0,
-    "min_change": -100,
-    "max": 500,
-    "max_change": 100,
-    "step": 1,
-    "step_change": 1,
-    "value": 100,
     "value_change": 0,
     "margin_bottom": 10
   }
