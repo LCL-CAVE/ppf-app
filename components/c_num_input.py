@@ -23,7 +23,7 @@ def create_num_input(item, context):
                 # marks=item["mark"],
                 # labelAlwaysOn=item["label_on"],
                 # size="xs",
-                # style={'width': "40%"},
+                style={'width': "45%"},
             ),
             dmc.NumberInput(
                 label=item["label_change"],
@@ -41,7 +41,7 @@ def create_num_input(item, context):
                 # marks=item["mark"],
                 # labelAlwaysOn=item["label_on"],
                 # size="xs",
-                # style={'width': "40%"},
+                style={'width': "45%"},
             ),
         ],
         mb=item["margin_bottom"],
