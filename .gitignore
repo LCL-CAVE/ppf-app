@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# database
+*.db
+
+# credential
+power_api/*.json
+
 # C extensions
 *.so
 

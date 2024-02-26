@@ -1,18 +1,18 @@
 [
   {
-    "label": "Random Factors",
+    "label": "Historical Data",
     "id": "market_dynamics",
     "type": "light",
     "margin_top": 20
   },
   {
-    "label": "Power Prices",
+    "label": "Scenarios",
     "id": "price_source",
     "type": "light",
     "margin_top": 10
   },
   {
-    "label": "Capacity Mix",
+    "label": "Outputs",
     "id": "produce_source",
     "type": "light",
     "margin_top": 10
