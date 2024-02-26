@@ -7,7 +7,7 @@ __pycache__/
 *.db
 
 # credential
-credential.json
+power_api/*.json
 
 # C extensions
 *.so
