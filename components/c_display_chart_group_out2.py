@@ -12,7 +12,7 @@ import os
 
 
 # category_list : .json
-def create_display_chart_group_out2(start_date_train_initial,finish_date_train_initial):
+def create_display_chart_group_out2(country, start_date_train_initial,finish_date_train_initial):
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
@@ -26,7 +26,7 @@ def create_display_chart_group_out2(start_date_train_initial,finish_date_train_i
                         create_btn_time_group("price"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_price_curve("D", start_date_train_initial, finish_date_train_initial),
+                        figure=serve_fig_price_curve("D", country, start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_price_curve",
                     ),

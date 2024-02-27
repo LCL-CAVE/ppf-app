@@ -17,7 +17,7 @@ def serve_api_callback(url, username, password, payload):
         df['timestamp'] = pd.to_datetime(df['timestamp'])
 
         # Display the DataFrame
-        print(df.head())
+        return df
 
     else:
         print(f"Error: {response.status_code} - {response.text}")

@@ -20,13 +20,33 @@ url = 'http://127.0.0.1:5000/v1/table'
 # Request parameters
 payload = {
     'table': 'day_ahead_price',
-    'bidding_zone': 'HU',  # Provide the desired bidding zone
+    'bidding_zone': 'DE_LU',  # Provide the desired bidding zone
     'date_from': '2020-02-01 00:00:00',  # Provide start date
     'date_to': '2021-02-01 23:59:59'  # Provide end date
 }
 
-print(serve_api_callback(url, username, password, payload))
+df = serve_api_callback(url, username, password, payload)
 
+
+# start_date_train = "2018-01-01"
+# finish_date_train = "2019-01-01"
+
+df = df.loc[(df['timestamp'] > payload['date_from']) & (df['timestamp'] <= payload['date_to'])]
+
+# df = df.groupby(pd.Grouper(key="timestamp", freq="D")).mean()
+#
+# df = df.reset_index()
+
+fig = px.area(df, x='timestamp', y="price", )
+
+create_update_layout_fig(fig, "Day ahead electricity price")
+fig.update_traces(fillcolor="rgba(204,204,255,.15)")
+
+fig.update_yaxes(
+    range=[min(df["price"]) - 5, max(df["price"]) + 2],
+)
+
+fig.show()
 # # print(df.shape[0])
 #
 # df1 = df[['date', 'solar']]
