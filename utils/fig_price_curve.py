@@ -1,11 +1,8 @@
 import plotly.express as px
 import pandas as pd
 from controls.cl_fig_update_layout import create_update_layout_fig
-import os
-import json
 from power_api.api_callback import serve_api_callback
 from power_api.api_login import serve_api_login
-from controls.cl_json_parser import parse_json
 
 
 def serve_fig_price_curve(freq, country, start_date_train, finish_date_train):
@@ -22,9 +19,9 @@ def serve_fig_price_curve(freq, country, start_date_train, finish_date_train):
     # Request parameters
     payload = {
         'table': 'day_ahead_price',
-        'bidding_zone': country,  # Provide the desired bidding zone
-        'date_from': start_date_train,  # Provide start date
-        'date_to': finish_date_train  # Provide end date
+        'bidding_zone': country,
+        'date_from': start_date_train,
+        'date_to': finish_date_train
     }
 
     df = serve_api_callback(url, username, password, payload)

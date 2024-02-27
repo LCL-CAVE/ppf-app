@@ -25,11 +25,11 @@ def create_display_chart_group_out2(country, start_date_train_initial,finish_dat
                     html.Div(
                         create_btn_time_group("price"),
                         className="div-btn-time-grouper"),
-                    dcc.Graph(
-                        figure=serve_fig_price_curve("D", country, start_date_train_initial, finish_date_train_initial),
-                        config={'displayModeBar': False},
-                        id="graph_input_price_curve",
-                    ),
+                    # dcc.Graph(
+                    #     figure=serve_fig_price_curve("D", country, start_date_train_initial, finish_date_train_initial),
+                    #     config={'displayModeBar': False},
+                    #     id="graph_input_price_curve",
+                    # ),
 
                 ],
                 className="td-col-chart",
