@@ -1,18 +1,18 @@
 [
   {
     "label": "Monthly",
-    "id": "monthly"
+    "id": "M"
   },
   {
     "label": "Weekly",
-    "id": "weekly"
+    "id": "W"
   },
   {
     "label": "Daily",
-    "id": "daily"
+    "id": "D"
   },
   {
     "label": "Hourly",
-    "id": "hourly"
+    "id": "H"
   }
 ]

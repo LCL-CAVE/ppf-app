@@ -14,7 +14,7 @@ import os
 
 
 # category_list : .json
-def create_display_chart_group(start_date_train_initial,finish_date_train_initial):
+def create_display_chart_group(country, start_date_train_initial,finish_date_train_initial):
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
@@ -30,7 +30,7 @@ def create_display_chart_group(start_date_train_initial,finish_date_train_initia
                         create_btn_time_group("market"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_demand_curve("D", start_date_train_initial, finish_date_train_initial),
+                        figure=serve_fig_demand_curve("D", country, start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
                         id="graph_input_demand_curve",
                     ),
@@ -43,15 +43,28 @@ def create_display_chart_group(start_date_train_initial,finish_date_train_initia
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_fuel_price("D", start_date_train_initial, finish_date_train_initial),
+                        figure=serve_fig_price_curve("D", country, start_date_train_initial, finish_date_train_initial),
                         config={'displayModeBar': False},
-                        id="graph_input_fuel_price",
+                        id="graph_input_price_curve",
                     ),
                 ],
                 className="td-col-chart",
                 colSpan=len(kpi_item_list),
             ),
         ),
+        # html.Tr(
+        #     html.Td(
+        #         children=[
+        #             dcc.Graph(
+        #                 figure=serve_fig_fuel_price("D", start_date_train_initial, finish_date_train_initial),
+        #                 config={'displayModeBar': False},
+        #                 id="graph_input_fuel_price",
+        #             ),
+        #         ],
+        #         className="td-col-chart",
+        #         colSpan=len(kpi_item_list),
+        #     ),
+        # ),
         # html.Tr(
         #     html.Td(
         #         children=[

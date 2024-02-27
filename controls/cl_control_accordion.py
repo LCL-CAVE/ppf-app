@@ -20,7 +20,7 @@ def create_control_accordion():
             "item": json_category[0],
             "content": create_dropdown_group(parse_json(os.path.join(
                 os.path.dirname('./params/'),
-                'country.json')
+                'zones.json')
             ),
                 json_category[0]["value"]),
         },

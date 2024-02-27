@@ -8,6 +8,7 @@ import dash_mantine_components as dmc
 def create_output_layout():
     start_date_train_initial = "2018-01-01"
     finish_date_train_initial = "2019-01-01"
+    country = "ES"
     return html.Table(
         [
             html.Tbody(
@@ -23,7 +24,7 @@ def create_output_layout():
                 [
                     html.Tr(
                         html.Td(
-                            create_display_chart_group(start_date_train_initial,finish_date_train_initial),
+                            create_display_chart_group(country, start_date_train_initial,finish_date_train_initial),
                             colSpan=3,
                             id="output-layout",
                         )

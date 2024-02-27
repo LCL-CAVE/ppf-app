@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Spain",
+    "id": "ES"
+  },
+  {
+    "label": "France",
+    "id": "FR"
+  },
+  {
+    "label": "Germany",
+    "id": "DE_LU"
+  },
+  {
+    "label": "Belgium",
+    "id": "BE"
+  },
+  {
+    "label": "Netherlands",
+    "id": "NL"
+  },
+  {
+    "label": "Hungary",
+    "id": "HU"
+  }
+]
