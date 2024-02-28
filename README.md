@@ -6,8 +6,9 @@
 - The mission is to compute contract prices (capture price) as a KPI for Power Purchase Agreements (PPAs) to assist large industrial consumers in meeting their sustainability targets.
 
 ## Ongoing
-- [ ] API integration
+- [x] API integration
 - [ ] Capacity scenario generation
+- [ ] Caching graphs
 
 ## To-dos
 - [x] Callback seperartion
