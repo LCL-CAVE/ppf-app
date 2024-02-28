@@ -12,7 +12,7 @@ import os
 
 
 # category_list : .json
-def create_display_chart_group_out2(country, start_date_train_initial,finish_date_train_initial):
+def create_display_chart_group_out2(country, start_date_train_initial, finish_date_train_initial):
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
