@@ -28,7 +28,7 @@ def create_num_input(item, context):
             dmc.NumberInput(
                 label=item["label_change"],
                 # description="Sccc",
-                id="num_input_" + context + "_" + item["id"] + "_change",
+                id="num_input_" + context + "_" + item["id_change"],
                 min=item["min_change"],
                 max=item["max_change"],
                 step=item["step_change"],

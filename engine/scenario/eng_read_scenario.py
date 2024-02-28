@@ -1,8 +1,59 @@
 import pandas as pd
 from math import ceil
+import numpy as np
 import pickle
+import os
 from engine.scenario.eng_scenario_generate import serve_eng_generate_scenarios
-from solar_regression import SolarRegression
+from sklearn.linear_model import LassoCV
+from sklearn.preprocessing import PolynomialFeatures
+
+
+class SolarRegression(LassoCV):
+    poly = PolynomialFeatures(degree=2, interaction_only=False, include_bias=False)
+
+    def getX(self, datetime):
+        X = pd.DataFrame({
+            'sy1': np.sin(2 * np.pi * datetime.dayofyear / 365.25),
+            'cy1': np.cos(2 * np.pi * datetime.dayofyear / 365.25),
+        })
+
+        # Generate hour dummies without converting to strings
+        hour_dummies = pd.get_dummies(datetime.hour, prefix='hour')
+
+        # Join the initial features with hour dummies
+        X = pd.concat([X, hour_dummies], axis=1)
+
+        # No need to convert column names to strings here
+        return self.poly.fit_transform(X)
+
+    def fit(self, datetime, y):
+        super().fit(self.getX(datetime), y)
+
+    def score(self, datetime, y):
+        return super().score(self.getX(datetime), y)
+
+    def predict(self, datetime):
+        return super().predict(self.getX(datetime))
+
+
+class WindRegression(SolarRegression):
+
+    def getX(self, datetime):
+        X = (pd.DataFrame(index=datetime)
+             .assign(sy1=lambda x: np.sin(2 * np.pi * datetime.dayofyear / 365.25))
+             .assign(cy1=lambda x: np.cos(2 * np.pi * datetime.dayofyear / 365.25))
+             )
+        return self.poly.fit_transform(X)
+
+
+class RorRegression(SolarRegression):
+
+    def getX(self, datetime):
+        X = (pd.DataFrame(index=datetime)
+             .assign(sy1=lambda x: np.sin(2 * np.pi * datetime.dayofyear / 365.25))
+             .assign(cy1=lambda x: np.cos(2 * np.pi * datetime.dayofyear / 365.25))
+             )
+        return self.poly.fit_transform(X)
 
 
 def serve_read_scenario(initial_capacity,
@@ -46,7 +97,11 @@ def serve_read_scenario(initial_capacity,
     # Cache loading goes here
     pickle_file = "ES_" + generation_type.upper() + ".pickle"
 
-    with open(pickle_file, "rb") as f:
+    file_path = os.path.join(os.getcwd(), "engine/scenario/" + pickle_file)
+
+    # file_path = os.path.join(os.getcwd(), pickle_file)
+
+    with open(file_path, "rb") as f:
         prediction_errors_shape = pickle.load(f)
         kmeans_model = pickle.load(f)
         transition_matrix = pickle.load(f)

@@ -11,7 +11,7 @@
     "step": 1,
     "step_change": 1,
     "value": 24,
-    "value_change": 0,
+    "value_change": 50,
     "margin_bottom": 10
   },
   {
@@ -26,7 +26,7 @@
     "step": 1,
     "step_change": 1,
     "value": 30,
-    "value_change": 0,
+    "value_change": 50,
     "margin_bottom": 10
   },
   {
@@ -41,7 +41,7 @@
     "step": 1,
     "step_change": 1,
     "value": 20,
-    "value_change": 0,
+    "value_change": 50,
     "margin_bottom": 10
   }
 ]

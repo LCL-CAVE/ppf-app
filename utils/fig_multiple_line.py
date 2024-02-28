@@ -2,7 +2,7 @@ import plotly.graph_objs as go
 import pandas as pd
 
 
-def serve_fig_multiple_line(df, title, Y_Axis_Title):
+def serve_fig_multiple_line(df, freq, title, Y_Axis_Title):
     """
     Generates and displays a solar scenario plot.
 
@@ -24,6 +24,10 @@ def serve_fig_multiple_line(df, title, Y_Axis_Title):
     quantiles = [0.05, 0.25, 0.5, 0.75, 0.95]
     for q in quantiles:
         df[f'{q}'] = df.iloc[:, :].dropna().quantile(q=q, axis=1)
+
+    df['timestamp'] = df.index
+
+    df = df.groupby(pd.Grouper(key='timestamp', freq=freq)).mean()
 
     # Create figure
     fig = go.Figure()
