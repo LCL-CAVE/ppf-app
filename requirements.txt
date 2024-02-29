@@ -7,8 +7,8 @@ Flask_Caching==2.1.0
 Flask_HTTPAuth==4.8.0
 holidays==0.40
 matplotlib==3.6.3
-numpy==1.23.4
-pandas==1.5.0
+numpy==1.26.4
+pandas==2.2.1
 plotly==5.18.0
 Requests==2.31.0
 scikit_learn==1.1.3
