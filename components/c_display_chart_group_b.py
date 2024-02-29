@@ -6,7 +6,8 @@ from dash import html, dcc
 import os
 
 
-def create_display_chart_group_b(initial_capacity_solar,
+def create_display_chart_group_b(freq,
+                                 initial_capacity_solar,
                                  initial_capacity_wind,
                                  initial_capacity_hydro,
                                  growth_rate_solar,
@@ -19,12 +20,14 @@ def create_display_chart_group_b(initial_capacity_solar,
             os.path.dirname('./params/'),
             'kpi.json')
     )
+    if freq is None:
+        freq = "D"
     return [
         html.Tr(
             html.Td(
                 children=[
                     html.Div(
-                        create_btn_time_group("market"),
+                        create_btn_time_group("layout_b"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
                         figure=serve_fig_multiple_line(serve_read_scenario(initial_capacity_solar,
@@ -32,7 +35,7 @@ def create_display_chart_group_b(initial_capacity_solar,
                                                                            scenario_start_date,
                                                                            scenario_end_date,
                                                                            "solar"),
-                                                       "D",
+                                                       freq,
                                                        'Solar Generation Scenarios',
                                                        "MW"),
                         config={'displayModeBar': False},
@@ -52,7 +55,7 @@ def create_display_chart_group_b(initial_capacity_solar,
                                                                            scenario_start_date,
                                                                            scenario_end_date,
                                                                            "wind"),
-                                                       "D",
+                                                       freq,
                                                        'Wind Generation Scenarios',
                                                        "MW"),
                         config={'displayModeBar': False},
@@ -72,7 +75,7 @@ def create_display_chart_group_b(initial_capacity_solar,
                                                                            scenario_start_date,
                                                                            scenario_end_date,
                                                                            "ror"),
-                                                       "D",
+                                                       freq,
                                                        'Hydro ROR Generation Scenarios',
                                                        "MW"),
                         config={'displayModeBar': False},
