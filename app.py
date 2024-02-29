@@ -5,6 +5,16 @@ from layouts.ly_header_layout import create_header_layout
 from components.c_display_notification_progress import create_notification_progress
 from dash import Dash, html, DiskcacheManager, CeleryManager, Input, Output, callback
 from uuid import uuid4
+from flask_caching import Cache
+
+from dash import Dash, DiskcacheManager, CeleryManager, Input, Output, html, callback
+
+# cache = Cache(app.server, config={
+#     'CACHE_TYPE': 'filesystem',
+#     'CACHE_DIR': 'cache-directory'
+# })
+#
+# TIMEOUT = 60
 
 # launch_uid = uuid4()
 # if 'REDIS_URL' in os.environ:
@@ -67,6 +77,7 @@ if __name__ == "__main__":
         },
 
     )
+
     from callbacks import clb_update_layout_a, clb_update_layout_b, clb_update_layout_c, clb_update_interval_a, \
         clb_update_interval_b, clb_update_interval_c, clb_display_notif_progress, clb_display_loading
 
