@@ -1,32 +1,37 @@
 from app import app
 from dash import Input, Output
-from utils.fig_price_curve import serve_fig_price_curve
-from utils.fig_out_elec_price_forecast import serve_fig_out_elec_price_forecast
-from utils.fig_out_capture_price import serve_fig_out_capture_price
+from components.c_display_chart_group_b import create_display_chart_group_b
 
 
 def serve_clb_update_interval_b(app):
     @app.callback(
-        # Output("zxc", "children"),
-        Output("graph_out_elec_price_forecast", "figure"),
-        Output("graph_out_capture_price", "figure"),
-        Input("btn_time_group_display_price", "value"),
-        Input("date_picker_time_horizon_training", "value"),
-        Input("dropdown_country", "value"),
+        Output("output-layout", "children", allow_duplicate=True),
+        Input("date_picker_time_horizon_forecasting", "value"),
+        Input("btn_time_group_display_layout_b", "value"),
+        Input("num_input_capacity_solar_total", "value"),
+        Input("num_input_capacity_wind_total", "value"),
+        Input("num_input_capacity_hydro_total", "value"),
+        Input("num_input_capacity_solar_change", "value"),
+        Input("num_input_capacity_wind_change", "value"),
+        Input("num_input_capacity_hydro_change", "value"),
         prevent_initial_call=True,
     )
-    def update_time_interval_graphs2(value, dates, country):
-        start_date_train = dates[0]
-        finish_date_train = dates[1]
-        if value == "monthly":
-            return serve_fig_out_elec_price_forecast("M"), \
-                serve_fig_out_capture_price("M")
-        elif value == "weekly":
-            return serve_fig_out_elec_price_forecast("W"), \
-                serve_fig_out_capture_price("W")
-        elif value == "daily":
-            return serve_fig_out_elec_price_forecast("D"), \
-                serve_fig_out_capture_price("D")
-        else:
-            return serve_fig_out_elec_price_forecast("H"), \
-                serve_fig_out_capture_price("H")
+    def update_interval_b(dates,
+                          freq,
+                          initial_capacity_solar,
+                          initial_capacity_wind,
+                          initial_capacity_hydro,
+                          growth_rate_solar,
+                          growth_rate_wind,
+                          growth_rate_hydro):
+        scenario_start_date = dates[0]
+        scenario_end_date = dates[1]
+        return create_display_chart_group_b(freq,
+                                            initial_capacity_solar,
+                                            initial_capacity_wind,
+                                            initial_capacity_hydro,
+                                            growth_rate_solar,
+                                            growth_rate_wind,
+                                            growth_rate_hydro,
+                                            scenario_start_date,
+                                            scenario_end_date)

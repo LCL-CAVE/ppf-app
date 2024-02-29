@@ -45,7 +45,9 @@ def serve_eng_generate_scenarios(config,
         simulated_data[generation_type] += solar_reg.predict(simulated_data.index)
         simulated_data = pd.DataFrame(qt.inverse_transform(simulated_data.values), index=simulated_data.index,
                                       columns=simulated_data.columns)
-
+        linear_capacity_values = np.linspace(start=initial_capacity, stop=final_capacity, num=len(simulated_data.index))
+        RE_capacity_series = pd.Series(data=linear_capacity_values, index=simulated_data.index)
+        simulated_data[generation_type] = simulated_data[generation_type] * RE_capacity_series
         scenarios[f'scenario_{s + 1}'] = simulated_data[generation_type]
 
     return scenarios
