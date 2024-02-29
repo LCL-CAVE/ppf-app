@@ -4,18 +4,49 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 import os
 import numpy as np
 
-df1 = pd.read_csv(
-    os.path.join(os.path.dirname('./data/'), 'solar_capture_price2.csv'),
-    delimiter=';',
-    # decimal=","
+from power_api.api_callback import serve_api_callback
+import json
+
+# HTTP Basic Authentication Credentials
+with open(os.path.join(
+            os.getcwd(),
+            'power_api/credential.json'), 'r') as file:
+    credential = json.load(file)
+
+username = credential[0]['username']
+password = credential[0]['password']
+url = 'http://127.0.0.1:5000/v1/table'
+
+# Request parameters
+payload = {
+    'table': 'day_ahead_price',
+    'bidding_zone': 'DE_LU',  # Provide the desired bidding zone
+    'date_from': '2020-02-01 00:00:00',  # Provide start date
+    'date_to': '2021-02-01 23:59:59'  # Provide end date
+}
+
+df = serve_api_callback(url, username, password, payload)
+
+
+# start_date_train = "2018-01-01"
+# finish_date_train = "2019-01-01"
+
+df = df.loc[(df['timestamp'] > payload['date_from']) & (df['timestamp'] <= payload['date_to'])]
+
+# df = df.groupby(pd.Grouper(key="timestamp", freq="D")).mean()
+#
+# df = df.reset_index()
+
+fig = px.area(df, x='timestamp', y="price", )
+
+create_update_layout_fig(fig, "Day ahead electricity price")
+fig.update_traces(fillcolor="rgba(204,204,255,.15)")
+
+fig.update_yaxes(
+    range=[min(df["price"]) - 5, max(df["price"]) + 2],
 )
 
-df2 = pd.read_csv(
-    os.path.join(os.path.dirname('./data/'), 'wind_capture_price2.csv'),
-    delimiter=';',
-    # decimal=","
-)
-
+fig.show()
 # # print(df.shape[0])
 #
 # df1 = df[['date', 'solar']]
@@ -26,12 +57,12 @@ df2 = pd.read_csv(
 # df3 = df3.rename(columns={'hydro': 'value'})
 # print(df1)
 # print(df1)
-df1['type'] = "solar"
-df2['type'] = "wind"
-# df3['type'] = "hydro"
-df_new = pd.concat([df1, df2], ignore_index=True)
-df_new.to_csv("capture_prices.csv",index=False)
-print(df_new)
+# df1['type'] = "solar"
+# df2['type'] = "wind"
+# # df3['type'] = "hydro"
+# df_new = pd.concat([df1, df2], ignore_index=True)
+# df_new.to_csv("capture_prices.csv",index=False)
+# print(df_new)
 
 # df = pd.read_csv(
 #     os.path.join(os.path.dirname('./data/'), 'tech_stack.csv'),
