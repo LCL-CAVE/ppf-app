@@ -16,6 +16,7 @@ power_api/*.json
 .Python
 .DS_Store
 .Rhistory
+cache-directory/
 cache/
 build/
 develop-eggs/
