@@ -3,7 +3,7 @@ from dash import Input, Output
 from components.c_display_chart_group_b import create_display_chart_group_b
 
 
-def serve_clb_update_layout_b(app):
+def serve_clb_update_layout_b(app, background_callback_manager):
     @app.callback(
         Output("output-layout", "children", allow_duplicate=True),
         Input("btn_output_selector_price_source", "n_clicks"),
@@ -14,17 +14,8 @@ def serve_clb_update_layout_b(app):
         Input("num_input_capacity_solar_change", "value"),
         Input("num_input_capacity_wind_change", "value"),
         Input("num_input_capacity_hydro_change", "value"),
-        # output=(Output("output-layout", "children", allow_duplicate=True)),
-        # inputs=[Input("btn_output_selector_price_source", "n_clicks"),
-        #         Input("date_picker_time_horizon_forecasting", "value"),
-        #         Input("num_input_capacity_solar_total", "value"),
-        #         Input("num_input_capacity_wind_total", "value"),
-        #         Input("num_input_capacity_hydro_total", "value"),
-        #         Input("num_input_capacity_solar_change", "value"),
-        #         Input("num_input_capacity_wind_change", "value"),
-        #         Input("num_input_capacity_hydro_change", "value"), ],
-        # background=True,
-        # running=[(Output("output-layout", "children", allow_duplicate=True), False, True)],
+        background=True,
+        manager=background_callback_manager,
         prevent_initial_call=True,
     )
     def update_layout_b(n_clicks,
