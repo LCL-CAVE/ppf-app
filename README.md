@@ -7,13 +7,15 @@
 
 ## Ongoing
 - [x] API integration
-- [ ] Capacity scenario generation
+- [x] Callback seperartion
+- [x] Capacity scenario generation
 - [ ] Caching graphs
+- [ ] Demand scenario generation
+- [ ] Price scenario generation
 
 ## To-dos
-- [x] Callback seperartion
+
 - [ ] Engine integration
-- [ ] Database backend integration
 
 ## Screenshot
 

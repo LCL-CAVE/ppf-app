@@ -1,6 +1,6 @@
 [
   {
-    "label": "Training",
+    "label": "Display",
     "id": "training",
     "min_day": 1,
     "min_month": 1,
@@ -13,16 +13,16 @@
     "initial_year": 2018
   },
   {
-    "label": "Forecasting",
+    "label": "Scenario/Forecasting",
     "id": "forecasting",
     "min_day": 1,
-    "min_month": 1,
+    "min_month": 6,
     "min_year": 2024,
     "max_day": 1,
     "max_month": 1,
-    "max_year": 2030,
+    "max_year": 2032,
     "initial_day": 1,
-    "initial_month": 1,
+    "initial_month": 6,
     "initial_year": 2024
   }
 ]
