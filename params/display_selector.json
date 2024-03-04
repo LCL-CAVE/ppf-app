@@ -6,8 +6,14 @@
     "margin_top": 20
   },
   {
-    "label": "Scenarios",
+    "label": "Capacity Scenario",
     "id": "price_source",
+    "type": "light",
+    "margin_top": 10
+  },
+  {
+    "label": "Fuel Scenario",
+    "id": "fuel_scenario",
     "type": "light",
     "margin_top": 10
   },

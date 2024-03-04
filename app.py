@@ -75,15 +75,17 @@ if __name__ == "__main__":
 
     )
 
-    from callbacks import clb_update_layout_a, clb_update_layout_b, clb_update_layout_c, clb_update_interval_a, \
-        clb_update_interval_b, clb_update_interval_c, clb_display_notif_progress, clb_display_loading
+    from callbacks import clb_update_layout_a, clb_update_layout_b, clb_update_layout_c, clb_update_layout_d, clb_update_interval_a, \
+        clb_update_interval_b, clb_update_interval_c, clb_update_interval_d, clb_display_notif_progress, clb_display_loading
 
     clb_update_layout_a.serve_clb_update_layout_a(app)
     clb_update_layout_b.serve_clb_update_layout_b(app, cache, background_callback_manager)
-    clb_update_layout_c.serve_clb_update_layout_c(app)
+    clb_update_layout_c.serve_clb_update_layout_c(app, cache, background_callback_manager)
+    clb_update_layout_d.serve_clb_update_layout_d(app)
     clb_update_interval_a.serve_clb_update_interval_a(app)
     clb_update_interval_b.serve_clb_update_interval_b(app, cache, background_callback_manager)
-    clb_update_interval_c.serve_clb_update_interval_c(app)
+    clb_update_interval_c.serve_clb_update_interval_c(app, cache, background_callback_manager)
+    clb_update_interval_d.serve_clb_update_interval_d(app)
     clb_display_notif_progress.serve_clb_display_notif_stage_a(app)
     clb_display_notif_progress.serve_clb_display_notif_stage_b(app)
     clb_display_loading.serve_clb_display_loading(app)

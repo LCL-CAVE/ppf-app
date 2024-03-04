@@ -10,23 +10,8 @@
     "max_change": 100,
     "step": 1,
     "step_change": 1,
-    "value": 150,
-    "value_change": 0,
-    "margin_bottom": 10
-  },
-  {
-    "label": "Nuclear",
-    "label_change": "%",
-    "id": "nuclear_total",
-    "id_change": "nuclear_change",
-    "min": 0,
-    "min_change": -100,
-    "max": 500,
-    "max_change": 100,
-    "step": 1,
-    "step_change": 1,
-    "value": 130,
-    "value_change": 0,
+    "value": 75,
+    "value_change": 20,
     "margin_bottom": 10
   },
   {
@@ -40,8 +25,23 @@
     "max_change": 100,
     "step": 1,
     "step_change": 1,
-    "value": 160,
-    "value_change": 0,
+    "value": 90,
+    "value_change": 25,
+    "margin_bottom": 10
+  },
+  {
+    "label": "Carbon",
+    "label_change": "%",
+    "id": "carbon_total",
+    "id_change": "carbon_change",
+    "min": 0,
+    "min_change": -100,
+    "max": 500,
+    "max_change": 100,
+    "step": 1,
+    "step_change": 1,
+    "value": 80,
+    "value_change": 20,
     "margin_bottom": 10
   }
 ]

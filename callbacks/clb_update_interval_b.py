@@ -1,7 +1,7 @@
 from app import app
 from dash import Input, Output
 from utils.fig_multiple_line import serve_fig_multiple_line
-from engine.scenario.eng_read_scenario import serve_read_scenario
+from engine.scenario_capacity.eng_read_scenario import serve_read_scenario
 from components.c_display_chart_group_b import create_display_chart_group_b
 
 

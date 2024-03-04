@@ -1,26 +1,56 @@
 from app import app
 from dash import Input, Output
-from utils.fig_out_tech_stack import serve_fig_out_tech_stack
-from utils.fig_installed_capacity import serve_fig_installed_capacity
+from utils.fig_multiple_line import serve_fig_multiple_line
+from utils.fig_multiple_scatter import serve_fig_multiple_scatter
+from engine.scenario_fuel.eng_read_scenario_fuel import serve_read_scenario_fuel
 
 
-def serve_clb_update_interval_c(app):
+def serve_clb_update_interval_c(app, cache, background_callback_manager):
     @app.callback(
-        # Output("zyx", "children"),
-        Output("graph_out_tech_stack", "figure"),
-        Output("graph_out_installed_capacity", "figure"),
-        Input("btn_time_group_display_produce", "value"),
-        Input("date_picker_time_horizon_training", "value"),
+        Output("graph_group_c_row_a", "figure"),
+        Output("graph_group_c_row_b", "figure"),
+        Output("graph_group_c_row_c", "figure"),
+        Input("date_picker_time_horizon_forecasting", "value"),
+        Input("btn_time_group_display_layout_c", "value"),
+        Input("num_input_price_gas_total", "value"),
+        Input("num_input_price_coal_total", "value"),
+        Input("num_input_price_carbon_total", "value"),
+        Input("num_input_price_gas_change", "value"),
+        Input("num_input_price_coal_change", "value"),
+        Input("num_input_price_carbon_change", "value"),
+        background=True,
+        manager=background_callback_manager,
         prevent_initial_call=True,
     )
-    def update_time_interval_graphs3(value, dates):
-        start_date_train = dates[0]
-        finish_date_train = dates[1]
-        if value == "monthly":
-            return serve_fig_out_tech_stack("M"), serve_fig_installed_capacity("M", start_date_train, finish_date_train)
-        elif value == "weekly":
-            return serve_fig_out_tech_stack("W"), serve_fig_installed_capacity("W", start_date_train, finish_date_train)
-        elif value == "daily":
-            return serve_fig_out_tech_stack("D"), serve_fig_installed_capacity("D", start_date_train, finish_date_train)
-        else:
-            return serve_fig_out_tech_stack("H"), serve_fig_installed_capacity("H", start_date_train, finish_date_train)
+    @cache.memoize()
+    def update_interval_b(dates,
+                          freq,
+                          initial_price_gas,
+                          initial_price_coal,
+                          initial_price_carbon,
+                          growth_rate_gas,
+                          growth_rate_coal,
+                          growth_rate_carbon):
+        scenario_start_date = dates[0]
+        scenario_end_date = dates[1]
+        return serve_fig_multiple_scatter(serve_read_scenario_fuel("gas",
+                                                                   initial_price_gas,
+                                                                   growth_rate_gas,
+                                                                   scenario_start_date,
+                                                                   scenario_end_date),
+                                          freq,
+                                          'Gas Price', ), \
+            serve_fig_multiple_scatter(serve_read_scenario_fuel("coal",
+                                                                initial_price_coal,
+                                                                growth_rate_coal,
+                                                                scenario_start_date,
+                                                                scenario_end_date),
+                                       freq,
+                                       'Coal Price'), \
+            serve_fig_multiple_scatter(serve_read_scenario_fuel("carbon",
+                                                                initial_price_carbon,
+                                                                growth_rate_carbon,
+                                                                scenario_start_date,
+                                                                scenario_end_date),
+                                       freq,
+                                       'Carbon Price', )
