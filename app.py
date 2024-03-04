@@ -82,7 +82,7 @@ if __name__ == "__main__":
     clb_update_layout_b.serve_clb_update_layout_b(app, cache, background_callback_manager)
     clb_update_layout_c.serve_clb_update_layout_c(app)
     clb_update_interval_a.serve_clb_update_interval_a(app)
-    # clb_update_interval_b.serve_clb_update_interval_b(app)
+    clb_update_interval_b.serve_clb_update_interval_b(app, cache, background_callback_manager)
     clb_update_interval_c.serve_clb_update_interval_c(app)
     clb_display_notif_progress.serve_clb_display_notif_stage_a(app)
     clb_display_notif_progress.serve_clb_display_notif_stage_b(app)

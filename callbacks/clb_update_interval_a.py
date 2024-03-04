@@ -10,7 +10,6 @@ def serve_clb_update_interval_a(app):
     @app.callback(
         Output("graph_input_demand_curve", "figure"),
         Output("graph_input_price_curve", "figure"),
-        # Output("graph_input_fuel_price", "figure"),
         # Output("graph_input_hist_temp", "figure"),
         Input("btn_time_group_display_market", "value"),
         Input("date_picker_time_horizon_training", "value"),
