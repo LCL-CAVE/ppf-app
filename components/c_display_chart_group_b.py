@@ -1,5 +1,5 @@
 from utils.fig_multiple_line import serve_fig_multiple_line
-from engine.scenario.eng_read_scenario import serve_read_scenario
+from engine.scenario_capacity.eng_read_scenario import serve_read_scenario
 from controls.cl_json_parser import parse_json
 from components.c_button_time_group import create_btn_time_group
 from dash import html, dcc
@@ -36,7 +36,7 @@ def create_display_chart_group_b(freq,
                                                                            scenario_end_date,
                                                                            "solar"),
                                                        freq,
-                                                       'Solar Generation Scenarios',
+                                                       'Solar Generation Scenarios (MW)',
                                                        "MW"),
                         config={'displayModeBar': False},
                         id="graph_group_b_row_a",
@@ -56,7 +56,7 @@ def create_display_chart_group_b(freq,
                                                                            scenario_end_date,
                                                                            "wind"),
                                                        freq,
-                                                       'Wind Generation Scenarios',
+                                                       'Wind Generation Scenarios (MW)',
                                                        "MW"),
                         config={'displayModeBar': False},
                         id="graph_group_b_row_b",
@@ -76,7 +76,7 @@ def create_display_chart_group_b(freq,
                                                                            scenario_end_date,
                                                                            "ror"),
                                                        freq,
-                                                       'Hydro ROR Generation Scenarios',
+                                                       'Hydro ROR Generation Scenarios (MW)',
                                                        "MW"),
                         config={'displayModeBar': False},
                         id="graph_group_b_row_c",

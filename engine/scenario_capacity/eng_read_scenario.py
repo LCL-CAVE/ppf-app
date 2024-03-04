@@ -3,7 +3,7 @@ from math import ceil
 import numpy as np
 import pickle
 import os
-from engine.scenario.eng_scenario_generate import serve_eng_generate_scenarios
+from engine.scenario_capacity.eng_scenario_generate import serve_eng_generate_scenarios
 
 
 def serve_read_scenario(initial_capacity,
@@ -47,7 +47,7 @@ def serve_read_scenario(initial_capacity,
     # Cache loading goes here
     pickle_file = "ES_" + generation_type.upper() + ".pickle"
 
-    file_path = os.path.join(os.getcwd(), "engine/scenario/" + pickle_file)
+    file_path = os.path.join(os.getcwd(), "engine/scenario_capacity/" + pickle_file)
 
     # file_path = os.path.join(os.getcwd(), pickle_file)
 

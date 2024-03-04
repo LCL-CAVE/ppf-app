@@ -1,6 +1,6 @@
 [
 {
-    "label": "Solar",
+    "label": "Solar (max)",
     "label_change": "%",
     "id": "solar_total",
     "id_change": "solar_change",
@@ -15,7 +15,7 @@
     "margin_bottom": 10
   },
   {
-    "label": "Wind",
+    "label": "Wind (max)",
     "label_change": "%",
     "id": "wind_total",
     "id_change": "wind_change",
@@ -30,7 +30,7 @@
     "margin_bottom": 10
   },
   {
-    "label": "Hydro (ROR)",
+    "label": "Hydro-ROR (max)",
     "label_change": "%",
     "id": "hydro_total",
     "id_change": "hydro_change",

@@ -1,4 +1,4 @@
-from engine.scenario.eng_read_scenario import serve_read_scenario
+from engine.scenario_capacity.eng_read_scenario import serve_read_scenario
 from utils.fig_multiple_line import serve_fig_multiple_line
 
 initial_capacity = 30000

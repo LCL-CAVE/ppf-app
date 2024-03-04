@@ -27,10 +27,10 @@ def serve_fig_out_elec_price_forecast(freq):
         df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='date', y="value", )
+    fig = px.line(df, x='date', y="value", )
 
     create_update_layout_fig(fig, "Forecasted electricity forward curve")
-    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
+    # fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df["value"]) - 2, max(df["value"]) + 2],

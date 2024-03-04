@@ -8,6 +8,6 @@ def create_control_layout():
         id="div-control-layout",
         children=[
             create_control_accordion(),
-            create_btn_run(),
+            create_btn_run("Start", "btn_run", "filled"),
         ],
     )
