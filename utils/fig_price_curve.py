@@ -38,10 +38,10 @@ def serve_fig_price_curve(freq, country, start_date_train, finish_date_train):
         df = df.groupby(pd.Grouper(key='timestamp', freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='timestamp', y='price', )
+    fig = px.line(df, x='timestamp', y='price', )
 
     create_update_layout_fig(fig, "Day ahead electricity price")
-    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
+    # fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df['price']) - 5, max(df['price']) + 2],

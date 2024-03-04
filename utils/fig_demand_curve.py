@@ -38,10 +38,10 @@ def serve_fig_demand_curve(freq, country, start_date_train, finish_date_train):
         df = df.groupby(pd.Grouper(key='timestamp', freq="H")).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x='timestamp', y='load')
+    fig = px.line(df, x='timestamp', y='load')
 
     create_update_layout_fig(fig, "Demand load curve")
-    fig.update_traces(fillcolor="rgba(204,204,255,.15)")
+    # fig.update_traces(fillcolor="rgba(204,204,255,.15)")
 
     fig.update_yaxes(
         range=[min(df['load']) - 500, max(df['load']) + 500],

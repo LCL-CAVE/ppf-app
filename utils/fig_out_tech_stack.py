@@ -25,7 +25,7 @@ def serve_fig_out_tech_stack(freq):
 
     fig = px.area(df, x="date", y="value", color="tech")
 
-    create_update_layout_fig(fig, "Generation per Production Type")
+    create_update_layout_fig(fig, "Generation per Production Type (MW)")
 
     # fig.update_traces(fill='tozeroy')
     fig.update_layout(
