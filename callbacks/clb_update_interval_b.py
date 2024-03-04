@@ -39,7 +39,7 @@ def serve_clb_update_interval_b(app, cache, background_callback_manager):
                                                            scenario_end_date,
                                                            "solar"),
                                        freq,
-                                       'Solar Generation Scenarios',
+                                       'Solar Generation Scenarios (MW)',
                                        "MW"), \
             serve_fig_multiple_line(serve_read_scenario(initial_capacity_wind,
                                                         growth_rate_wind,
@@ -47,7 +47,7 @@ def serve_clb_update_interval_b(app, cache, background_callback_manager):
                                                         scenario_end_date,
                                                         "wind"),
                                     freq,
-                                    'Wind Generation Scenarios',
+                                    'Wind Generation Scenarios (MW)',
                                     "MW"), \
             serve_fig_multiple_line(serve_read_scenario(initial_capacity_hydro,
                                                         growth_rate_hydro,
@@ -55,5 +55,5 @@ def serve_clb_update_interval_b(app, cache, background_callback_manager):
                                                         scenario_end_date,
                                                         "ror"),
                                     freq,
-                                    'Hydro ROR Generation Scenarios',
+                                    'Hydro ROR Generation Scenarios (MW)',
                                     "MW")

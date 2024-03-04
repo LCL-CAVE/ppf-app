@@ -12,7 +12,7 @@ def serve_read_scenario_fuel(fuelType, initialFuelPrice, growthRate, START_DATE_
         'numScenarios': 10,
         'fuelType': fuelType,  # can be 'gas', 'coal', or 'carbon'
         'initialFuelPrice': initialFuelPrice,  # Euro
-        'growthRate': growthRate,  # equals to 20%
+        'growthRate': growthRate/100,  # equals to 20%
         'windowSizes': {
             'gas': 28,  # window size for gas (constant)
             'coal': 28,  # window size for coal (constant)
