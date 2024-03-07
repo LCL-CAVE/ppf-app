@@ -13,7 +13,7 @@ def create_header_layout():
                 [
                     dmc.Col(
                         dmc.Text(
-                            "Power Price App",
+                            "LCL-Cave Power Price Forecasting",
                             color="blue",
                             mt=15,
                             ml=20,

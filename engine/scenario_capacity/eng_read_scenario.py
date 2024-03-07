@@ -73,4 +73,5 @@ def serve_read_scenario(initial_capacity,
                                              config["initial_capacity"],
                                              config["final_capacity"],
                                              generation_type)
+    scenarios["timestamp"] = scenarios.index
     return scenarios

@@ -7,14 +7,9 @@ import os
 
 
 def create_display_chart_group_b(freq,
-                                 initial_capacity_solar,
-                                 initial_capacity_wind,
-                                 initial_capacity_hydro,
-                                 growth_rate_solar,
-                                 growth_rate_wind,
-                                 growth_rate_hydro,
-                                 scenario_start_date,
-                                 scenario_end_date):
+                                 df_layout_b_row_a,
+                                 df_layout_b_row_b,
+                                 df_layout_b_row_c):
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
@@ -30,11 +25,7 @@ def create_display_chart_group_b(freq,
                         create_btn_time_group("layout_b"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_multiple_line(serve_read_scenario(initial_capacity_solar,
-                                                                           growth_rate_solar,
-                                                                           scenario_start_date,
-                                                                           scenario_end_date,
-                                                                           "solar"),
+                        figure=serve_fig_multiple_line(df_layout_b_row_a[0],
                                                        freq,
                                                        'Solar Generation Scenarios (MW)',
                                                        "MW"),
@@ -50,11 +41,7 @@ def create_display_chart_group_b(freq,
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_multiple_line(serve_read_scenario(initial_capacity_wind,
-                                                                           growth_rate_wind,
-                                                                           scenario_start_date,
-                                                                           scenario_end_date,
-                                                                           "wind"),
+                        figure=serve_fig_multiple_line(df_layout_b_row_b[0],
                                                        freq,
                                                        'Wind Generation Scenarios (MW)',
                                                        "MW"),
@@ -70,11 +57,7 @@ def create_display_chart_group_b(freq,
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_multiple_line(serve_read_scenario(initial_capacity_hydro,
-                                                                           growth_rate_hydro,
-                                                                           scenario_start_date,
-                                                                           scenario_end_date,
-                                                                           "ror"),
+                        figure=serve_fig_multiple_line(df_layout_b_row_c[0],
                                                        freq,
                                                        'Hydro ROR Generation Scenarios (MW)',
                                                        "MW"),
