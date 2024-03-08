@@ -7,14 +7,9 @@ import os
 
 
 def create_display_chart_group_c(freq,
-                                 initial_price_gas,
-                                 initial_price_coal,
-                                 initial_price_carbon,
-                                 growth_rate_gas,
-                                 growth_rate_coal,
-                                 growth_rate_carbon,
-                                 scenario_start_date,
-                                 scenario_end_date):
+                                 df_layout_c_row_a,
+                                 df_layout_c_row_b,
+                                 df_layout_c_row_c):
     kpi_item_list = parse_json(
         os.path.join(
             os.path.dirname('./params/'),
@@ -30,11 +25,7 @@ def create_display_chart_group_c(freq,
                         create_btn_time_group("layout_c"),
                         className="div-btn-time-grouper"),
                     dcc.Graph(
-                        figure=serve_fig_multiple_scatter(serve_read_scenario_fuel("gas",
-                                                                                   initial_price_gas,
-                                                                                   growth_rate_gas,
-                                                                                   scenario_start_date,
-                                                                                   scenario_end_date),
+                        figure=serve_fig_multiple_scatter(df_layout_c_row_a[0],
                                                           freq,
                                                           'Gas Price'),
                         config={'displayModeBar': False},
@@ -49,11 +40,7 @@ def create_display_chart_group_c(freq,
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_multiple_scatter(serve_read_scenario_fuel("coal",
-                                                                                   initial_price_coal,
-                                                                                   growth_rate_coal,
-                                                                                   scenario_start_date,
-                                                                                   scenario_end_date),
+                        figure=serve_fig_multiple_scatter(df_layout_c_row_b[0],
                                                           freq,
                                                           'Coal Price', ),
                         config={'displayModeBar': False},
@@ -68,11 +55,7 @@ def create_display_chart_group_c(freq,
             html.Td(
                 children=[
                     dcc.Graph(
-                        figure=serve_fig_multiple_scatter(serve_read_scenario_fuel("carbon",
-                                                                                   initial_price_carbon,
-                                                                                   growth_rate_carbon,
-                                                                                   scenario_start_date,
-                                                                                   scenario_end_date),
+                        figure=serve_fig_multiple_scatter(df_layout_c_row_c[0],
                                                           freq,
                                                           'Carbon Price', ),
                         config={'displayModeBar': False},

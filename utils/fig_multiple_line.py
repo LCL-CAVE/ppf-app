@@ -21,6 +21,11 @@ def serve_fig_multiple_line(df, freq, title, Y_Axis_Title):
     if not isinstance(df, pd.DataFrame):
         raise ValueError("Input 'df' must be a pandas DataFrame")
 
+    df.index = df['timestamp']
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+    df.index = pd.to_datetime(df['timestamp'])
+    df = df.drop(columns=["timestamp"])
+
     # Calculate quantiles
     quantiles = [0.05, 0.25, 0.5, 0.75, 0.95]
     for q in quantiles:
@@ -28,7 +33,7 @@ def serve_fig_multiple_line(df, freq, title, Y_Axis_Title):
 
     df['timestamp'] = df.index
 
-    df = df.groupby(pd.Grouper(key='timestamp', freq=freq)).mean()
+    df = df.groupby(pd.Grouper(key="timestamp", freq=freq)).mean()
 
     # Create figure
     fig = go.Figure()
