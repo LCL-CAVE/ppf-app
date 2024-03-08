@@ -21,7 +21,7 @@ def load_data(simulation_config):
         # Loading historical data
         fuels = pd.read_excel(HISTORICAL_DATA_PATH, sheet_name=HISTORICAL_SHEET, header=0)
         # fuels = pd.read_csv(HISTORICAL_DATA_PATH, delimiter=';', decimal=",")
-        fuels = fuels.resample('D', on='Delivery Date').first().interpolate().fillna(method="bfill")
+        fuels = fuels.resample('D', on='Delivery Date').first().interpolate().bfill()
         fuels = fuels[fuelType]
         fuels = fuels.to_frame(name=fuelType)
         # df['price'] = param_historical_fuels

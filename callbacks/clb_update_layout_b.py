@@ -35,9 +35,7 @@ def serve_clb_update_layout_b(app):
                         growth_rate_hydro):
         scenario_start_date = dates[0]
         scenario_end_date = dates[1]
-        if n_clicks is None:
-            raise PreventUpdate
-        else:
+        if callback_context.triggered_id == "btn_output_selector_price_source":
             df_layout_b_row_a = serve_read_scenario(initial_capacity_solar,
                                                     growth_rate_solar,
                                                     scenario_start_date,
@@ -60,3 +58,6 @@ def serve_clb_update_layout_b(app):
                                              df_layout_b_row_a,
                                              df_layout_b_row_b,
                                              df_layout_b_row_c)
+        else:
+            raise PreventUpdate
+

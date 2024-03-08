@@ -35,25 +35,23 @@ def serve_clb_update_layout_c(app):
                         growth_rate_carbon):
         scenario_start_date = dates[0]
         scenario_end_date = dates[1]
-        df_layout_c_row_a = serve_read_scenario_fuel("gas",
-                                                     initial_price_gas,
-                                                     growth_rate_gas,
-                                                     scenario_start_date,
-                                                     scenario_end_date,
-                                                     ),
-        df_layout_c_row_b = serve_read_scenario_fuel("coal",
-                                                     initial_price_coal,
-                                                     growth_rate_coal,
-                                                     scenario_start_date,
-                                                     scenario_end_date),
-        df_layout_c_row_c = serve_read_scenario_fuel("carbon",
-                                                     initial_price_carbon,
-                                                     growth_rate_carbon,
-                                                     scenario_start_date,
-                                                     scenario_end_date),
-        if n_clicks is None:
-            raise PreventUpdate
-        else:
+        if callback_context.triggered_id == "btn_output_selector_fuel_scenario":
+            df_layout_c_row_a = serve_read_scenario_fuel("gas",
+                                                         initial_price_gas,
+                                                         growth_rate_gas,
+                                                         scenario_start_date,
+                                                         scenario_end_date,
+                                                         ),
+            df_layout_c_row_b = serve_read_scenario_fuel("coal",
+                                                         initial_price_coal,
+                                                         growth_rate_coal,
+                                                         scenario_start_date,
+                                                         scenario_end_date),
+            df_layout_c_row_c = serve_read_scenario_fuel("carbon",
+                                                         initial_price_carbon,
+                                                         growth_rate_carbon,
+                                                         scenario_start_date,
+                                                         scenario_end_date),
             return {"data-frame": df_layout_c_row_a[0].to_dict("records")}, \
                 {"data-frame": df_layout_c_row_b[0].to_dict("records")}, \
                 {"data-frame": df_layout_c_row_c[0].to_dict("records")}, \
@@ -61,3 +59,5 @@ def serve_clb_update_layout_c(app):
                                              df_layout_c_row_c,
                                              df_layout_c_row_b,
                                              df_layout_c_row_c)
+        else:
+            raise PreventUpdate
