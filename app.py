@@ -67,7 +67,6 @@ if __name__ == "__main__":
                         dcc.Store("data_layout_c_row_c")
                     ],
                 ),
-                # id="loading-layout"
             ),
             create_notification_progress(),
         ],
@@ -80,8 +79,9 @@ if __name__ == "__main__":
 
     )
 
-    from callbacks import clb_update_layout_a, clb_update_layout_b, clb_update_layout_c, clb_update_layout_d, clb_update_interval_a, \
-        clb_update_interval_b, clb_update_interval_c, clb_update_interval_d, clb_display_notif_progress, clb_display_loading
+    from callbacks import clb_update_layout_a, clb_update_layout_b, clb_update_layout_c, clb_update_layout_d, \
+        clb_update_interval_a, clb_update_interval_b, clb_update_interval_c, clb_update_interval_d, \
+        clb_display_notif_progress, clb_display_loading
 
     clb_update_layout_a.serve_clb_update_layout_a(app)
     # clb_update_layout_b.serve_clb_update_layout_b(app, cache, background_callback_manager)

@@ -34,4 +34,5 @@ def create_header_layout():
 
             ),
         ],
+        className="layout-header"
     )
