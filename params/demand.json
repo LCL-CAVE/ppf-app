@@ -1,11 +1,11 @@
 [
   {
     "label": "Demand level",
-    "id": "level",
+    "id": "demand_level",
     "min": 0,
-    "max": 1000,
+    "max": 150,
     "step": 10,
-    "value": 250,
+    "value": 24,
     "label_on": 1,
     "margin_bottom": 40,
     "mark": []
@@ -16,7 +16,7 @@
     "min": -100,
     "max": 100,
     "step": 1,
-    "value": 0,
+    "value": 3,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
@@ -40,7 +40,7 @@
     "min": -100,
     "max": 100,
     "step": 1,
-    "value": 0,
+    "value": 2,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
@@ -64,7 +64,7 @@
     "min": -100,
     "max": 100,
     "step": 1,
-    "value": 0,
+    "value": 4,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
@@ -88,7 +88,7 @@
     "min": -100,
     "max": 100,
     "step": 1,
-    "value": 0,
+    "value": 2,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
@@ -112,7 +112,7 @@
     "min": -100,
     "max": 100,
     "step": 1,
-    "value": 0,
+    "value": 5,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [
@@ -136,7 +136,7 @@
     "min": -100,
     "max": 100,
     "step": 1,
-    "value": 0,
+    "value": 1,
     "label_on": 0,
     "margin_bottom": 20,
     "mark": [

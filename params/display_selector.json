@@ -18,6 +18,12 @@
     "margin_top": 10
   },
   {
+    "label": "Demand Scenario",
+    "id": "layout_d",
+    "type": "light",
+    "margin_top": 10
+  },
+  {
     "label": "Outputs",
     "id": "produce_source",
     "type": "light",

@@ -11,7 +11,8 @@ from power_api.api_callback import serve_api_callback
 from power_api.api_login import serve_api_login
 import pandas as pd
 import os
-import pickle
+import cloudpickle
+
 
 
 # function starts here
@@ -67,16 +68,15 @@ def serve_read_scenario_demand(demand_level,
         "num_scenarios": 10,  # Number of solar generation scenarios to generate
         "scenario_start_date": scenario_start_date,  # The start date for creating scenarios
         "scenario_end_date": scenario_end_date,  # User-defined end date for scenarios
-        "demand_level": demand_level,
-        "growth_rate_0_4": growth_rate_0_4,
-        "growth_rate_4_8": growth_rate_4_8,
-        "growth_rate_8_12": growth_rate_8_12,
-        "growth_rate_12_16": growth_rate_12_16,
-        "growth_rate_16_20": growth_rate_16_20,
-        "growth_rate_20_0": growth_rate_20_0,
+        "demand_level": demand_level*1000,
+        "growth_rate_0_4": growth_rate_0_4/100,
+        "growth_rate_4_8": growth_rate_4_8/100,
+        "growth_rate_8_12": growth_rate_8_12/100,
+        "growth_rate_12_16": growth_rate_12_16/100,
+        "growth_rate_16_20": growth_rate_16_20/100,
+        "growth_rate_20_0": growth_rate_20_0/100,
         "cluster_count": 4,  # Number of clusters for the errors and creating a transition matrix
         "transition_frequency": "2W",  # Frequency of transition (e.g., every 2 weeks)
-        "train_data": "ES_param_demand.csv",  # Name of the Excel file for historical data
         "country": country,
         "demand_base_year": 2022
     }
@@ -108,56 +108,22 @@ def serve_read_scenario_demand(demand_level,
 
     country_holidays = holidays.CountryHoliday(config["country"])
 
-    class SolarRegression(LassoCV):
-        poly = PolynomialFeatures(degree=2, interaction_only=False, include_bias=False)
-
-        def getX(self, datetime):
-            X = (pd.DataFrame()
-                 .assign(sy1=lambda x: np.sin(2 * np.pi * datetime.dayofyear / 365.25))
-                 .assign(cy1=lambda x: np.cos(2 * np.pi * datetime.dayofyear / 365.25))
-                 .join(pd.get_dummies(datetime.hour))
-                 )
-            return self.poly.fit_transform(X)
-
-        def fit(self, datetime, y):
-            super().fit(self.getX(datetime), y)
-
-        def score(self, datetime, y):
-            return super().score(self.getX(datetime), y)
-
-        def predict(self, datetime):
-            return super().predict(self.getX(datetime))
-
-    class DemandRegression(SolarRegression):
-        holidays = country_holidays
-
-        def getX(self, datetime):
-            X = pd.DataFrame()
-            X = X.assign(holiday=pd.Series(datetime).apply(lambda x: 1 if x in self.holidays else 0))
-            X = X.assign(sy1=lambda x: np.sin(2 * np.pi * datetime.dayofyear / 365.25))
-            X = X.assign(cy1=lambda x: np.cos(2 * np.pi * datetime.dayofyear / 365.25))
-            X = X.join(pd.get_dummies(datetime.hour, prefix='hour'))  # Prefix added for clarity
-            X = X.join(pd.get_dummies(datetime.day_name(), prefix='day'))
-
-            # Ensure all column names are strings to avoid the TypeError
-            X.columns = X.columns.astype(str)
-
-            return self.poly.fit_transform(X)
-
     # cache loading goes here
 
     pickle_file = bidding_zone + "_DEMAND.pickle"
 
     file_path = os.path.join(os.getcwd(), "engine/scenario_demand/" + pickle_file)
 
+
+
     with open(file_path, "rb") as f:
-        prediction_errors_shape = pickle.load(f)
-        kmeans_model = pickle.load(f)
-        transition_matrix = pickle.load(f)
-        errors = pickle.load(f)
-        prediction_errors = pickle.load(f)
-        demand_reg = pickle.load(f)
-        quantile_transform = pickle.load(f)
+        prediction_errors_shape = cloudpickle.load(f)
+        kmeans_model = cloudpickle.load(f)
+        transition_matrix = cloudpickle.load(f)
+        errors = cloudpickle.load(f)
+        prediction_errors = cloudpickle.load(f)
+        demand_reg = cloudpickle.load(f)
+        quantile_transform = cloudpickle.load(f)
 
     # Scenario Generation
     scenarios = serve_eng_generate_scenario_demand(config,
@@ -169,5 +135,5 @@ def serve_read_scenario_demand(demand_level,
                                                    demand_reg,
                                                    quantile_transform,
                                                    demand_profile)
-
+    scenarios["timestamp"] = scenarios.index
     return scenarios

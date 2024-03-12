@@ -51,12 +51,12 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 #
 # fig.show()
 
-df = pd.DataFrame({'time': {0: 'a', 1: 'b', 2: 'c'},
-                   'S1': {0: 1, 1: 3, 2: 5},
-                   'S2': {0: 2, 1: 4, 2: 6},
-                   'S3': {0: 4, 1: 7, 2: 8}})
-
-print(pd.melt(df, id_vars=['time'], value_vars=['S1', 'S2', 'S3']))
+# df = pd.DataFrame({'time': {0: 'a', 1: 'b', 2: 'c'},
+#                    'S1': {0: 1, 1: 3, 2: 5},
+#                    'S2': {0: 2, 1: 4, 2: 6},
+#                    'S3': {0: 4, 1: 7, 2: 8}})
+#
+# print(pd.melt(df, id_vars=['time'], value_vars=['S1', 'S2', 'S3']))
 
 # # print(df.shape[0])
 #
@@ -133,6 +133,14 @@ print(pd.melt(df, id_vars=['time'], value_vars=['S1', 'S2', 'S3']))
 #
 from utils.fig_multiple_line import serve_fig_multiple_line
 from engine.scenario_demand.eng_read_scenario_demand import serve_read_scenario_demand
+import pandas as pd
+import plotly.express as px
+import holidays
+from sklearn.preprocessing import PolynomialFeatures, QuantileTransformer
+from engine.scenario_demand.eng_generate_scenario_demand import serve_eng_generate_scenario_demand
+from math import ceil
+import numpy as np
+from sklearn.linear_model import LassoCV
 
 scenario_start_date = "2025-04-07 00:00"
 scenario_end_date = "2026-10-07 00:00"
@@ -143,7 +151,8 @@ growth_rate_8_12 = 0.03
 growth_rate_12_16 = 0.03
 growth_rate_16_20 = 0.03
 growth_rate_20_0 = 0.03
-bidding_zone = "HU"
+bidding_zone = "FR"
+
 
 df = serve_read_scenario_demand(demand_level,
                                 bidding_zone,
@@ -156,8 +165,10 @@ df = serve_read_scenario_demand(demand_level,
                                 scenario_start_date,
                                 scenario_end_date)
 
-fig = serve_fig_multiple_line(df,
-                              "H",
-                              'Coal Price', ),
+print(df)
 
-fig.show()
+fig = serve_fig_multiple_line(df,
+                              "h",
+                              'Coal Price',
+                              "skdhfu"),
+
