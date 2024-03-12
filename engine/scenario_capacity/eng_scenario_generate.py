@@ -41,7 +41,7 @@ def serve_eng_generate_scenarios(config,
 
         simulated_data = pd.DataFrame(sample,
                                       index=pd.date_range(scenario_start_date, periods=periods * number_of_periods,
-                                                          freq="H", name="datetime"), columns=prediction_errors.columns)
+                                                          freq="h", name="datetime"), columns=prediction_errors.columns)
         simulated_data[generation_type] += solar_reg.predict(simulated_data.index)
         simulated_data = pd.DataFrame(qt.inverse_transform(simulated_data.values), index=simulated_data.index,
                                       columns=simulated_data.columns)

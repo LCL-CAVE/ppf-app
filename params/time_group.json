@@ -1,7 +1,7 @@
 [
   {
     "label": "Monthly",
-    "id": "M"
+    "id": "ME"
   },
   {
     "label": "Weekly",
@@ -13,6 +13,6 @@
   },
   {
     "label": "Hourly",
-    "id": "H"
+    "id": "h"
   }
 ]

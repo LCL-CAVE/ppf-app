@@ -17,14 +17,7 @@ def serve_fig_out_elec_price_forecast(freq):
     #
     # df = df.loc[(df['date'] > start_date_train) & (df['date'] <= finish_date_train)]
 
-    if freq == "M":
-        df = df.groupby(pd.Grouper(key="date", freq="M")).mean()
-    elif freq == "D":
-        df = df.groupby(pd.Grouper(key="date", freq="D")).mean()
-    elif freq == "W":
-        df = df.groupby(pd.Grouper(key="date", freq="W")).mean()
-    else:
-        df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
+    df = df.groupby(pd.Grouper(key="date", freq=freq)).mean()
     df = df.reset_index()
 
     fig = px.line(df, x='date', y="value", )

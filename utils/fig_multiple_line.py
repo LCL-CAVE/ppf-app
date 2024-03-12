@@ -15,7 +15,7 @@ def serve_fig_multiple_line(df, freq, title, Y_Axis_Title):
     """
 
     # , 'rgb(102, 178, 255)''rgb(204, 229, 255)''rgb(53, 204, 255)'
-    medium, dark = 'rgb(102, 178, 255)', 'rgb(204, 229, 255)'
+    light, medium, dark = 'rgb(255, 200, 200)', 'rgb(255, 160, 160)', 'rgb(255, 50, 50)'
 
     # Validate inputs
     if not isinstance(df, pd.DataFrame):
@@ -40,18 +40,66 @@ def serve_fig_multiple_line(df, freq, title, Y_Axis_Title):
 
     # Add traces
     trace_configs = [
-        {'y': df['0.05'], 'fill': None, 'name': 'Q 0.05'},
-        {'y': df['0.95'], 'fill': 'tonexty', 'name': 'Q 0.95'},
-        {'y': df['0.5'], 'fill': None, 'name': 'Q 0.5'},
+        {'y': df['0.05'], 'fill': 'tonexty', 'name': 'Q 0.05'},
         {'y': df['0.25'], 'fill': 'tonexty', 'name': 'Q 0.25'},
-        {'y': df['0.75'], 'fill': 'tonexty', 'name': 'Q 0.75'}
+        {'y': df['0.5'], 'fill': None, 'name': 'Q 0.5'},
+        {'y': df['0.75'], 'fill': 'tonexty', 'name': 'Q 0.75'},
+        {'y': df['0.95'], 'fill': 'tonexty', 'name': 'Q 0.95'}
     ]
-    for config in trace_configs:
-        fig.add_trace(go.Scatter(
-            x=df.index, y=config['y'], fill=config.get('fill'),
-            line=dict(color=(medium if config.get('fill') else dark), width=0 if config.get('fill') else 1),
-            mode='lines', name=config['name'], showlegend=False if config['name'] == 'Q 0.05' else True
-        ))
+    # for config in trace_configs:
+    #     fig.add_trace(go.Scatter(
+    #         x=df.index, y=config['y'], fill=config.get('fill'),
+    #         line=dict(color=(medium if config.get('fill') else dark), width=0 if config.get('fill') else 1),
+    #         mode='lines', name=config['name'], showlegend=False if config['name'] == 'Q 0.05' else True
+    #     ))
+
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['0.5'],
+            mode='lines',
+            line=dict(color=dark),
+            name='Q 50%'
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['0.05'],
+            mode='lines',
+            line=dict(color=light, width=0),
+            name='Q 5%'
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['0.95'],
+            mode='lines',
+            fill='tonexty',
+            line=dict(color=light, width=0),
+            name='Q 95%'
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['0.25'],
+            mode='lines',
+            line=dict(color=medium, width=0),
+            name='Q 25%'
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=df.index,
+            y=df['0.75'],
+            mode='lines',
+            fill='tonexty',
+            line=dict(color=medium, width=0),
+            name='Q 75%'
+        )
+    )
 
     # Update layout
     fig.update_layout(

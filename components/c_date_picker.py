@@ -22,7 +22,7 @@ def create_date_picker(item, context):
                 item['initial_year'],
                 item['initial_month'],
                 item['initial_day'],
-            ) + timedelta(days=365*4)
+            ) + timedelta(days=375*4)
         ],
         minDate=date(
             item['min_year'],

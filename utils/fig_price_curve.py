@@ -28,14 +28,7 @@ def serve_fig_price_curve(freq, country, start_date_train, finish_date_train):
 
     df = df.loc[(df['timestamp'] > start_date_train) & (df['timestamp'] <= finish_date_train)]
 
-    if freq == "M":
-        df = df.groupby(pd.Grouper(key='timestamp', freq="M")).mean()
-    elif freq == "D":
-        df = df.groupby(pd.Grouper(key='timestamp', freq="D")).mean()
-    elif freq == "W":
-        df = df.groupby(pd.Grouper(key='timestamp', freq="W")).mean()
-    else:
-        df = df.groupby(pd.Grouper(key='timestamp', freq="H")).mean()
+    df = df.groupby(pd.Grouper(key='timestamp', freq=freq)).mean()
     df = df.reset_index()
 
     fig = px.line(df, x='timestamp', y='price', )

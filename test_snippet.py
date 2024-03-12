@@ -1,6 +1,7 @@
 import plotly.express as px
 import pandas as pd
 from controls.cl_fig_update_layout import create_update_layout_fig
+
 # import os
 # import numpy as np
 # #
@@ -50,12 +51,12 @@ from controls.cl_fig_update_layout import create_update_layout_fig
 #
 # fig.show()
 
-df = pd.DataFrame({'time': {0: 'a', 1: 'b', 2: 'c'},
-                   'S1': {0: 1, 1: 3, 2: 5},
-                   'S2': {0: 2, 1: 4, 2: 6},
-                   'S3': {0: 4, 1: 7, 2: 8}})
-
-print(pd.melt(df, id_vars=['time'], value_vars=['S1', 'S2', 'S3']))
+# df = pd.DataFrame({'time': {0: 'a', 1: 'b', 2: 'c'},
+#                    'S1': {0: 1, 1: 3, 2: 5},
+#                    'S2': {0: 2, 1: 4, 2: 6},
+#                    'S3': {0: 4, 1: 7, 2: 8}})
+#
+# print(pd.melt(df, id_vars=['time'], value_vars=['S1', 'S2', 'S3']))
 
 # # print(df.shape[0])
 #
@@ -130,3 +131,44 @@ print(pd.melt(df, id_vars=['time'], value_vars=['S1', 'S2', 'S3']))
 #     df = df.groupby(pd.Grouper(key="date", freq="H")).mean()
 # df = df.reset_index()
 #
+from utils.fig_multiple_line import serve_fig_multiple_line
+from engine.scenario_demand.eng_read_scenario_demand import serve_read_scenario_demand
+import pandas as pd
+import plotly.express as px
+import holidays
+from sklearn.preprocessing import PolynomialFeatures, QuantileTransformer
+from engine.scenario_demand.eng_generate_scenario_demand import serve_eng_generate_scenario_demand
+from math import ceil
+import numpy as np
+from sklearn.linear_model import LassoCV
+
+scenario_start_date = "2025-04-07 00:00"
+scenario_end_date = "2026-10-07 00:00"
+demand_level = 24000
+growth_rate_0_4 = 0.03
+growth_rate_4_8 = 0.03
+growth_rate_8_12 = 0.03
+growth_rate_12_16 = 0.03
+growth_rate_16_20 = 0.03
+growth_rate_20_0 = 0.03
+bidding_zone = "FR"
+
+
+df = serve_read_scenario_demand(demand_level,
+                                bidding_zone,
+                                growth_rate_0_4,
+                                growth_rate_4_8,
+                                growth_rate_8_12,
+                                growth_rate_12_16,
+                                growth_rate_16_20,
+                                growth_rate_20_0,
+                                scenario_start_date,
+                                scenario_end_date)
+
+print(df)
+
+fig = serve_fig_multiple_line(df,
+                              "h",
+                              'Coal Price',
+                              "skdhfu"),
+
