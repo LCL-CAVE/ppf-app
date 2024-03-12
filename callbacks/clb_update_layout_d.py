@@ -49,7 +49,6 @@ def serve_clb_update_layout_d(app):
                                                            growth_rate_20_0,
                                                            scenario_start_date,
                                                            scenario_end_date)
-
             return {"data-frame": df_layout_d_row_a.to_dict("records")}, \
                 create_display_chart_group_d("D",
                                              df_layout_d_row_a)

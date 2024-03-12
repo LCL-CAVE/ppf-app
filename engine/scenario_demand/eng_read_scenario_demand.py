@@ -1,21 +1,12 @@
 import pandas as pd
-import plotly.express as px
-import holidays
-from sklearn.preprocessing import PolynomialFeatures, QuantileTransformer
 from engine.scenario_demand.eng_generate_scenario_demand import serve_eng_generate_scenario_demand
 from math import ceil
-import numpy as np
-from sklearn.linear_model import LassoCV
 from engine.scenario_demand.eng_calc_demand_profile import serve_eng_calc_demand_profile
 from power_api.api_callback import serve_api_callback
 from power_api.api_login import serve_api_login
-import pandas as pd
 import os
 import cloudpickle
 
-
-
-# function starts here
 
 def serve_read_scenario_demand(demand_level,
                                bidding_zone,
@@ -68,19 +59,22 @@ def serve_read_scenario_demand(demand_level,
         "num_scenarios": 10,  # Number of solar generation scenarios to generate
         "scenario_start_date": scenario_start_date,  # The start date for creating scenarios
         "scenario_end_date": scenario_end_date,  # User-defined end date for scenarios
-        "demand_level": demand_level*1000,
-        "growth_rate_0_4": growth_rate_0_4/100,
-        "growth_rate_4_8": growth_rate_4_8/100,
-        "growth_rate_8_12": growth_rate_8_12/100,
-        "growth_rate_12_16": growth_rate_12_16/100,
-        "growth_rate_16_20": growth_rate_16_20/100,
-        "growth_rate_20_0": growth_rate_20_0/100,
+        "demand_level": demand_level * 1000,
+        "growth_rate_0_4": growth_rate_0_4 / 100,
+        "growth_rate_4_8": growth_rate_4_8 / 100,
+        "growth_rate_8_12": growth_rate_8_12 / 100,
+        "growth_rate_12_16": growth_rate_12_16 / 100,
+        "growth_rate_16_20": growth_rate_16_20 / 100,
+        "growth_rate_20_0": growth_rate_20_0 / 100,
         "cluster_count": 4,  # Number of clusters for the errors and creating a transition matrix
         "transition_frequency": "2W",  # Frequency of transition (e.g., every 2 weeks)
         "country": country,
         "demand_base_year": 2022
     }
 
+    # Convert the start and end dates to pandas datetime objects
+    start_date = pd.to_datetime(config["scenario_start_date"])
+    end_date = pd.to_datetime(config["scenario_end_date"])
     # Read and preprocess data
     # data = pd.read_csv(config["train_data"], sep='\t', index_col=0)
     df = df.drop(columns=["id", "bidding_zone_id"])
@@ -90,9 +84,7 @@ def serve_read_scenario_demand(demand_level,
     df.index = pd.to_datetime(df.index, utc=True)
     demand_profile = serve_eng_calc_demand_profile(df, config)
 
-    # Convert the start and end dates to pandas datetime objects
-    start_date = pd.to_datetime(config["scenario_start_date"])
-    end_date = pd.to_datetime(config["scenario_end_date"])
+
 
     # Calculate the total duration between the start and end dates
     total_duration = end_date - start_date
@@ -106,15 +98,11 @@ def serve_read_scenario_demand(demand_level,
     # Calculate number of periods based on transition frequency
     config["number_of_periods"] = 24 * pd.Timedelta(config["transition_frequency"]).days
 
-    country_holidays = holidays.CountryHoliday(config["country"])
-
     # cache loading goes here
 
     pickle_file = bidding_zone + "_DEMAND.pickle"
 
     file_path = os.path.join(os.getcwd(), "engine/scenario_demand/" + pickle_file)
-
-
 
     with open(file_path, "rb") as f:
         prediction_errors_shape = cloudpickle.load(f)

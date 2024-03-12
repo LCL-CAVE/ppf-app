@@ -25,7 +25,7 @@ def create_display_chart_group_d(freq,
                     dcc.Graph(
                         figure=serve_fig_multiple_line(df_layout_d_row_a,
                                                        freq,
-                                                       'Demand Scenario(MW)',
+                                                       'Demand Scenario (MW)',
                                                        "MW"),
                         config={'displayModeBar': False},
                         id="graph_group_d_row_a",

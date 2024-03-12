@@ -6,27 +6,16 @@ from engine.scenario_demand.eng_generate_matrix_transition import perform_cluste
 from math import ceil
 import numpy as np
 from sklearn.linear_model import LassoCV, LinearRegression
-from engine.scenario_demand.eng_calc_demand_profile import serve_eng_calc_demand_profile
 import requests
 import pandas as pd
 from datetime import datetime
 from io import StringIO
-
-scenario_start_date = "2025-04-07 00:00"
-scenario_end_date = "2026-10-07 00:00"
-demand_level = 24000
-growth_rate_0_4 = 0.03
-growth_rate_4_8 = 0.03
-growth_rate_8_12 = 0.03
-growth_rate_12_16 = 0.03
-growth_rate_16_20 = 0.03
-growth_rate_20_0 = 0.03
-country = "Netherlands"
-bidding_zone = "NL"
 import os
 import json
 import sys
 
+country = "Germany"
+bidding_zone = "DE_LU"
 
 def serve_api_login():
     with open(os.path.join(
@@ -74,19 +63,9 @@ df = serve_api_callback(url, username, password, payload)
 
 config = {
     "num_scenarios": 10,  # Number of solar generation scenarios to generate
-    "scenario_start_date": scenario_start_date,  # The start date for creating scenarios
-    "scenario_end_date": scenario_end_date,  # User-defined end date for scenarios
-    "demand_level": demand_level,
-    "growth_rate_0_4": growth_rate_0_4,
-    "growth_rate_4_8": growth_rate_4_8,
-    "growth_rate_8_12": growth_rate_8_12,
-    "growth_rate_12_16": growth_rate_12_16,
-    "growth_rate_16_20": growth_rate_16_20,
-    "growth_rate_20_0": growth_rate_20_0,
     "cluster_count": 4,  # Number of clusters for the errors and creating a transition matrix
     "transition_frequency": "2W",  # Frequency of transition (e.g., every 2 weeks)
-    "country": country,
-    "demand_base_year": 2022
+    "country": country
 }
 # config["final_capacity"] = config["initial_capacity"] * (1 + config["growth_rate"])
 
@@ -100,20 +79,10 @@ df = df.rename(columns={'load': 'Actual Load'})
 print(df)
 data = df
 data.index = pd.to_datetime(data.index, utc=True)
-demand_profile = serve_eng_calc_demand_profile(data, config)
 
-# Convert the start and end dates to pandas datetime objects
-start_date = pd.to_datetime(config["scenario_start_date"])
-end_date = pd.to_datetime(config["scenario_end_date"])
-
-# Calculate the total duration between the start and end dates
-total_duration = end_date - start_date
 
 # Convert the transition_frequency to a pandas Timedelta and get the total days for one period
 period_duration_days = pd.Timedelta(config["transition_frequency"]).days
-
-# Calculate the number of periods and round up
-config["periods"] = ceil(total_duration.days / period_duration_days)
 
 # Calculate number of periods based on transition frequency
 config["number_of_periods"] = 24 * pd.Timedelta(config["transition_frequency"]).days
@@ -124,10 +93,8 @@ X = pd.get_dummies(data.index.hour)
 y = data['Actual Load']
 reg = LinearRegression(fit_intercept=False)
 reg.fit(X, y)
-# demand_profile = reg.coef_
 df = data.copy()
 df['Actual Load'] = y / reg.predict(X)
-ax = pd.DataFrame(reg.coef_, columns=["demand_cap"]).plot(title="Demand Profile")
 
 # Spanish Holidays
 country_holidays = holidays.CountryHoliday(config["country"])
