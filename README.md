@@ -9,9 +9,9 @@
 - [x] API integration
 - [x] Callback seperartion
 - [x] Capacity scenario generation
-- [ ] Caching graphs
-- [ ] Demand scenario generation
-- [ ] Price scenario generation
+- [x] Caching graphs
+- [x] Demand scenario generation
+- [x] Price scenario generation
 
 ## To-dos
 

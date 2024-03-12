@@ -33,8 +33,13 @@ def serve_eng_calc_demand_profile(data, config):
     # Linearly connect the initial values to final values wrt the number of years
     start_date = pd.to_datetime(config["scenario_start_date"])
     end_date = pd.to_datetime(config["scenario_end_date"])
-    years_difference = (end_date - start_date).days // 365.25
-    steps = int(years_difference) - 1
+    # years_difference = (end_date - start_date).days // 365.25
+    # steps = int(years_difference) - 1
+    if end_date.month < start_date.month or (end_date.month == start_date.month and end_date.day < start_date.day):
+        number_of_years = end_date.year - start_date.year - 1
+    else:
+        number_of_years = end_date.year - start_date.year
+    steps = number_of_years
     interpolated_lists = []
     if steps > 0:
         for step in range(1, steps + 1):
