@@ -21,10 +21,10 @@
     "value": "capacity"
   },
   {
-    "label": "Demand projection",
+    "label": "Avg Demand projection",
     "icon": "mdi:chart-line",
     "icon_color": "blue",
-    "text": "TeraWatt per hour",
+    "text": "GigaWatt per hour",
     "value": "demand"
   },
   {
