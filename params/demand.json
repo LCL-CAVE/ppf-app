@@ -1,6 +1,6 @@
 [
   {
-    "label": "Demand level",
+    "label": "Avg Demand level",
     "id": "demand_level",
     "min": 0,
     "max": 150,

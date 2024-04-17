@@ -15,7 +15,7 @@ def serve_fig_multiple_line(df, freq, title, Y_Axis_Title):
     """
 
     # , 'rgb(102, 178, 255)''rgb(204, 229, 255)''rgb(53, 204, 255)'
-    light, medium, dark = 'rgb(255, 200, 200)', 'rgb(255, 160, 160)', 'rgb(255, 50, 50)'
+    light, medium, dark = 'rgb(204, 229, 255)', 'rgb(102, 178, 255)', 'rgb(0, 76, 153)'
 
     # Validate inputs
     if not isinstance(df, pd.DataFrame):

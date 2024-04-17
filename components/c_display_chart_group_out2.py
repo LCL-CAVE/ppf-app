@@ -2,7 +2,6 @@ import dash_mantine_components as dmc
 from dash import html
 from utils.fig_out_elec_price_forecast import serve_fig_out_elec_price_forecast
 from utils.fig_out_solar_capture_price import serve_fig_out_solar_capture_price
-from utils.fig_out_wind_capture_price import serve_fig_out_wind_capture_price
 from utils.fig_out_capture_price import serve_fig_out_capture_price
 from utils.fig_price_curve import serve_fig_price_curve
 from controls.cl_json_parser import parse_json
