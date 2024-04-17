@@ -15,7 +15,7 @@ def serve_clb_display_notif_stage_a(app):
             title="First pass!",
             id="simple-notify2",
             action="show",
-            message="Engine passed the first step (inverse-model) successfully!",
+            message="Engine passed the inverse-model cache successfully!",
         )
 
 
@@ -31,5 +31,5 @@ def serve_clb_display_notif_stage_b(app):
             title="Second pass!",
             id="simple-notify4",
             action="show",
-            message="Engine fetched the final solution successfully!",
+            message="Engine fetched the final cache solution successfully!",
         )

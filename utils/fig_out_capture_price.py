@@ -8,7 +8,7 @@ import os
 def serve_fig_out_capture_price(freq):
     df = pd.read_csv(
         os.path.join(os.path.dirname('./data/'), 'capture_prices.csv'),
-        delimiter=';',
+        delimiter=',',
     )
 
     df['date'] = pd.to_datetime(df['date'])

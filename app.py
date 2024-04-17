@@ -65,11 +65,12 @@ if __name__ == "__main__":
                         dcc.Store("data_layout_c_row_a"),
                         dcc.Store("data_layout_c_row_b"),
                         dcc.Store("data_layout_c_row_c"),
-                        dcc.Store("data_layout_d_row_a")
+                        dcc.Store("data_layout_d_row_a"),
+                        create_notification_progress(),
                     ],
                 ),
             ),
-            create_notification_progress(),
+
         ],
         withGlobalStyles=True,
         inherit=True,
@@ -104,4 +105,4 @@ if __name__ == "__main__":
     clb_display_notif_progress.serve_clb_display_notif_stage_b(app)
     clb_display_loading.serve_clb_display_loading(app)
 
-    app.run_server(debug=True)
+    app.run_server(debug=False)
