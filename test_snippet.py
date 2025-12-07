@@ -248,3 +248,21 @@ from sklearn.linear_model import LassoCV
 # print(df_new)
 # df_new.to_csv("tech_stack.csv",index=False)
 
+# price forecast
+# df_wind = pd.read_csv(
+#     os.path.join(os.path.dirname('./data/'), 'wind_production.csv'),
+#     delimiter=',',
+# )
+#
+# df_price_forecast = pd.read_csv(
+#     os.path.join(os.path.dirname('./data/'), 'data/elec_price_forecast.csv'),
+#     delimiter=',',
+# )
+#
+# df_price_forecast['date'] = df_wind['datetime']
+#
+# df_price_forecast = df_price_forecast.rename(columns={'scenario_1': 'value'})
+#
+# df_price_forecast.to_csv("elec_price_forecast.csv",index=False)
+#
+# print(df_price_forecast)

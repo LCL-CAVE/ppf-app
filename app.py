@@ -105,4 +105,4 @@ if __name__ == "__main__":
     clb_display_notif_progress.serve_clb_display_notif_stage_b(app)
     clb_display_loading.serve_clb_display_loading(app)
 
-    app.run_server(debug=False)
+    app.run_server(debug=True)

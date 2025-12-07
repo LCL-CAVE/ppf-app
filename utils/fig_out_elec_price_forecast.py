@@ -7,7 +7,7 @@ import os
 def serve_fig_out_elec_price_forecast(freq):
     df = pd.read_csv(
         os.path.join(os.path.dirname('./data/'), 'elec_price_forecast.csv'),
-        delimiter=';'
+        delimiter=','
     )
 
     df['date'] = pd.to_datetime(df['date'])
